@@ -23,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Entities\User\" />
-    <Folder Include="Models\Entities\Shops\" />
+    <Folder Include="Models\Entities\" />
   </ItemGroup>
 
 </Project>
