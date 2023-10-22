@@ -5,7 +5,7 @@
 namespace RentShop_API.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateData : Migration
+    public partial class InitialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

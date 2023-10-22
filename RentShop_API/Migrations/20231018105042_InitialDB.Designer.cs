@@ -11,15 +11,15 @@ using RentShop_API.Models.Data;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20230918100006_CreateData")]
-    partial class CreateData
+    [Migration("20231018105042_InitialDB")]
+    partial class InitialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
