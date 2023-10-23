@@ -22,4 +22,16 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Entities\Categories\" />
+    <Folder Include="Models\Entities\LogTransaction\" />
+    <Folder Include="Models\Entities\Rating\" />
+    <Folder Include="Models\Entities\Transaction\" />
+    <Folder Include="Models\Entities\Shops\" />
+    <Folder Include="Models\Entities\TransportAvailable\" />
+    <Folder Include="Models\Entities\Transport\" />
+    <Folder Include="Models\Entities\Order\" />
+    <Folder Include="Models\Entities\User\" />
+  </ItemGroup>
+
 </Project>
