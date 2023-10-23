@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<RentDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
 
-// hellow
+
 
 
 builder.Services.AddControllers();
