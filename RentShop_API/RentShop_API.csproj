@@ -8,6 +8,45 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Entities\Categories\**" />
+    <Compile Remove="Models\Entities\LogTransaction\**" />
+    <Compile Remove="Models\Entities\Order\**" />
+    <Compile Remove="Models\Entities\Rating\**" />
+    <Compile Remove="Models\Entities\Shops\**" />
+    <Compile Remove="Models\Entities\Transaction\**" />
+    <Compile Remove="Models\Entities\TransportAvailable\**" />
+    <Compile Remove="Models\Entities\Transport\**" />
+    <Compile Remove="Models\Entities\User\**" />
+    <Content Remove="Models\Entities\Categories\**" />
+    <Content Remove="Models\Entities\LogTransaction\**" />
+    <Content Remove="Models\Entities\Order\**" />
+    <Content Remove="Models\Entities\Rating\**" />
+    <Content Remove="Models\Entities\Shops\**" />
+    <Content Remove="Models\Entities\Transaction\**" />
+    <Content Remove="Models\Entities\TransportAvailable\**" />
+    <Content Remove="Models\Entities\Transport\**" />
+    <Content Remove="Models\Entities\User\**" />
+    <EmbeddedResource Remove="Models\Entities\Categories\**" />
+    <EmbeddedResource Remove="Models\Entities\LogTransaction\**" />
+    <EmbeddedResource Remove="Models\Entities\Order\**" />
+    <EmbeddedResource Remove="Models\Entities\Rating\**" />
+    <EmbeddedResource Remove="Models\Entities\Shops\**" />
+    <EmbeddedResource Remove="Models\Entities\Transaction\**" />
+    <EmbeddedResource Remove="Models\Entities\TransportAvailable\**" />
+    <EmbeddedResource Remove="Models\Entities\Transport\**" />
+    <EmbeddedResource Remove="Models\Entities\User\**" />
+    <None Remove="Models\Entities\Categories\**" />
+    <None Remove="Models\Entities\LogTransaction\**" />
+    <None Remove="Models\Entities\Order\**" />
+    <None Remove="Models\Entities\Rating\**" />
+    <None Remove="Models\Entities\Shops\**" />
+    <None Remove="Models\Entities\Transaction\**" />
+    <None Remove="Models\Entities\TransportAvailable\**" />
+    <None Remove="Models\Entities\Transport\**" />
+    <None Remove="Models\Entities\User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
@@ -23,15 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Entities\Categories\" />
-    <Folder Include="Models\Entities\LogTransaction\" />
-    <Folder Include="Models\Entities\Rating\" />
-    <Folder Include="Models\Entities\Transaction\" />
-    <Folder Include="Models\Entities\Shops\" />
-    <Folder Include="Models\Entities\TransportAvailable\" />
-    <Folder Include="Models\Entities\Transport\" />
-    <Folder Include="Models\Entities\Order\" />
-    <Folder Include="Models\Entities\User\" />
+    <Folder Include="Models\Entities\" />
   </ItemGroup>
 
 </Project>
