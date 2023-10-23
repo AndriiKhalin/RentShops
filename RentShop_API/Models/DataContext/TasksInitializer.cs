@@ -13,10 +13,15 @@ public static class TasksInitializer
 
             using var context = scope.ServiceProvider.GetRequiredService<RentDbContext>();
 
-            SeedData.SeedBikes(context);
-            SeedData.SeedScooters(context);
-            SeedData.SeedStatus(context);
-            SeedData.SeedClients(context);
+            SeedData.SeedUsers(context);
+            SeedData.SeedOrders(context);
+            SeedData.SeedTransports(context);
+            SeedData.SeedTransportAvailable(context);
+            SeedData.SeedShops(context);
+            SeedData.SeedCategories(context);
+            SeedData.SeedLogTransactions(context);
+            SeedData.SeedRating(context);
+            SeedData.SeedTransactions(context);
         }
         return app;
     }

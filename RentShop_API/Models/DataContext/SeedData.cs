@@ -9,21 +9,44 @@ namespace RentShop.Models;
 
 public static class SeedData
 {
-    public static void SeedClients(RentDbContext context)
+    public static void SeedUsers(RentDbContext context)
     {
 
     }
 
-    public static void SeedBikes(RentDbContext context)
+    public static void SeedOrders(RentDbContext context)
     {
     }
 
-    public static void SeedScooters(RentDbContext context)
+    public static void SeedTransports(RentDbContext context)
     {
 
     }
 
-    public static void SeedStatus(RentDbContext context)
+    public static void SeedShops(RentDbContext context)
+    {
+
+    }
+
+    public static void SeedCategories(RentDbContext context)
+    {
+
+    }
+
+    public static void SeedTransactions(RentDbContext context)
+    {
+    }
+
+    public static void SeedLogTransactions(RentDbContext context)
+    {
+
+    }
+
+    public static void SeedTransportAvailable(RentDbContext context)
+    {
+
+    }
+    public static void SeedRating(RentDbContext context)
     {
 
     }
