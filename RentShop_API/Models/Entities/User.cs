@@ -12,7 +12,7 @@ public class User
 
     public string Password { get; set; }
 
-    public int Age { get; set; }
+    public DateTime BirthDate { get; set; }
 
     public string Phone { get; set; }
 
