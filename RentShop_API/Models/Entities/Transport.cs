@@ -21,4 +21,7 @@ public class Transport
     public Category? Category { get; set; }
 
     public List<Order> Orders { get; set; } = new();
+    public List<Rating> Ratings { get; set; } = new();
+    public TransportAvailable? TransportAvailable { get; set; }
+
 }

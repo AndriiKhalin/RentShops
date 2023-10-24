@@ -9,4 +9,5 @@ public class Shop
     public DateTime ScheduleWork { get; set; }
 
     public List<Order> Orders { get; set; } = new();
+    public TransportAvailable? TransportAvailable { get; set; }
 }
