@@ -19,4 +19,6 @@ public class User
     public string Status { get; set; }
 
     public List<Order> Orders { get; set; } = new();
+
+    public List<Rating> Ratings { get; set; } = new();
 }
