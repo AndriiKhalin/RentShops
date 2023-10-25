@@ -30,8 +30,8 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 Name = "Vanya",
-                LastName = "Libid",
-                Email = "libid@gmail.com",
+                LastName = "Lebid",
+                Email = "lebid@gmail.com",
                 Password = "1920202",
                 Phone = "+380737303277",
                 BirthDate = new DateTime(2001, 10, 5),
