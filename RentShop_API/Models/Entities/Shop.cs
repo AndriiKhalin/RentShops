@@ -6,7 +6,8 @@ public class Shop
 
     public string Address { get; set; }
 
-    public DateTime ScheduleWork { get; set; }
+    public TimeOnly WorkTimeStart { get; set; }
+    public TimeOnly WorkTimeEnd { get; set; }
 
     public List<Order> Orders { get; set; } = new();
     public TransportAvailable? TransportAvailable { get; set; }
