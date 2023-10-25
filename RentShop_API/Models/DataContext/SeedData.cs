@@ -219,7 +219,26 @@ public static class SeedData
                 OrderId = Guid.Empty,
                 Order = new Order(),
                 LogTransaction = new LogTransaction()
-            });
+            },
+            new Transaction
+            {
+                Id = Guid.NewGuid(),
+                Sum = 25,
+                Date = DateTime.Now,
+                OrderId = Guid.Empty,
+                Order = new Order(),
+                LogTransaction = new LogTransaction()
+            },
+            new Transaction
+            {
+                Id = Guid.NewGuid(),
+                Sum = 120,
+                Date = DateTime.Now,
+                OrderId = Guid.Empty,
+                Order = new Order(),
+                LogTransaction = new LogTransaction()
+            }
+            );
     }
 
     public static void SeedLogTransactions(this ModelBuilder modelBuilder)
@@ -231,7 +250,22 @@ public static class SeedData
                 Results = true,
                 TransactionId = Guid.Empty,
                 Transaction = new Transaction()
-            });
+            },
+            new LogTransaction
+            {
+                Id = Guid.NewGuid(),
+                Results = true,
+                TransactionId = Guid.Empty,
+                Transaction = new Transaction()
+            },
+            new LogTransaction
+            {
+                Id = Guid.NewGuid(),
+                Results = false,
+                TransactionId = Guid.Empty,
+                Transaction = new Transaction()
+            }
+            );
 
     }
 
@@ -241,7 +275,25 @@ public static class SeedData
             new TransportAvailable
             {
                 Id = Guid.NewGuid(),
-                CountTransport = 0,
+                CountTransport = 15,
+                TransportId = Guid.Empty,
+                Transport = new Transport(),
+                ShopId = Guid.Empty,
+                Shop = new Shop(),
+            },
+            new TransportAvailable
+            {
+                Id = Guid.NewGuid(),
+                CountTransport = 22,
+                TransportId = Guid.Empty,
+                Transport = new Transport(),
+                ShopId = Guid.Empty,
+                Shop = new Shop(),
+            },
+            new TransportAvailable
+            {
+                Id = Guid.NewGuid(),
+                CountTransport = 14,
                 TransportId = Guid.Empty,
                 Transport = new Transport(),
                 ShopId = Guid.Empty,
@@ -256,6 +308,18 @@ public static class SeedData
             {
                 Id = Guid.NewGuid(),
                 Grand = 2,
+                Comment = "Bad",
+                CreatedAt = DateTime.UtcNow,
+                UserId = Guid.Empty,
+                User = new User(),
+                TransportsId = Guid.Empty,
+                Transport = new Transport()
+
+            },
+            new Rating
+            {
+                Id = Guid.NewGuid(),
+                Grand = 5,
                 Comment = "Good",
                 CreatedAt = DateTime.UtcNow,
                 UserId = Guid.Empty,
@@ -263,6 +327,19 @@ public static class SeedData
                 TransportsId = Guid.Empty,
                 Transport = new Transport()
 
-            });
+            },
+            new Rating
+            {
+                Id = Guid.NewGuid(),
+                Grand = 4,
+                Comment = "Nice",
+                CreatedAt = DateTime.UtcNow,
+                UserId = Guid.Empty,
+                User = new User(),
+                TransportsId = Guid.Empty,
+                Transport = new Transport()
+
+            }
+            );
     }
 }
