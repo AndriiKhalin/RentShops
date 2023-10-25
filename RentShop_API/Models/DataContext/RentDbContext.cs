@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RentShop.Models;
 using RentShop_API.Models.Entities;
 
 
@@ -23,6 +24,20 @@ public class RentDbContext : DbContext
 
 
     //}
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.SeedUsers();
+        modelBuilder.SeedOrders();
+        modelBuilder.SeedTransports();
+        modelBuilder.SeedTransportAvailable();
+        modelBuilder.SeedCategories();
+        modelBuilder.SeedLogTransactions();
+        modelBuilder.SeedTransactions();
+        modelBuilder.SeedRating();
+        modelBuilder.SeedShops();
+
+    }
 
     public DbSet<Transaction> Transactions { get; set; } = null!;
 
