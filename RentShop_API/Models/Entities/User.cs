@@ -16,7 +16,7 @@ public class User
 
     public string Phone { get; set; }
 
-    public string Status { get; set; }
+    public string Role { get; set; }
 
     public List<Order> Orders { get; set; } = new();
 

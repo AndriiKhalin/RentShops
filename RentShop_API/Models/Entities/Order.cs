@@ -16,4 +16,6 @@ public class Order
     public List<Shop> Shops { get; set; } = new();
 
     public List<Transport> Transports { get; set; } = new();
+
+    public Transaction? Transaction { get; set; }
 }
