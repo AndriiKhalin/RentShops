@@ -8,7 +8,7 @@ public class Rating
     public DateTime CreatedAt { get; set; }
     public Guid? UserId { get; set; }
     public User? User { get; set; }
-    public Guid? TransportsId { get; set; }
+    public Guid? TransportId { get; set; }
     public Transport? Transport { get; set; }
 
 
