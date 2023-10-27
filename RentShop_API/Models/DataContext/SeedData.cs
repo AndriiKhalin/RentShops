@@ -306,7 +306,7 @@ public static class SeedData
                 CreatedAt = DateTime.UtcNow,
                 UserId = null,
 
-                TransportsId = null,
+                TransportId = null,
 
 
             },
@@ -318,7 +318,7 @@ public static class SeedData
                 CreatedAt = DateTime.UtcNow,
                 UserId = null,
 
-                TransportsId = null,
+                TransportId = null,
 
 
             },
@@ -330,7 +330,7 @@ public static class SeedData
                 CreatedAt = DateTime.UtcNow,
                 UserId = null,
 
-                TransportsId = null,
+                TransportId = null,
 
 
             }
