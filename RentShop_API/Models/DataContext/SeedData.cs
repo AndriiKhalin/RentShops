@@ -160,8 +160,8 @@ public static class SeedData
                 Address = "Street Victory 5",
                 TransportAvailable = new TransportAvailable(),
                 Orders = new List<Order>(),
-                WorkTimeStart = new TimeOnly(8, 0),
-                WorkTimeEnd = new TimeOnly(18, 0)
+                WorkTimeStart = new TimeSpan(8, 0, 0),
+                WorkTimeEnd = new TimeSpan(18, 0, 0)
             },
             new Shop()
             {
@@ -169,8 +169,8 @@ public static class SeedData
                 Address = "Street Livikovicha 15",
                 TransportAvailable = new TransportAvailable(),
                 Orders = new List<Order>(),
-                WorkTimeStart = new TimeOnly(8, 0),
-                WorkTimeEnd = new TimeOnly(18, 0)
+                WorkTimeStart = new TimeSpan(8, 0, 0),
+                WorkTimeEnd = new TimeSpan(18, 0, 0)
             },
             new Shop()
             {
@@ -178,8 +178,8 @@ public static class SeedData
                 Address = "Street Chresatic 55",
                 TransportAvailable = new TransportAvailable(),
                 Orders = new List<Order>(),
-                WorkTimeStart = new TimeOnly(8, 0),
-                WorkTimeEnd = new TimeOnly(18, 0)
+                WorkTimeStart = new TimeSpan(8, 0, 0),
+                WorkTimeEnd = new TimeSpan(18, 0, 0)
             }
         );
     }
