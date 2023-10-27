@@ -10,7 +10,7 @@ public class Order
 
     public DateTime DateTo { get; set; }
 
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
     public User? User { get; set; }
 
     public List<Shop> Shops { get; set; } = new();

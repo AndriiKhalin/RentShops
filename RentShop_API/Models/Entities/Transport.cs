@@ -16,7 +16,7 @@ public class Transport
 
     public int MaxWeight { get; set; }
 
-    public Guid CategoryId { get; set; }
+    public Guid? CategoryId { get; set; }
 
     public Category? Category { get; set; }
 

@@ -2,7 +2,7 @@
 using System;
 
 namespace RentShop_API.Models.Data;
-
+/*
 public static class TasksInitializer
 {
     public static WebApplication Seed(this WebApplication app)
@@ -25,4 +25,4 @@ public static class TasksInitializer
         }
         return app;
     }
-}
+}*/
