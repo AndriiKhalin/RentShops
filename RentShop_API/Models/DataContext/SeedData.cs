@@ -10,6 +10,8 @@ namespace RentShop.Models;
 
 public static class SeedData
 {
+
+    public static RentDbContext _context;
     public static void SeedUsers(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasData(

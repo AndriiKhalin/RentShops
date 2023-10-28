@@ -69,17 +69,17 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a7545ea0-d165-451b-891b-85c7ad800624"),
+                            Id = new Guid("03b13ea3-1c23-48bc-9100-3f8447e729db"),
                             Name_Category = "Scooter"
                         },
                         new
                         {
-                            Id = new Guid("f8262a42-2924-4bd0-a346-52de667eb1db"),
+                            Id = new Guid("b0a72c41-77ed-4a70-bf0d-3419d4df0f5c"),
                             Name_Category = "Bike"
                         },
                         new
                         {
-                            Id = new Guid("fd5121f7-75d6-4a56-b349-ea2f9f02f156"),
+                            Id = new Guid("979a107c-3aaf-4501-bb0f-eba5635a8081"),
                             Name_Category = "Motorbike"
                         });
                 });
@@ -107,17 +107,17 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bde66180-80a6-4945-aee0-3e6bb2f555fb"),
+                            Id = new Guid("846b5455-f0e2-4781-b0d5-b8c965bbaae1"),
                             Results = true
                         },
                         new
                         {
-                            Id = new Guid("9aafcda5-254a-4a83-835a-7c77713639ca"),
+                            Id = new Guid("942352ea-532a-49ab-b82b-38c2ceb29a64"),
                             Results = true
                         },
                         new
                         {
-                            Id = new Guid("e5c1dc46-bc95-4593-a8be-c5d104a1b841"),
+                            Id = new Guid("b2dc3263-878a-4931-9c13-1918f7fb395b"),
                             Results = false
                         });
                 });
@@ -149,23 +149,23 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bb9276ec-07c3-444f-9089-deef9f880374"),
-                            DateFrom = new DateTime(2023, 10, 27, 12, 55, 3, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3168),
+                            Id = new Guid("ae295cdb-37b4-4777-b694-664bfb02811b"),
+                            DateFrom = new DateTime(2023, 10, 28, 12, 55, 3, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(2023, 10, 28, 23, 46, 8, 584, DateTimeKind.Local).AddTicks(9946),
                             Price = 55f
                         },
                         new
                         {
-                            Id = new Guid("6a54f9de-b9c8-4008-87eb-f16c444cf728"),
-                            DateFrom = new DateTime(2023, 10, 27, 12, 33, 13, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3186),
+                            Id = new Guid("c6daabeb-e90c-43b2-8a63-8308838335f4"),
+                            DateFrom = new DateTime(2023, 10, 28, 12, 33, 13, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(2023, 10, 28, 23, 46, 8, 584, DateTimeKind.Local).AddTicks(9961),
                             Price = 35f
                         },
                         new
                         {
-                            Id = new Guid("869167b6-3754-4e3a-b137-a1bbbd779382"),
-                            DateFrom = new DateTime(2023, 10, 27, 11, 25, 53, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3197),
+                            Id = new Guid("17bddc87-3b52-4dea-9ced-3f2d1bf076bb"),
+                            DateFrom = new DateTime(2023, 10, 28, 11, 25, 53, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(2023, 10, 28, 23, 46, 8, 584, DateTimeKind.Local).AddTicks(9970),
                             Price = 155f
                         });
                 });
@@ -189,9 +189,6 @@ namespace RentShop_API.Migrations
                     b.Property<Guid?>("TransportId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("TransportsId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -206,23 +203,23 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f82e1950-eade-4c4b-a843-d65c12c78525"),
+                            Id = new Guid("a3f2f78b-9d65-4875-8071-462bf4d09e36"),
                             Comment = "Bad",
-                            CreatedAt = new DateTime(2023, 10, 27, 17, 59, 20, 151, DateTimeKind.Utc).AddTicks(3556),
+                            CreatedAt = new DateTime(2023, 10, 28, 20, 46, 8, 585, DateTimeKind.Utc).AddTicks(212),
                             Grand = 2
                         },
                         new
                         {
-                            Id = new Guid("89a72202-1e5a-4abc-a7ba-eeec075b13e6"),
+                            Id = new Guid("d45f9e9e-35d3-4014-ab9a-153bfd5ff020"),
                             Comment = "Good",
-                            CreatedAt = new DateTime(2023, 10, 27, 17, 59, 20, 151, DateTimeKind.Utc).AddTicks(3560),
+                            CreatedAt = new DateTime(2023, 10, 28, 20, 46, 8, 585, DateTimeKind.Utc).AddTicks(215),
                             Grand = 5
                         },
                         new
                         {
-                            Id = new Guid("3fbbb959-ad20-48ff-9d0e-100213ea21bd"),
+                            Id = new Guid("b74f6e70-c8e1-43f2-a24b-85207bcfa853"),
                             Comment = "Nice",
-                            CreatedAt = new DateTime(2023, 10, 27, 17, 59, 20, 151, DateTimeKind.Utc).AddTicks(3566),
+                            CreatedAt = new DateTime(2023, 10, 28, 20, 46, 8, 585, DateTimeKind.Utc).AddTicks(218),
                             Grand = 4
                         });
                 });
@@ -250,21 +247,21 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c5be65bf-7141-4549-855b-d708e1eafa57"),
+                            Id = new Guid("2c247366-ff1a-4692-9015-412ff684de4d"),
                             Address = "Street Victory 5",
                             WorkTimeEnd = new TimeSpan(0, 18, 0, 0, 0),
                             WorkTimeStart = new TimeSpan(0, 8, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("837d7d5b-78a3-4849-9299-266b2b9d8c7d"),
+                            Id = new Guid("170bfc2f-5b3d-41df-946e-2f84ac3d5316"),
                             Address = "Street Livikovicha 15",
                             WorkTimeEnd = new TimeSpan(0, 18, 0, 0, 0),
                             WorkTimeStart = new TimeSpan(0, 8, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("4f9f82fe-bce2-4e12-b8bd-5f5d8d7f0665"),
+                            Id = new Guid("88ee7a78-94e1-4fcd-ae1d-432d554c42b0"),
                             Address = "Street Chresatic 55",
                             WorkTimeEnd = new TimeSpan(0, 18, 0, 0, 0),
                             WorkTimeStart = new TimeSpan(0, 8, 0, 0, 0)
@@ -297,20 +294,20 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d145335e-e8ae-42c5-adda-53b331eac4aa"),
-                            Date = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3508),
+                            Id = new Guid("972da729-279c-44ac-b683-fe8d1e412a27"),
+                            Date = new DateTime(2023, 10, 28, 23, 46, 8, 585, DateTimeKind.Local).AddTicks(180),
                             Sum = 125f
                         },
                         new
                         {
-                            Id = new Guid("d56f0ac3-3f04-415d-8b84-3f108961dbc3"),
-                            Date = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3514),
+                            Id = new Guid("0e5d35d5-559a-4b41-b2d2-5c275fec3970"),
+                            Date = new DateTime(2023, 10, 28, 23, 46, 8, 585, DateTimeKind.Local).AddTicks(185),
                             Sum = 25f
                         },
                         new
                         {
-                            Id = new Guid("f0a1b6c7-f2fb-4db3-bc27-53aea9ed6a9b"),
-                            Date = new DateTime(2023, 10, 27, 20, 59, 20, 151, DateTimeKind.Local).AddTicks(3518),
+                            Id = new Guid("efcb97e4-cd92-4613-b001-f1574dde3bb6"),
+                            Date = new DateTime(2023, 10, 28, 23, 46, 8, 585, DateTimeKind.Local).AddTicks(189),
                             Sum = 120f
                         });
                 });
@@ -354,7 +351,7 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7e878d64-ade2-4d56-8cc1-4fecff92ef8a"),
+                            Id = new Guid("ddcd9353-b811-485a-b9a7-9e886a2d9871"),
                             ImgUrl = "http://...",
                             Mark = "Honda",
                             MaxSpeed = 35,
@@ -364,7 +361,7 @@ namespace RentShop_API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c2f5c199-097d-414a-b2fa-30c14b068f68"),
+                            Id = new Guid("35705a50-fa2b-453a-833c-8dee0be68c53"),
                             ImgUrl = "http://...",
                             Mark = "Tesla",
                             MaxSpeed = 45,
@@ -374,7 +371,7 @@ namespace RentShop_API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("925435be-2647-4a46-aeb1-d2dbceae5d76"),
+                            Id = new Guid("13e130ba-4766-4b3b-8aca-3a5ac268bea4"),
                             ImgUrl = "http://...",
                             Mark = "Volva",
                             MaxSpeed = 30,
@@ -414,17 +411,17 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f5d3cc5a-239d-4c3a-95e8-c72feccb287f"),
+                            Id = new Guid("5da20ea5-1073-4693-a1aa-9305a39d04fa"),
                             CountTransport = 15
                         },
                         new
                         {
-                            Id = new Guid("da2bac03-3752-4fe9-8f5f-2cd4667ae7d2"),
+                            Id = new Guid("f22b84d2-f3b8-4948-8e7f-30cf11e7e73b"),
                             CountTransport = 22
                         },
                         new
                         {
-                            Id = new Guid("817de609-0ca0-4c15-88c4-d93c0e31f21f"),
+                            Id = new Guid("dd31d57f-493d-43e6-ae27-882824a9c1bd"),
                             CountTransport = 14
                         });
                 });
@@ -469,7 +466,7 @@ namespace RentShop_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("585a94d1-6e77-48e5-a5de-5d3fac9a15bb"),
+                            Id = new Guid("5af1e215-7722-4114-89ea-2b9e5aebac29"),
                             BirthDate = new DateTime(2002, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "khalin2002@gmail.com",
                             LastName = "Khalin",
@@ -480,7 +477,7 @@ namespace RentShop_API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d1e341d8-8a9a-408c-aeec-cdbdfea0332e"),
+                            Id = new Guid("16d81047-a3a4-4e33-bf6f-f2f68a4d1bcb"),
                             BirthDate = new DateTime(2001, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "lebid@gmail.com",
                             LastName = "Lebid",
@@ -491,7 +488,7 @@ namespace RentShop_API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("84b85103-b966-4e21-af94-5980b68d017a"),
+                            Id = new Guid("4f990671-5a3f-4e77-a745-745446513434"),
                             BirthDate = new DateTime(2004, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "shabaltas@gmail.com",
                             LastName = "Shabaltas",
