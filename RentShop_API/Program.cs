@@ -8,9 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<RentDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
 
-
-
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.Seed();
+app.Seed();
 
 app.Run();
