@@ -29,7 +29,7 @@ public static class SeedData
                     Password = "10122002",
                     Phone = "+380737303288",
                     BirthDate = new DateTime(2002, 12, 10),
-                    Orders = new List<Order>() { },
+                    Orders = new List<Order>() {},
                     Ratings = new List<Rating>(),
                     Role = "User"
                 },
@@ -55,7 +55,7 @@ public static class SeedData
                     Password = "648577",
                     Phone = "+380991833277",
                     BirthDate = new DateTime(2004, 2, 18),
-                    Orders = new List<Order>() { },
+                    Orders = new List<Order>() {},
                     Ratings = new List<Rating>(),
                     Role = "Admin"
                 }
@@ -123,7 +123,7 @@ public static class SeedData
                     DateTo = DateTime.Now,
                     Price = 55f,
                     Shops = new List<Shop>(),
-                    Transports = new List<Transport>(),
+                    Transports = new List<Transport>(){},
                     UserId = context.Users.FirstOrDefault(x=>x.Name=="Andrew")?.Id
 
                 },
@@ -135,7 +135,7 @@ public static class SeedData
                     Price = 35f,
                     Shops = new List<Shop>(),
                     Transports = new List<Transport>(),
-                    UserId = context.Users.FirstOrDefault(x=>x.Name=="Andrew")?.Id
+                    UserId = context.Users.FirstOrDefault(x=>x.Name=="Vanya")?.Id
 
                 },
                 new Order
