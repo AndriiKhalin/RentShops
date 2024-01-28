@@ -1,9 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RentShop.Models;
+using RentShop_API.Interfaces;
 using RentShop_API.Models.Data;
+using RentShop_API.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ITransportRepository, TransportRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ILogTransactionRepository, LogTransactionRepository>();
+builder.Services.AddScoped<ITransportAvailableRepository, TransportAvailableRepository>();
+builder.Services.AddScoped<IShopRepository, ShopRepository>();
 
 // Add services to the container.
 builder.Services.AddDbContext<RentDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));

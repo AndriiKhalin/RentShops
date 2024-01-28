@@ -1,6 +1,6 @@
-﻿namespace RentShop_API.Models.Entities;
+﻿namespace RentShop_API.Dto;
 
-public class Category
+public class CategoryDto
 {
     public Guid Id { get; set; }
 

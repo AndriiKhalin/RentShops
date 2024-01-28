@@ -16,12 +16,12 @@ public class Transport
 
     public int MaxWeight { get; set; }
 
-    public Guid? CategoryId { get; set; }
+    public  Guid? CategoryId { get; set; }
 
     public Category? Category { get; set; }
 
-    public List<Order> Orders { get; set; } = new();
-    public List<Rating> Ratings { get; set; } = new();
-    public TransportAvailable? TransportAvailable { get; set; }
+    public  List<Order> Orders { get; set; } = new();
+    public  List<Rating> Ratings { get; set; } = new();
+    public  List<TransportAvailable> TransportAvailables { get; set; } = new();
 
 }

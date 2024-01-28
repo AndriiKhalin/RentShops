@@ -1,0 +1,14 @@
+﻿namespace RentShop_API.Dto;
+
+public class OrderDto
+{
+    public Guid Id { get; set; }
+
+    public float Price { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime DateFrom { get; set; }
+
+    public DateTime DateTo { get; set; }
+}
