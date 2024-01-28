@@ -12,19 +12,67 @@ public class RentDbContext : DbContext
 
     }
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    //var configuration = new ConfigurationBuilder()
-    //    //    .SetBasePath(Directory.GetCurrentDirectory())
-    //    //    .AddJsonFile("appsettings.json")
-    //    //    .Build();
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        #region SetNullDeleteBehavior
 
-    //    //var connectionString = configuration.GetConnectionString("AppDb");
-    //    //optionsBuilder.UseSqlServer(connectionString);
+        modelBuilder.Entity<Order>()
+            .HasOne(x => x.User)
+            .WithMany(y => y.Orders)
+            .OnDelete(DeleteBehavior.SetNull);
 
+        modelBuilder.Entity<Order>()
+            .HasOne(x => x.Transport)
+            .WithMany(y => y.Orders)
+            .OnDelete(DeleteBehavior.SetNull);
 
-    //}
+        modelBuilder.Entity<Order>()
+            .HasOne(x => x.Shop)
+            .WithMany(y => y.Orders)
+            .OnDelete(DeleteBehavior.SetNull);
 
+        modelBuilder.Entity<Order>()
+            .HasOne(x => x.Transaction)
+            .WithOne(y => y.Order)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Rating>()
+            .HasOne(x => x.User)
+            .WithMany(y => y.Ratings)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Rating>()
+            .HasOne(x => x.Transport)
+            .WithMany(y => y.Ratings)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Transaction>()
+            .HasOne(x => x.Order)
+            .WithOne(y => y.Transaction)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<LogTransaction>()
+            .HasOne(x => x.Transaction)
+            .WithOne(y => y.LogTransaction)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Transport>()
+            .HasOne(x => x.Category)
+            .WithMany(y => y.Transports)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<TransportAvailable>()
+            .HasOne(x => x.Transport)
+            .WithMany(y => y.TransportAvailables)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<TransportAvailable>()
+            .HasOne(x => x.Shop)
+            .WithMany(y => y.TransportAvailables)
+            .OnDelete(DeleteBehavior.SetNull);
+        #endregion
+
+    }
 
     public DbSet<Transaction> Transactions { get; set; } = null!;
 
@@ -39,4 +87,6 @@ public class RentDbContext : DbContext
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<Transport> Transports { get; set; } = null!;
+
+
 }
