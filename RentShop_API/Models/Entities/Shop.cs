@@ -9,6 +9,6 @@ public class Shop
     public TimeSpan WorkTimeStart { get; set; }
     public TimeSpan WorkTimeEnd { get; set; }
 
-    public List<Order> Orders { get; set; } = new();
-    public TransportAvailable? TransportAvailable { get; set; }
+    public  List<Order> Orders { get; set; } = new();
+    public  List<TransportAvailable> TransportAvailables { get; set; } = new();
 }
