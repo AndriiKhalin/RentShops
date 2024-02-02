@@ -22,7 +22,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<UserDto>))]
         public async Task<IActionResult> GetUsers()
         {
             var users = _mapper.Map<List<UserDto>>(await _userRepository.GetUsers());
@@ -35,7 +35,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet("{userId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        [ProducesResponseType(200, Type = typeof(UserDto))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetUser(Guid userId)
         {
@@ -54,7 +54,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet("{userId}/lastOrder")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        [ProducesResponseType(200, Type = typeof(DateTime))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetUserLastOrder(Guid userId)
         {
@@ -70,6 +70,69 @@ namespace RentShop_API.Controllers
             }
 
             return Ok(lastDateOrder);
+        }
+
+        //[HttpPost]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(400)]
+        //public async Task<IActionResult> CreateUser(UserDto userCreate)
+        //{
+        //    if (userCreate == null)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var user = _userRepository.GetUsers().Result.FirstOrDefault(u => u.Name.Trim().ToLower() == userCreate.Name.Trim().ToLower());
+
+        //    if (user != null)
+        //    {
+        //        ModelState.AddModelError("", "User already exists");
+        //        return StatusCode(422, ModelState);
+        //    }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var userMap = _mapper.Map<User>(userCreate);
+
+        //    if (!await _userRepository.CreateUser(userMap))
+        //    {
+        //        ModelState.AddModelError("", "Something wrong while saving");
+        //        return StatusCode(500, ModelState);
+        //    }
+
+        //    return Ok("Successful create");
+        //}
+
+        [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateUser([FromBody] UserDto userCreate)
+        {
+            if (userCreate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userMap = _mapper.Map<User>(userCreate);
+
+            var user = await _userRepository.CreateUser(userMap);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "User already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userDto = _mapper.Map<UserDto>(user);
+
+            return CreatedAtAction(nameof(GetUser), new { userId = userDto.Id }, userDto);
         }
     }
 }

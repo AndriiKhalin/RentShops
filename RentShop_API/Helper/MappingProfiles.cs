@@ -8,14 +8,14 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<User, UserDto>();
-        CreateMap<Order, OrderDto>();
-        CreateMap<Transport, TransportDto>();
-        CreateMap<Category, CategoryDto>();
-        CreateMap<Rating, RatingDto>();
-        CreateMap<Transaction, TransactionDto>();
-        CreateMap<LogTransaction, LogTransactionDto>();
-        CreateMap<TransportAvailable, TransportAvailableDto>();
-        CreateMap<Shop, ShopDto>();
+        CreateMap<User, UserDto>().ReverseMap();
+        CreateMap<Order, OrderDto>().ReverseMap();
+        CreateMap<Transport, TransportDto>().ReverseMap();
+        CreateMap<Category, CategoryDto>().ReverseMap();
+        CreateMap<Rating, RatingDto>().ReverseMap();
+        CreateMap<Transaction, TransactionDto>().ReverseMap();
+        CreateMap<LogTransaction, LogTransactionDto>().ReverseMap();
+        CreateMap<TransportAvailable, TransportAvailableDto>().ReverseMap();
+        CreateMap<Shop, ShopDto>().ReverseMap();
     }
 }

@@ -12,7 +12,7 @@ using RentShop_API.Models.Data;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20240116003449_CreateDB")]
+    [Migration("20240201210349_CreateDB")]
     partial class CreateDB
     {
         /// <inheritdoc />
@@ -21,9 +21,6 @@ namespace RentShop_API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,7 +31,7 @@ namespace RentShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name_Category")
+                    b.Property<string>("Name_Categories")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -267,8 +264,9 @@ namespace RentShop_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

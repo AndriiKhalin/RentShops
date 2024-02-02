@@ -74,19 +74,19 @@ public class RentDbContext : DbContext
 
     }
 
-    public DbSet<Transaction> Transactions { get; set; } = null!;
+    public DbSet<Transaction>? Transactions { get; set; } = null!;
 
-    public DbSet<Rating> Ratings { get; set; } = null!;
+    public DbSet<Rating>? Ratings { get; set; } = null!;
 
-    public DbSet<LogTransaction> LogTransactions { get; set; } = null!;
+    public DbSet<LogTransaction>? LogTransactions { get; set; } = null!;
 
-    public DbSet<Shop> Shops { get; set; } = null!;
+    public DbSet<Shop>? Shops { get; set; } = null!;
 
-    public DbSet<TransportAvailable> TransportAvailables { get; set; } = null!;
-    public DbSet<User> Users { get; set; } = null!;
-    public DbSet<Category> Categories { get; set; } = null!;
-    public DbSet<Order> Orders { get; set; } = null!;
-    public DbSet<Transport> Transports { get; set; } = null!;
+    public DbSet<TransportAvailable>? TransportAvailables { get; set; } = null!;
+    public DbSet<User>? Users { get; set; } = null!;
+    public DbSet<Category>? Categories { get; set; } = null!;
+    public DbSet<Order>? Orders { get; set; } = null!;
+    public DbSet<Transport>? Transports { get; set; } = null!;
 
 
 }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RentShop.Models;
+using RentShop_API.Extensions;
 using RentShop_API.Interfaces;
 using RentShop_API.Models.Data;
 using RentShop_API.Repository;
@@ -19,7 +20,11 @@ builder.Services.AddScoped<ITransportAvailableRepository, TransportAvailableRepo
 builder.Services.AddScoped<IShopRepository, ShopRepository>();
 
 // Add services to the container.
-builder.Services.AddDbContext<RentDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
+//builder.Services.AddDbContext<RentDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
+builder.Services.ConfigureMySqlContext(builder.Configuration);
+builder.Services.ConfigureCors();
+builder.Services.ConfigureIISIntegration();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,6 +42,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 

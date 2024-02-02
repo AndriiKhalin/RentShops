@@ -13,6 +13,19 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
+    public async Task<User> CreateUser(User user)
+    {
+        var result = await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
+        return result.Entity;
+    }
+
+    //public async Task<bool> CreateUser(User user)
+    //{
+    //    await _context.Users.AddAsync(user);
+    //    return await Save();
+    //}
+
     public async Task<DateTime?> GetLastUserOrder(Guid id)
     {
         var user = await _context.Users.Include(x => x.Orders).FirstOrDefaultAsync(x => x.Id == id);
@@ -43,6 +56,11 @@ public class UserRepository : IUserRepository
         return await _context.Users.ToListAsync();
     }
 
+    //public async Task<bool> Save()
+    //{
+    //    var saved = await _context.SaveChangesAsync();
+    //    return saved > 0 ? true : false;
+    //}
 
     public async Task<bool> UserExists(Guid id)
     {
