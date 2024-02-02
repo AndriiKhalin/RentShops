@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentShopAPI", "RentShopAPI\RentShopAPI.csproj", "{3235B866-728E-4B56-A975-CAD68442E984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{FD9165DA-8434-4EC4-8555-151C2AB83A81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3235B866-728E-4B56-A975-CAD68442E984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3235B866-728E-4B56-A975-CAD68442E984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3235B866-728E-4B56-A975-CAD68442E984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3235B866-728E-4B56-A975-CAD68442E984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9165DA-8434-4EC4-8555-151C2AB83A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9165DA-8434-4EC4-8555-151C2AB83A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9165DA-8434-4EC4-8555-151C2AB83A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9165DA-8434-4EC4-8555-151C2AB83A81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD0508B2-A0F0-4D8C-B7F3-9E0846C48317}
+	EndGlobalSection
+EndGlobal
