@@ -12,5 +12,11 @@ public interface IUserRepository
 
     Task<DateTime?> GetLastUserOrder(Guid id);
 
+    Task<User> CreateUser(User user);
+
     Task<bool> UserExists(Guid id);
+
+    //Task<bool> CreateUser(User user);
+
+    //Task<bool> Save();
 }
