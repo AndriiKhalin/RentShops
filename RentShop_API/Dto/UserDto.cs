@@ -16,6 +16,6 @@
 
         public string Phone { get; set; }
 
-        public Role Role { get; set; }
+        public string Role { get; set; }
     }
 }

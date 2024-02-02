@@ -18,9 +18,6 @@ namespace RentShop_API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,13 +28,13 @@ namespace RentShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name_Category")
+                    b.Property<string>("Name_Categories")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.LogTransaction", b =>
@@ -58,7 +55,7 @@ namespace RentShop_API.Migrations
                         .IsUnique()
                         .HasFilter("[TransactionId] IS NOT NULL");
 
-                    b.ToTable("LogTransactions", (string)null);
+                    b.ToTable("LogTransactions");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.Order", b =>
@@ -96,7 +93,7 @@ namespace RentShop_API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.Rating", b =>
@@ -126,7 +123,7 @@ namespace RentShop_API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Ratings", (string)null);
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.Shop", b =>
@@ -147,7 +144,7 @@ namespace RentShop_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops", (string)null);
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.Transaction", b =>
@@ -171,7 +168,7 @@ namespace RentShop_API.Migrations
                         .IsUnique()
                         .HasFilter("[OrderId] IS NOT NULL");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.Transport", b =>
@@ -208,7 +205,7 @@ namespace RentShop_API.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Transports", (string)null);
+                    b.ToTable("Transports");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.TransportAvailable", b =>
@@ -232,7 +229,7 @@ namespace RentShop_API.Migrations
 
                     b.HasIndex("TransportId");
 
-                    b.ToTable("TransportAvailables", (string)null);
+                    b.ToTable("TransportAvailables");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.User", b =>
@@ -264,12 +261,13 @@ namespace RentShop_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("RentShop_API.Models.Entities.LogTransaction", b =>

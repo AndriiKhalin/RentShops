@@ -36,7 +36,7 @@ public static class SeedData
             Password = "10122002",
             Phone = "+380737303288",
             BirthDate = new DateTime(2002, 12, 10),
-            Role = Role.Client
+            Role = Role.Client.ToString()
         };
         User vanya = new User()
         {
@@ -47,7 +47,7 @@ public static class SeedData
             Password = "1920202",
             Phone = "+380737303277",
             BirthDate = new DateTime(2001, 10, 5),
-            Role = Role.Client
+            Role = Role.Client.ToString()
         };
         User vlad = new User()
         {
@@ -58,7 +58,7 @@ public static class SeedData
             Password = "648577",
             Phone = "+380991833277",
             BirthDate = new DateTime(2004, 2, 18),
-            Role = Role.Admin
+            Role = Role.Admin.ToString()
         };
         context.Users.AddRange(andrew, vlad, vanya);
 
