@@ -21,7 +21,7 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
 
     public async Task<Transaction> GetTransaction(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Transaction> GetTransactionByOrder(Guid orderId)

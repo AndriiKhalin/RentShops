@@ -21,17 +21,17 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<User> GetUser(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<User> GetUser(string username)
     {
-        return await GetByCondition(x => x.FirstName == username);
+        return await GetByCondition(x => x.FirstName == username).FirstOrDefaultAsync();
     }
 
     public async Task<DateTime?> GetLastUserOrder(Guid id)
     {
-        var user = await _context.Users.Include(x => x.Orders).FirstOrDefaultAsync(x => x.Id == id);
+        var user = await GetByCondition(x => x.Id == id).Include(x => x.Orders).FirstOrDefaultAsync();
 
         if (user != null && user.Orders.Any())
         {

@@ -21,7 +21,7 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
 
     public async Task<Rating> GetRating(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<User> GetUserByRating(Guid ratingId)

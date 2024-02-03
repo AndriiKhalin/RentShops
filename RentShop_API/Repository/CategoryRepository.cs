@@ -34,7 +34,7 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
 
     public async Task<Category> GetCategory(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Category> GetCategoryByTransport(Guid transportId)

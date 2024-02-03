@@ -21,7 +21,7 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
 
     public async Task<TransportAvailable> GetTransportAvailable(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Transport> GetTransportByTransportAvailable(Guid transportAvailableId)

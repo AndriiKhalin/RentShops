@@ -25,7 +25,7 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 
     public async Task<Order> GetOrder(Guid orderId)
     {
-        return await GetByCondition(x => x.Id == orderId);
+        return await GetByCondition(x => x.Id == orderId).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Order>> GetOrders()

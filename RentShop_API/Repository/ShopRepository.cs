@@ -21,12 +21,12 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
 
     public async Task<Shop> GetShop(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Shop> GetShop(string adressShop)
     {
-        return await GetByCondition(x => x.Address.Contains(adressShop));
+        return await GetByCondition(x => x.Address.Contains(adressShop)).FirstOrDefaultAsync();
     }
 
     public async Task<bool> ShopExists(Guid id)

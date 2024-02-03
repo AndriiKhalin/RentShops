@@ -26,7 +26,7 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
 
     public async Task<LogTransaction> GetLogTransaction(Guid id)
     {
-        return await GetByCondition(x => x.Id == id);
+        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<LogTransaction>> GetLogTransactions()

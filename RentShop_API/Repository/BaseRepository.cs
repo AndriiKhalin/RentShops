@@ -29,14 +29,14 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         _context.Set<T>().Remove(result);
     }
 
-    public async Task<T> GetByCondition(Expression<Func<T, bool>> expression)
+    public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression)
     {
-        return await _context.Set<T>().FirstOrDefaultAsync(expression);
+        return _context.Set<T>().Where(expression).AsNoTracking();
     }
 
-    public async Task<IEnumerable<T>> GetAll()
+    public async Task<IQueryable<T>> GetAll()
     {
-        return await _context.Set<T>().ToListAsync();
+        return _context.Set<T>().AsNoTracking();
     }
 
     public void Update(T entity)
