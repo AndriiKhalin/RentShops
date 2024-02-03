@@ -27,7 +27,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<UserDto>))]
         public async Task<IActionResult> GetUsers()
         {
-            var users = _mapper.Map<List<UserDto>>(await _repository.User.GetUsers());
+            var users = _mapper.Map<IEnumerable<UserDto>>(await _repository.User.GetUsers());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

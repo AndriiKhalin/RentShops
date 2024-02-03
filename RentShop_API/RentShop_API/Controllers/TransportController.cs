@@ -25,10 +25,10 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Transport>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<TransportDto>))]
         public async Task<IActionResult> GetTransports()
         {
-            var transports = _mapper.Map<List<TransportDto>>(await _repository.Transport.GetTransports());
+            var transports = _mapper.Map<IEnumerable<TransportDto>>(await _repository.Transport.GetTransports());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -38,7 +38,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet("{transportId}")]
-        [ProducesResponseType(200, Type = typeof(Transport))]
+        [ProducesResponseType(200, Type = typeof(TransportDto))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetTransport(Guid transportId)
         {
@@ -85,7 +85,7 @@ namespace RentShop_API.Controllers
                 return NotFound();
             }
 
-            var ordersByTransport = _mapper.Map<List<OrderDto>>(await _repository.Transport.GetOrdersByTransport(transportId));
+            var ordersByTransport = _mapper.Map<IEnumerable<OrderDto>>(await _repository.Transport.GetOrdersByTransport(transportId));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

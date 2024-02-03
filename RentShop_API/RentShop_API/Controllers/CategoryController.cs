@@ -28,7 +28,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
         public async Task<IActionResult> GetCategories()
         {
-            var categories = _mapper.Map<List<CategoryDto>>(await _repository.Category.GetCategories());
+            var categories = _mapper.Map<IEnumerable<CategoryDto>>(await _repository.Category.GetCategories());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -66,7 +66,7 @@ namespace RentShop_API.Controllers
                 return NotFound();
             }
 
-            var transportsByCategory = _mapper.Map<List<TransportDto>>(await _repository.Category.GetTransportsByCategory(categoryId));
+            var transportsByCategory = _mapper.Map<IEnumerable<TransportDto>>(await _repository.Category.GetTransportsByCategory(categoryId));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -27,7 +27,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Shop>))]
         public async Task<IActionResult> GetShops()
         {
-            var shops = _mapper.Map<List<ShopDto>>(await _repository.Shop.GetShops());
+            var shops = _mapper.Map<IEnumerable<ShopDto>>(await _repository.Shop.GetShops());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

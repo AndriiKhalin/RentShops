@@ -28,7 +28,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Rating>))]
         public async Task<IActionResult> GetRatings()
         {
-            var ratings = _mapper.Map<List<RatingDto>>(await _repository.Rating.GetRatings());
+            var ratings = _mapper.Map<IEnumerable<RatingDto>>(await _repository.Rating.GetRatings());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -85,7 +85,7 @@ namespace RentShop_API.Controllers
                 return NotFound();
             }
 
-            var ratingsByUser = _mapper.Map<List<RatingDto>>(await _repository.Rating.GetRatingsByUser(userId));
+            var ratingsByUser = _mapper.Map<IEnumerable<RatingDto>>(await _repository.Rating.GetRatingsByUser(userId));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

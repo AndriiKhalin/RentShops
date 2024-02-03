@@ -28,7 +28,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Transaction>))]
         public async Task<IActionResult> GetTransactions()
         {
-            var transactions = _mapper.Map<List<TransactionDto>>(await _repository.Transaction.GetTransactions());
+            var transactions = _mapper.Map<IEnumerable<TransactionDto>>(await _repository.Transaction.GetTransactions());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -10,7 +10,7 @@ public interface ITransportRepository
 
     Task<Transport> GetTransportByOrder(Guid orderId);
 
-    Task<List<Order>> GetOrdersByTransport(Guid transportId);
+    Task<IEnumerable<Order>> GetOrdersByTransport(Guid transportId);
 
     Task<bool> TransportExists(Guid id);
 

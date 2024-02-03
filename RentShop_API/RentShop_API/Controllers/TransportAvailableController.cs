@@ -27,7 +27,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<TransportAvailable>))]
         public async Task<IActionResult> GetTransportAvailables()
         {
-            var transportAvailables = _mapper.Map<List<TransportAvailableDto>>(await _repository.TransportAvailable.GetTransportAvailables());
+            var transportAvailables = _mapper.Map<IEnumerable<TransportAvailableDto>>(await _repository.TransportAvailable.GetTransportAvailables());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

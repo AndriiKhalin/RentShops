@@ -27,7 +27,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<LogTransaction>))]
         public async Task<IActionResult> GetLogTransactions()
         {
-            var logTransactions = _mapper.Map<List<LogTransactionDto>>(await _repository.LogTransaction.GetLogTransactions());
+            var logTransactions = _mapper.Map<IEnumerable<LogTransactionDto>>(await _repository.LogTransaction.GetLogTransactions());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

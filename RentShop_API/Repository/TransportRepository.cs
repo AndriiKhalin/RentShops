@@ -29,7 +29,7 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         return await _context.Orders.Include(x => x.Transport).Where(x => x.Id == orderId).Select(x => x.Transport).FirstOrDefaultAsync();
     }
 
-    public async Task<List<Order>> GetOrdersByTransport(Guid transportId)
+    public async Task<IEnumerable<Order>> GetOrdersByTransport(Guid transportId)
     {
         return await _context.Transports.Include(x => x.Orders).Where(x => x.Id == transportId).SelectMany(x => x.Orders).ToListAsync();
     }
