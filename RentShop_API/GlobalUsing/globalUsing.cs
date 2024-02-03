@@ -1,0 +1,9 @@
+﻿global using RentShop_API;
+global using Entities;
+global using AutoMapper;
+global using Extensions;
+global using Extensions.ServiceExtensions;
+global using Interfaces.IRepository;
+global using Interfaces;
+global using Repository;
+global using RentShop_API.Controllers;
