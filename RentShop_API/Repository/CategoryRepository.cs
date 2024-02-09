@@ -37,11 +37,6 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
         return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Category> GetCategoryByTransport(Guid transportId)
-    {
-        return await _context.Transports.Include(x => x.Category).Where(x => x.Id == transportId).Select(x => x.Category).FirstOrDefaultAsync();
-    }
-
     public async Task<IEnumerable<Transport>> GetTransportsByCategory(Guid categoryId)
     {
         return await _context.Categories.Include(x => x.Transports).Where(x => x.Id == categoryId).SelectMany(x => x.Transports).ToListAsync();

@@ -39,6 +39,16 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
             .FirstOrDefaultAsync();
     }
 
+    public async Task<Transport> GetTransportByOrder(Guid orderId)
+    {
+        return await _context.Orders.Include(x => x.Transport).Where(x => x.Id == orderId).Select(x => x.Transport).FirstOrDefaultAsync();
+    }
+
+    public async Task<Transaction> GetTransactionByOrder(Guid orderId)
+    {
+        return await _context.Orders.Include(x => x.Transaction).Where(x => x.Id == orderId).Select(x => x.Transaction).FirstOrDefaultAsync();
+    }
+
     public async Task<bool> OrderExists(Guid id)
     {
         return await Exists(id);

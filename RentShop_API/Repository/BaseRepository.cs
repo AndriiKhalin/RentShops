@@ -18,6 +18,7 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         _context = context;
     }
 
+
     public async Task Create(T entity)
     {
         await _context.Set<T>().AddAsync(entity);

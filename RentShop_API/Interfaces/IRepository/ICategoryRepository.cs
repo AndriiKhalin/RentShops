@@ -8,8 +8,6 @@ public interface ICategoryRepository
 
     Task<Category> GetCategory(Guid id);
 
-    Task<Category> GetCategoryByTransport(Guid transportId);
-
     Task<IEnumerable<Transport>> GetTransportsByCategory(Guid categoryId);
 
     Task<bool> CategoryExists(Guid id);

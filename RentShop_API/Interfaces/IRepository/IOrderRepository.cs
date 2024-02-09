@@ -10,6 +10,10 @@ public interface IOrderRepository
 
     Task<User> GetUserByOrder(Guid orderId);
 
+    Task<Transport> GetTransportByOrder(Guid orderId);
+
+    Task<Transaction> GetTransactionByOrder(Guid orderId);
+
     Task<bool> OrderExists(Guid id);
 
     Task CreateOrder(Order order);

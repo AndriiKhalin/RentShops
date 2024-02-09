@@ -12,10 +12,10 @@ public interface ILogTransactionRepository
 
     Task<bool> LogTransactionExists(Guid id);
 
-    Task CreateLogTransaction(LogTransaction transaction);
+    Task CreateLogTransaction(LogTransaction logTransaction);
 
     void DeleteLogTransaction(Guid logTransactionId);
 
-    void UpdateLogTransaction(LogTransaction transaction);
+    void UpdateLogTransaction(LogTransaction logTransaction);
 
 }

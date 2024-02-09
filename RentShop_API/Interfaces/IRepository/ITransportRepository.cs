@@ -8,7 +8,8 @@ public interface ITransportRepository
 
     Task<Transport> GetTransport(Guid id);
 
-    Task<Transport> GetTransportByOrder(Guid orderId);
+
+    Task<Category> GetCategoryByTransport(Guid transportId);
 
     Task<IEnumerable<Order>> GetOrdersByTransport(Guid transportId);
 

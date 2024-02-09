@@ -1,6 +1,6 @@
-﻿namespace Entities.DTO;
+﻿namespace Entities.DTO.TransportDTO;
 
-public class TransportDto
+public class TransportForUpdateDto
 {
     public Guid Id { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace Entities.DTO;
+﻿namespace Entities.DTO.OrderDTO;
 
 public class OrderDto
 {

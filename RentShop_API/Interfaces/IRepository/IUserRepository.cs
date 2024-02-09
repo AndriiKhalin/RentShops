@@ -10,6 +10,8 @@ public interface IUserRepository
 
     Task<User> GetUser(string username);
 
+    Task<IEnumerable<Rating>> GetRatingsByUser(Guid userId);
+
     Task<DateTime?> GetLastUserOrder(Guid id);
 
     Task CreateUser(User user);
@@ -18,4 +20,5 @@ public interface IUserRepository
 
     void DeleteUser(Guid id);
     Task<bool> UserExists(Guid id);
+    Task<bool> UserExists(string userName);
 }

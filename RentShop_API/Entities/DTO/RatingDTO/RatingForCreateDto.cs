@@ -1,6 +1,6 @@
-﻿namespace Entities.DTO;
+﻿namespace Entities.DTO.RatingDTO;
 
-public class RatingDto
+public class RatingForCreateDto
 {
     public Guid Id { get; set; }
     public int Grand { get; set; }

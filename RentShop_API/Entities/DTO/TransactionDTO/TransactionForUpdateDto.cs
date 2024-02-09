@@ -1,6 +1,6 @@
-﻿namespace Entities.DTO;
+﻿namespace Entities.DTO.TransactionDTO;
 
-public class TransactionDto
+public class TransactionForUpdateDto
 {
     public Guid Id { get; set; }
     public float Sum { get; set; }

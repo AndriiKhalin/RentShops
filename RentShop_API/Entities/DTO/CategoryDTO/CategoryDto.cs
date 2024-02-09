@@ -1,6 +1,6 @@
 ﻿using Entities.Models;
 
-namespace Entities.DTO;
+namespace Entities.DTO.CategoryDTO;
 
 public class CategoryDto
 {
@@ -8,5 +8,5 @@ public class CategoryDto
 
     public string Name_Categories { get; set; }
 
-    public List<Transport> Transports { get; set; }
+    public List<Transport>? Transports { get; set; }
 }

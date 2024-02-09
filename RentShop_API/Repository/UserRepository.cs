@@ -29,6 +29,11 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return await GetByCondition(x => x.FirstName == username).FirstOrDefaultAsync();
     }
 
+    public async Task<IEnumerable<Rating>> GetRatingsByUser(Guid userId)
+    {
+        return await _context.Users.Include(x => x.Ratings).Where(x => x.Id == userId).SelectMany(x => x.Ratings).ToListAsync();
+    }
+
     public async Task<DateTime?> GetLastUserOrder(Guid id)
     {
         var user = await GetByCondition(x => x.Id == id).Include(x => x.Orders).FirstOrDefaultAsync();
@@ -62,5 +67,10 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     public async Task<bool> UserExists(Guid id)
     {
         return await Exists(id);
+    }
+
+    public async Task<bool> UserExists(string userName)
+    {
+        return await _context.Users.AnyAsync(x => x.FirstName == userName);
     }
 }

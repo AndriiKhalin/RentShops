@@ -8,7 +8,6 @@ public interface ITransactionRepository
 
     Task<Transaction> GetTransaction(Guid id);
 
-    Task<Transaction> GetTransactionByOrder(Guid orderId);
 
     Task<Order> GetOrderByTransaction(Guid transactionId);
 

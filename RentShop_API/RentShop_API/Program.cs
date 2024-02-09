@@ -1,10 +1,13 @@
 using Entities.SeedData;
 using Extensions.ServiceExtensions;
 using Helpers;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
 // Add services to the container.
+builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureMySqlContext(builder.Configuration);

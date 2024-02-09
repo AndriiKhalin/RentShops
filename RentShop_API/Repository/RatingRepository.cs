@@ -29,10 +29,6 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
         return await _context.Ratings.Include(x => x.User).Where(x => x.Id == ratingId).Select(x => x.User).FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Rating>> GetRatingsByUser(Guid userId)
-    {
-        return await _context.Users.Include(x => x.Ratings).Where(x => x.Id == userId).SelectMany(x => x.Ratings).ToListAsync();
-    }
 
     public async Task<bool> RatingExists(Guid id)
     {

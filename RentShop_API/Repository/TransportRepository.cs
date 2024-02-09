@@ -24,14 +24,15 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Transport> GetTransportByOrder(Guid orderId)
-    {
-        return await _context.Orders.Include(x => x.Transport).Where(x => x.Id == orderId).Select(x => x.Transport).FirstOrDefaultAsync();
-    }
 
     public async Task<IEnumerable<Order>> GetOrdersByTransport(Guid transportId)
     {
         return await _context.Transports.Include(x => x.Orders).Where(x => x.Id == transportId).SelectMany(x => x.Orders).ToListAsync();
+    }
+
+    public async Task<Category> GetCategoryByTransport(Guid transportId)
+    {
+        return await _context.Transports.Include(x => x.Category).Where(x => x.Id == transportId).Select(x => x.Category).FirstOrDefaultAsync();
     }
 
     public async Task<bool> TransportExists(Guid id)
