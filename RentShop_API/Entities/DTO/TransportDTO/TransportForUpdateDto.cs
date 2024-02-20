@@ -1,19 +1,31 @@
-﻿namespace Entities.DTO.TransportDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.TransportDTO;
 
 public class TransportForUpdateDto
 {
-    public Guid Id { get; set; }
+    [Required(ErrorMessage = "Model is required")]
+    [StringLength(50, ErrorMessage = "Model can't be longer than 50 characters")]
+    public string? Model { get; set; }
 
-    public string Model { get; set; }
+    [Required(ErrorMessage = "Mark is required")]
+    [StringLength(50, ErrorMessage = "Mark can't be longer than 50 characters")]
+    public string? Mark { get; set; }
 
-    public string Mark { get; set; }
-
+    [Required(ErrorMessage = "Price per minute is required")]
+    [Range(0, double.MaxValue, ErrorMessage = "Price per minute must be a positive number")]
     public float PriceMinute { get; set; }
 
+    [Required(ErrorMessage = "Maximum speed is required")]
+    [Range(0, int.MaxValue, ErrorMessage = "Maximum speed must be a positive number")]
     public int MaxSpeed { get; set; }
 
-    public string ImgUrl { get; set; }
+    [Required(ErrorMessage = "Image URL is required")]
+    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
+    public string? ImgUrl { get; set; }
 
+    [Required(ErrorMessage = "Maximum weight is required")]
+    [Range(0, int.MaxValue, ErrorMessage = "Maximum weight must be a positive number")]
     public int MaxWeight { get; set; }
 
     public Guid? CategoryId { get; set; }

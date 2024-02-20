@@ -36,7 +36,8 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
 
     public async Task<Transaction> GetTransactionByLogTransaction(Guid logTransactionId)
     {
-        return await _context.LogTransactions.Include(x => x.Transaction).Where(x => x.Id == logTransactionId).Select(x => x.Transaction).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == logTransactionId).Include(x => x.Transaction).Select(x => x.Transaction)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<bool> LogTransactionExists(Guid id)

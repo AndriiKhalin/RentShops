@@ -27,7 +27,8 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
 
     public async Task<Order> GetOrderByTransaction(Guid transactionId)
     {
-        return await _context.Transactions.Include(x => x.Order).Where(x => x.Id == transactionId).Select(x => x.Order).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == transactionId).Include(x => x.Order).Select(x => x.Order)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<bool> TransactionExists(Guid id)

@@ -26,9 +26,13 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
 
     public async Task<User> GetUserByRating(Guid ratingId)
     {
-        return await _context.Ratings.Include(x => x.User).Where(x => x.Id == ratingId).Select(x => x.User).FirstOrDefaultAsync();
+        return await GetByCondition(x=>x.Id==ratingId).Include(x=>x.User).Select(x => x.User).FirstOrDefaultAsync();
     }
 
+    public async Task<Transport> GetTransportByRating(Guid ratingId)
+    {
+        return await GetByCondition(x => x.Id == ratingId).Include(x => x.Transport).Select(x=>x.Transport).FirstOrDefaultAsync();
+    }
 
     public async Task<bool> RatingExists(Guid id)
     {

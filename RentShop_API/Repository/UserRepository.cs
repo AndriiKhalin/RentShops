@@ -31,7 +31,8 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<IEnumerable<Rating>> GetRatingsByUser(Guid userId)
     {
-        return await _context.Users.Include(x => x.Ratings).Where(x => x.Id == userId).SelectMany(x => x.Ratings).ToListAsync();
+        return await GetByCondition(x => x.Id == userId).Include(x => x.Ratings).SelectMany(x => x.Ratings)
+            .ToListAsync();
     }
 
     public async Task<DateTime?> GetLastUserOrder(Guid id)

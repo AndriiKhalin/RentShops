@@ -1,7 +1,9 @@
-﻿namespace Entities.DTO.TransportAvailableDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.TransportAvailableDTO;
 
 public class TransportAvailableForCreateDto
 {
-    public Guid Id { get; set; }
+    [Required(ErrorMessage = "Count of transport is required")]
     public int CountTransport { get; set; }
 }

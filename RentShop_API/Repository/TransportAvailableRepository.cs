@@ -26,12 +26,14 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
 
     public async Task<Transport> GetTransportByTransportAvailable(Guid transportAvailableId)
     {
-        return await _context.TransportAvailables.Include(x => x.Transport).Where(x => x.Id == transportAvailableId).Select(x => x.Transport).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == transportAvailableId).Include(x => x.Transport).Select(x => x.Transport)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<Shop> GetShopByTransportAvailable(Guid transportAvailableId)
     {
-        return await _context.TransportAvailables.Include(x => x.Shop).Where(x => x.Id == transportAvailableId).Select(x => x.Shop).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == transportAvailableId).Include(x => x.Shop).Select(x => x.Shop)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<bool> TransportAvailableExists(Guid id)

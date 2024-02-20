@@ -10,7 +10,7 @@ public interface IRatingRepository
 
     Task<User> GetUserByRating(Guid ratingId);
 
-
+    Task<Transport> GetTransportByRating(Guid ratingId);
     Task<bool> RatingExists(Guid id);
 
     Task CreateRating(Rating rating);

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities.DTO.RatingDTO;
+using Entities.DTO.TransportDTO;
 using Entities.DTO.UserDTO;
 using Interfaces.ILoggerService;
 
@@ -83,6 +84,27 @@ namespace RentShop_API.Controllers
             }
             _logger.LogInfo($"Returned user by rating with id: {ratingId}");
             return Ok(userByRating);
+        }
+
+        [HttpGet("{ratingId}/transport")]
+        [ProducesResponseType(200, Type = typeof(TransportDto))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetTransportByRating(Guid ratingId)
+        {
+            if (!await _repository.Rating.RatingExists(ratingId))
+            {
+                _logger.LogError($"Ratings with id: {ratingId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            var transportByRating = _mapper.Map<TransportDto>(await _repository.Rating.GetTransportByRating(ratingId));
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            _logger.LogInfo($"Returned transport by rating with id: {ratingId}");
+            return Ok(transportByRating);
         }
 
     }

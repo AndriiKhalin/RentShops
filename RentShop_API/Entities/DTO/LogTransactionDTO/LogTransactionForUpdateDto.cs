@@ -1,7 +1,9 @@
-﻿namespace Entities.DTO.LogTransactionDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.LogTransactionDTO;
 
 public class LogTransactionForUpdateDto
 {
-    public Guid Id { get; set; }
+    [Required(ErrorMessage = "Results is required")]
     public bool Results { get; set; }
 }
