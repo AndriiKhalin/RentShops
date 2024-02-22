@@ -51,6 +51,6 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
 
     public async Task<bool> ShopExists(string adressName)
     {
-        return await _context.Shops.AnyAsync(x => x.Address.Contains(adressName));
+        return await Exists(adressName);
     }
 }

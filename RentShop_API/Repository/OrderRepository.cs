@@ -13,8 +13,16 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         _context = context;
     }
-    public async Task CreateOrder(Order order)
+    public async Task CreateOrder(Guid userId, Guid shopId, Guid transportId, Order order)
     {
+        var userEntity = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+        var shopEntity = await _context.Shops.FirstOrDefaultAsync(x => x.Id == shopId);
+        var transportEntity = await _context.Transports.FirstOrDefaultAsync(x => x.Id == transportId);
+
+        order.Transport = transportEntity;
+        order.Shop = shopEntity;
+        order.User = userEntity;
+
         await Create(order);
     }
 

@@ -36,8 +36,12 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
         return await Exists(id);
     }
 
-    public async Task CreateTransaction(Transaction transaction)
+    public async Task CreateTransaction(Guid orderId, Transaction transaction)
     {
+        var orderEntity = await _context.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
+
+        transaction.Order = orderEntity;
+
         await Create(transaction);
     }
 

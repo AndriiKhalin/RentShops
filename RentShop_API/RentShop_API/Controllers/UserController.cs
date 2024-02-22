@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Interfaces.ILoggerService;
 using Entities.DTO.UserDTO;
 using Microsoft.EntityFrameworkCore;
+using Entities.DTO.CategoryDTO;
 
 namespace RentShop_API.Controllers
 {
@@ -20,7 +21,8 @@ namespace RentShop_API.Controllers
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public UserController(IWrapperRepository repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
+        public UserController(IWrapperRepository repository, RentDbContext context, IMapper mapper,
+            ILoggerManager logger)
         {
             _repository = repository;
             _context = context;
@@ -40,6 +42,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             _logger.LogInfo("We returned all users from database");
             return Ok(users);
         }
@@ -61,6 +64,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             _logger.LogInfo($"Returned user with id: {userId}");
             return Ok(user);
         }
@@ -82,6 +86,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             _logger.LogInfo($"Returned user with  name: {userName}");
             return Ok(user);
         }
@@ -103,6 +108,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             _logger.LogInfo($"Returned last order by user with id: {userId}");
             return Ok(lastDateOrder);
         }
@@ -124,6 +130,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             _logger.LogInfo($"Returned ratings by user with id: {userId}");
             return Ok(ratingsByUser);
         }
@@ -138,11 +145,13 @@ namespace RentShop_API.Controllers
                 _logger.LogError("User object is null");
                 return BadRequest(ModelState);
             }
+
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
+
             var userMap = _mapper.Map<User>(userCreate);
 
             await _repository.User.CreateUser(userMap);
@@ -153,5 +162,69 @@ namespace RentShop_API.Controllers
 
             return CreatedAtAction(nameof(GetUserById), new { userId = createdUser.Id }, createdUser);
         }
+
+        [HttpPut("{userId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateUser(Guid userId, [FromBody] UserForUpdateDto userUpdate)
+        {
+            if (userUpdate == null)
+            {
+                _logger.LogError($"User object sent from client is null.");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.User.UserExists(userId))
+            {
+                _logger.LogError($"User with id: {userId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var userEntity = await _repository.User.GetUser(userId);
+
+            _mapper.Map(userUpdate, userEntity);
+
+            _repository.User.UpdateUser(userEntity);
+            await _repository.Save();
+
+            _logger.LogInfo($"Update User with ID: {userId}");
+            return NoContent();
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser(Guid userId)
+        {
+            if (!await _repository.User.UserExists(userId))
+            {
+                _logger.LogError($"User with id: {userId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            _repository.User.DeleteUser(userId);
+            await _repository.Save();
+
+            _logger.LogInfo($"User delete with id: {userId} in our database");
+
+            return NoContent();
+
+        }
     }
+
+
+
 }
+

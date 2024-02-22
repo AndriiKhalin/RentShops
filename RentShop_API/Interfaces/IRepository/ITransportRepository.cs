@@ -19,5 +19,5 @@ public interface ITransportRepository
 
     void UpdateTransport(Transport transport);
 
-    Task CreateTransport(Transport transport);
+    Task CreateTransport(Guid categoryId, Transport transport);
 }

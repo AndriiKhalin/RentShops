@@ -28,5 +28,4 @@ public class TransportForUpdateDto
     [Range(0, int.MaxValue, ErrorMessage = "Maximum weight must be a positive number")]
     public int MaxWeight { get; set; }
 
-    public Guid? CategoryId { get; set; }
 }

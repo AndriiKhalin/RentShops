@@ -106,5 +106,99 @@ namespace RentShop_API.Controllers
             _logger.LogInfo($"Returned category by transport with id: {transportId}");
             return Ok(categoryByTransport);
         }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(TransportDto))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateTransport([FromQuery] Guid categoryId, [FromBody] TransportForCreateDto transportCreate)
+        {
+            if (transportCreate == null)
+            {
+                _logger.LogError("Transport object is null");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.Category.CategoryExists(categoryId))
+            {
+                _logger.LogError($"Category with id: {categoryId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            var transportMap = _mapper.Map<Transport>(transportCreate);
+
+            await _repository.Transport.CreateTransport(categoryId, transportMap);
+            await _repository.Save();
+
+            _logger.LogInfo($"New Transport create success");
+            var createdTransport = _mapper.Map<TransportDto>(transportMap);
+
+            return CreatedAtAction(nameof(GetTransport), new { transportId = createdTransport.Id }, createdTransport);
+        }
+
+
+        [HttpPut("{transportId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateTransport(Guid transportId, [FromBody] TransportForUpdateDto transportUpdate)
+        {
+            if (transportUpdate == null)
+            {
+                _logger.LogError($"Transport object sent from client is null.");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.Transport.TransportExists(transportId))
+            {
+                _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var transportEntity = await _repository.Transport.GetTransport(transportId);
+
+            _mapper.Map(transportUpdate, transportEntity);
+
+            _repository.Transport.UpdateTransport(transportEntity);
+            await _repository.Save();
+
+
+            _logger.LogInfo($"Update Transport with ID: {transportId}");
+            return NoContent();
+        }
+
+        [HttpDelete("{transportId}")]
+        public async Task<IActionResult> DeleteTransport(Guid transportId)
+        {
+            if (!await _repository.Transport.TransportExists(transportId))
+            {
+                _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            _repository.Transport.DeleteTransport(transportId);
+            await _repository.Save();
+
+            _logger.LogInfo($"Transport delete with id: {transportId} in our database");
+
+            return NoContent();
+
+        }
     }
 }

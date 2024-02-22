@@ -13,7 +13,7 @@ public interface ITransportAvailableRepository
 
     Task<bool> TransportAvailableExists(Guid id);
 
-    Task CreateTransportAvailable(TransportAvailable transportAvailable);
+    Task CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailable transportAvailable);
 
     void DeleteTransportAvailable(Guid id);
 

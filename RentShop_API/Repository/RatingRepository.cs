@@ -26,12 +26,12 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
 
     public async Task<User> GetUserByRating(Guid ratingId)
     {
-        return await GetByCondition(x=>x.Id==ratingId).Include(x=>x.User).Select(x => x.User).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == ratingId).Include(x => x.User).Select(x => x.User).FirstOrDefaultAsync();
     }
 
     public async Task<Transport> GetTransportByRating(Guid ratingId)
     {
-        return await GetByCondition(x => x.Id == ratingId).Include(x => x.Transport).Select(x=>x.Transport).FirstOrDefaultAsync();
+        return await GetByCondition(x => x.Id == ratingId).Include(x => x.Transport).Select(x => x.Transport).FirstOrDefaultAsync();
     }
 
     public async Task<bool> RatingExists(Guid id)
@@ -39,8 +39,14 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
         return await Exists(id);
     }
 
-    public async Task CreateRating(Rating rating)
+    public async Task CreateRating(Guid userId, Guid transportId, Rating rating)
     {
+        var userEntity = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+        var transportEntity = await _context.Transports.FirstOrDefaultAsync(x => x.Id == transportId);
+
+        rating.Transport = transportEntity;
+        rating.User = userEntity;
+
         await Create(rating);
     }
 

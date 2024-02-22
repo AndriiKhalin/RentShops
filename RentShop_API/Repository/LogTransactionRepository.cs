@@ -14,9 +14,13 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
         _context = context;
     }
 
-    public async Task CreateLogTransaction(LogTransaction transaction)
+    public async Task CreateLogTransaction(Guid transactionId, LogTransaction logTransaction)
     {
-        await Create(transaction);
+        var transactionEntity = await _context.Transactions.FirstOrDefaultAsync(x => x.Id == transactionId);
+
+        logTransaction.Transaction = transactionEntity;
+
+        await Create(logTransaction);
     }
 
     public void DeleteLogTransaction(Guid logTransactionId)
@@ -45,8 +49,8 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
         return await Exists(id);
     }
 
-    public void UpdateLogTransaction(LogTransaction transaction)
+    public void UpdateLogTransaction(LogTransaction logTransaction)
     {
-        Update(transaction);
+        Update(logTransaction);
     }
 }

@@ -51,8 +51,12 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         Update(transport);
     }
 
-    public async Task CreateTransport(Transport transport)
+    public async Task CreateTransport(Guid categoryId, Transport transport)
     {
+        var categoryEntity = await _context.Categories.FirstOrDefaultAsync(x => x.Id == categoryId);
+
+        transport.Category = categoryEntity;
+
         await Create(transport);
     }
 }

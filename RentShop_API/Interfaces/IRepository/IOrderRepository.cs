@@ -16,7 +16,7 @@ public interface IOrderRepository
 
     Task<bool> OrderExists(Guid id);
 
-    Task CreateOrder(Order order);
+    Task CreateOrder(Guid userId, Guid shopId, Guid transportId, Order order);
 
     void DeleteOrder(Guid id);
 

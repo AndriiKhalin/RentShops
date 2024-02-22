@@ -13,7 +13,7 @@ public interface IRatingRepository
     Task<Transport> GetTransportByRating(Guid ratingId);
     Task<bool> RatingExists(Guid id);
 
-    Task CreateRating(Rating rating);
+    Task CreateRating(Guid userId, Guid transportId, Rating rating);
     void DeleteRating(Guid id);
 
     void UpdateRating(Rating rating);

@@ -13,7 +13,7 @@ public interface ITransactionRepository
 
     Task<bool> TransactionExists(Guid id);
 
-    Task CreateTransaction(Transaction transaction);
+    Task CreateTransaction(Guid orderId, Transaction transaction);
 
     void DeleteTransaction(Guid transactionId);
 

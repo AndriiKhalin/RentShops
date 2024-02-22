@@ -72,6 +72,7 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<bool> UserExists(string userName)
     {
-        return await _context.Users.AnyAsync(x => x.FirstName == userName);
+        //return await _context.Users.AnyAsync(x => x.FirstName == userName);
+        return await Exists(userName);
     }
 }

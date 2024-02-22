@@ -10,6 +10,7 @@ using Entities.DTO.TransportDTO;
 using Entities.DTO.UserDTO;
 using Interfaces.ILoggerService;
 using Microsoft.EntityFrameworkCore;
+using Entities.DTO.CategoryDTO;
 
 namespace RentShop_API.Controllers
 {
@@ -127,6 +128,101 @@ namespace RentShop_API.Controllers
             }
             _logger.LogInfo($"Returned transaction by order with id: {orderId}");
             return Ok(transactionByOrder);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(OrderDto))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateOrder([FromQuery] Guid userId, [FromQuery] Guid shopId, [FromQuery] Guid transportId, [FromBody] OrderForCreateDto orderCreate)
+        {
+            if (orderCreate == null)
+            {
+                _logger.LogError("Order object is null");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.User.UserExists(userId) || !await _repository.Shop.ShopExists(shopId) || !await _repository.Transport.TransportExists(transportId))
+            {
+                _logger.LogError($"Hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var orderMap = _mapper.Map<Order>(orderCreate);
+
+            await _repository.Order.CreateOrder(userId, shopId, transportId, orderMap);
+            await _repository.Save();
+
+            _logger.LogInfo($"New Order create success");
+            var createdOrder = _mapper.Map<OrderDto>(orderMap);
+
+            return CreatedAtAction(nameof(GetOrder), new { orderId = createdOrder.Id }, createdOrder);
+        }
+
+
+        [HttpPut("{orderId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateOrder(Guid orderId, [FromBody] OrderForUpdateDto orderUpdate)
+        {
+            if (orderUpdate == null)
+            {
+                _logger.LogError($"Order object sent from client is null.");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.Order.OrderExists(orderId))
+            {
+                _logger.LogError($"Order with id: {orderId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var orderEntity = await _repository.Order.GetOrder(orderId);
+
+            _mapper.Map(orderUpdate, orderEntity);
+
+            _repository.Order.UpdateOrder(orderEntity);
+            await _repository.Save();
+
+
+            _logger.LogInfo($"Update Order with ID: {orderId}");
+            return NoContent();
+        }
+
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> DeleteOrder(Guid orderId)
+        {
+            if (!await _repository.Order.OrderExists(orderId))
+            {
+                _logger.LogError($"Order with id: {orderId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            _repository.Order.DeleteOrder(orderId);
+            await _repository.Save();
+
+            _logger.LogInfo($"Order delete with id: {orderId} in our database");
+
+            return NoContent();
+
         }
     }
 }

@@ -9,6 +9,7 @@ using Entities.DTO.RatingDTO;
 using Entities.DTO.TransportDTO;
 using Entities.DTO.UserDTO;
 using Interfaces.ILoggerService;
+using Entities.DTO.CategoryDTO;
 
 namespace RentShop_API.Controllers
 {
@@ -105,6 +106,100 @@ namespace RentShop_API.Controllers
             }
             _logger.LogInfo($"Returned transport by rating with id: {ratingId}");
             return Ok(transportByRating);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(RatingDto))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateRating([FromQuery] Guid userId, [FromQuery] Guid transportId, [FromBody] RatingForCreateDto ratingCreate)
+        {
+            if (ratingCreate == null)
+            {
+                _logger.LogError("Rating object is null");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.User.UserExists(userId) || !await _repository.Transport.TransportExists(transportId))
+            {
+                _logger.LogError($"Hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            var ratingMap = _mapper.Map<Rating>(ratingCreate);
+
+            await _repository.Rating.CreateRating(userId, transportId, ratingMap);
+            await _repository.Save();
+
+            _logger.LogInfo($"New Rating create success");
+            var createdRating = _mapper.Map<RatingDto>(ratingMap);
+
+            return CreatedAtAction(nameof(GetRating), new { ratingId = createdRating.Id }, createdRating);
+        }
+
+
+        [HttpPut("{ratingId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateRating(Guid ratingId, [FromBody] RatingForUpdateDto ratingUpdate)
+        {
+            if (ratingUpdate == null)
+            {
+                _logger.LogError($"Rating object sent from client is null.");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.Rating.RatingExists(ratingId))
+            {
+                _logger.LogError($"Rating with id: {ratingId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var ratingEntity = await _repository.Rating.GetRating(ratingId);
+
+            _mapper.Map(ratingUpdate, ratingEntity);
+
+            _repository.Rating.UpdateRating(ratingEntity);
+            await _repository.Save();
+
+
+            _logger.LogInfo($"Update Rating with ID: {ratingId}");
+            return NoContent();
+        }
+
+        [HttpDelete("{ratingId}")]
+        public async Task<IActionResult> DeleteRating(Guid ratingId)
+        {
+            if (!await _repository.Rating.RatingExists(ratingId))
+            {
+                _logger.LogError($"Rating with id: {ratingId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            _repository.Rating.DeleteRating(ratingId);
+            await _repository.Save();
+
+            _logger.LogInfo($"Rating delete with id: {ratingId} in our database");
+
+            return NoContent();
+
         }
 
     }

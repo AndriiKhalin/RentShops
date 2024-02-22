@@ -8,6 +8,7 @@ using Entities.DTO.ShopDTO;
 using Entities.DTO.TransportAvailableDTO;
 using Entities.DTO.TransportDTO;
 using Interfaces.ILoggerService;
+using Entities.DTO.CategoryDTO;
 
 namespace RentShop_API.Controllers
 {
@@ -105,6 +106,99 @@ namespace RentShop_API.Controllers
 
             _logger.LogInfo($"Returned shop by transportAvailable with id: {transportAvailableId}");
             return Ok(shopByTransportAvailable);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(TransportAvailableDto))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateTransportAvailable([FromQuery] Guid transportId, [FromQuery] Guid shopId, [FromBody] TransportAvailableForCreateDto transportAvailableCreate)
+        {
+            if (transportAvailableCreate == null)
+            {
+                _logger.LogError("TransportAvailable object is null");
+                return BadRequest(ModelState);
+            }
+            if (!await _repository.Transport.TransportExists(transportId) || !await _repository.Shop.ShopExists(shopId))
+            {
+                _logger.LogError($"Hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            var transportAvailableMap = _mapper.Map<TransportAvailable>(transportAvailableCreate);
+
+            await _repository.TransportAvailable.CreateTransportAvailable(transportId, shopId, transportAvailableMap);
+            await _repository.Save();
+
+            _logger.LogInfo($"New TransportAvailable create success");
+            var createdTransportAvailable = _mapper.Map<TransportAvailableDto>(transportAvailableMap);
+
+            return CreatedAtAction(nameof(GetTransportAvailable), new { transportAvailableId = createdTransportAvailable.Id }, createdTransportAvailable);
+        }
+
+
+        [HttpPut("{transportAvailableId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateTransportAvailable(Guid transportAvailableId, [FromBody] TransportAvailableForUpdateDto transportAvailableUpdate)
+        {
+            if (transportAvailableUpdate == null)
+            {
+                _logger.LogError($"TransportAvailable object sent from client is null.");
+                return BadRequest(ModelState);
+            }
+
+            if (!await _repository.TransportAvailable.TransportAvailableExists(transportAvailableId))
+            {
+                _logger.LogError($"TransportAvailable with id: {transportAvailableId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+
+            var transportAvailableEntity = await _repository.TransportAvailable.GetTransportAvailable(transportAvailableId);
+
+            _mapper.Map(transportAvailableUpdate, transportAvailableEntity);
+
+            _repository.TransportAvailable.UpdateTransportAvailable(transportAvailableEntity);
+            await _repository.Save();
+
+
+            _logger.LogInfo($"Update TransportAvailable with ID: {transportAvailableId}");
+            return NoContent();
+        }
+
+        [HttpDelete("{transportAvailableId}")]
+        public async Task<IActionResult> DeleteTransportAvailable(Guid transportAvailableId)
+        {
+            if (!await _repository.TransportAvailable.TransportAvailableExists(transportAvailableId))
+            {
+                _logger.LogError($"TransportAvailable with id: {transportAvailableId}, hasn't been found in db.");
+                return NotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarn("Model is invalid");
+                return BadRequest(ModelState);
+            }
+            _repository.TransportAvailable.DeleteTransportAvailable(transportAvailableId);
+            await _repository.Save();
+
+            _logger.LogInfo($"TransportAvailable delete with id: {transportAvailableId} in our database");
+
+            return NoContent();
+
         }
     }
 }

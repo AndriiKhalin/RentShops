@@ -16,5 +16,5 @@ public class TransportDto
 
     public int MaxWeight { get; set; }
 
-    public Guid? CategoryId { get; set; }
+
 }

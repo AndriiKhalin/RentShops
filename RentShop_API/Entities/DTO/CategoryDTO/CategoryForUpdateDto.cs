@@ -9,5 +9,4 @@ public class CategoryForUpdateDto
     [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters")]
     public string Name_Categories { get; set; }
 
-    public List<Transport>? Transports { get; set; }
 }

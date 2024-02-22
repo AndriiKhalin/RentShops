@@ -50,4 +50,9 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         return await _context.Set<T>().AnyAsync(x => EF.Property<Guid>(x, "Id") == id);
     }
 
+    public async Task<bool> Exists(string name)
+    {
+        var entities = await _context.Set<T>().ToListAsync();
+        return entities.Any(x => x.GetType().GetProperties().Any(p => p.PropertyType == typeof(string) && (string)p.GetValue(x) == name));
+    }
 }

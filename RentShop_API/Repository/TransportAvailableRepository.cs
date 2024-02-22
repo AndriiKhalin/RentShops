@@ -41,8 +41,14 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
         return await Exists(id);
     }
 
-    public async Task CreateTransportAvailable(TransportAvailable transportAvailable)
+    public async Task CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailable transportAvailable)
     {
+        var transportEntity = await _context.Transports.FirstOrDefaultAsync(x => x.Id == transportId);
+        var shopEntity = await _context.Shops.FirstOrDefaultAsync(x => x.Id == shopId);
+
+        transportAvailable.Transport = transportEntity;
+        transportAvailable.Shop = shopEntity;
+
         await Create(transportAvailable);
     }
 
