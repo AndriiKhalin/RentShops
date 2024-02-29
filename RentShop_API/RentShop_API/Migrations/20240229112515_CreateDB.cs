@@ -30,7 +30,8 @@ namespace RentShop_API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     WorkTimeStart = table.Column<TimeSpan>(type: "time", nullable: false),
-                    WorkTimeEnd = table.Column<TimeSpan>(type: "time", nullable: false)
+                    WorkTimeEnd = table.Column<TimeSpan>(type: "time", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,7 +49,8 @@ namespace RentShop_API.Migrations
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,6 +90,7 @@ namespace RentShop_API.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransportImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)

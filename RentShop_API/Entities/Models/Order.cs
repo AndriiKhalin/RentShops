@@ -20,6 +20,10 @@ public class Order
     [Required(ErrorMessage = "Date to is required")]
     public DateTime DateTo { get; set; }
 
+    [Required(ErrorMessage = "Image URL is required")]
+    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
+    public string TransportImgUrl { get; set; }
+
     public Guid? UserId { get; set; }
     public User? User { get; set; }
 

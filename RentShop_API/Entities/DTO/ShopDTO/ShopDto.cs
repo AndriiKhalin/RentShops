@@ -1,4 +1,6 @@
-﻿namespace Entities.DTO.ShopDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.ShopDTO;
 
 public class ShopDto
 {
@@ -8,4 +10,6 @@ public class ShopDto
 
     public TimeSpan WorkTimeStart { get; set; }
     public TimeSpan WorkTimeEnd { get; set; }
+
+    public string? ImgUrl { get; set; }
 }

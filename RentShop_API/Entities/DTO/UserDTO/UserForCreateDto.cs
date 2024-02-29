@@ -30,4 +30,7 @@ public class UserForCreateDto
 
     [Required(ErrorMessage = "Role is required")]
     public string Role { get; set; }
+    [Required(ErrorMessage = "Image URL is required")]
+    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
+    public string? ImgUrl { get; set; }
 }

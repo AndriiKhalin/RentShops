@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace Entities.DTO.TransportDTO;
 
@@ -22,7 +23,7 @@ public class TransportForUpdateDto
 
     [Required(ErrorMessage = "Image URL is required")]
     [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
-    public string? ImgUrl { get; set; }
+    public IFormFile? ImgUrl { get; set; }
 
     [Required(ErrorMessage = "Maximum weight is required")]
     [Range(0, int.MaxValue, ErrorMessage = "Maximum weight must be a positive number")]

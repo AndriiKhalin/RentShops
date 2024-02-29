@@ -1,4 +1,6 @@
-﻿namespace Entities.DTO.UserDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.UserDTO;
 
 public class UserDto
 {
@@ -18,4 +20,6 @@ public class UserDto
     public string Phone { get; set; }
 
     public string Role { get; set; }
+
+    public string ImgUrl { get; set; }
 }

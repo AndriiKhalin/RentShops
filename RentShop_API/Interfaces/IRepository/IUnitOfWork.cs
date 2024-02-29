@@ -1,6 +1,6 @@
 ﻿namespace Interfaces.IRepository;
 
-public interface IWrapperRepository
+public interface IUnitOfWork
 {
     IUserRepository User { get; }
 
@@ -13,4 +13,5 @@ public interface IWrapperRepository
     ITransportAvailableRepository TransportAvailable { get; }
     ITransportRepository Transport { get; }
     Task Save();
+
 }

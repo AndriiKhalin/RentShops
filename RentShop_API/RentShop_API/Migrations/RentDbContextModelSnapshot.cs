@@ -83,6 +83,10 @@ namespace RentShop_API.Migrations
                     b.Property<Guid?>("TransportId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("TransportImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -138,6 +142,10 @@ namespace RentShop_API.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("WorkTimeEnd")
                         .HasColumnType("time");
@@ -255,6 +263,10 @@ namespace RentShop_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()

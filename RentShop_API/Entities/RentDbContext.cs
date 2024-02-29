@@ -13,7 +13,9 @@ public class RentDbContext : DbContext
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //{
     //    optionsBuilder.UseSqlServer(b => b.MigrationsAssembly("RentShop_API"));
+    //    optionsBuilder.
     //}
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

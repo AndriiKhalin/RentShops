@@ -22,6 +22,8 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
         order.Transport = transportEntity;
         order.Shop = shopEntity;
         order.User = userEntity;
+        order.TransportImgUrl = transportEntity.ImgUrl;
+        order.CreatedAt = DateTime.Now;
 
         await Create(order);
     }

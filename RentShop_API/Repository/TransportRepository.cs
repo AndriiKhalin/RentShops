@@ -2,16 +2,19 @@
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class TransportRepository : BaseRepository<Transport>, ITransportRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
 
-    public TransportRepository(RentDbContext context) : base(context)
+    public TransportRepository(RentDbContext context, IFileProvider fileProvider) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
     }
 
     public async Task<IEnumerable<Transport>> GetTransports()

@@ -32,6 +32,8 @@ public class User
     [Required(ErrorMessage = "Role is required")]
     public string Role { get; set; }
 
+    public string? ImgUrl { get; set; }
+
     public List<Order> Orders { get; set; } = new();
 
     public List<Rating> Ratings { get; set; } = new();

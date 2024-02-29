@@ -1,4 +1,6 @@
-﻿namespace Entities.DTO.OrderDTO;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.DTO.OrderDTO;
 
 public class OrderDto
 {
@@ -11,4 +13,6 @@ public class OrderDto
     public DateTime DateFrom { get; set; }
 
     public DateTime DateTo { get; set; }
+
+    public string TransportImgUrl { get; set; }
 }

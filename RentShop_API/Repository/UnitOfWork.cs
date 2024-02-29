@@ -4,7 +4,7 @@ using Interfaces.IRepository;
 
 namespace Repository;
 
-public class WrapperRepository : IWrapperRepository
+public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private RentDbContext _context;
     private ICategoryRepository _category;
@@ -16,7 +16,7 @@ public class WrapperRepository : IWrapperRepository
     private ITransactionRepository _transaction;
     private ITransportAvailableRepository _transportAvailable;
     private ITransportRepository _transport;
-    public WrapperRepository(RentDbContext context)
+    public UnitOfWork(RentDbContext context)
     {
         _context = context;
     }
@@ -120,6 +120,11 @@ public class WrapperRepository : IWrapperRepository
             }
             return _transport;
         }
+    }
+
+    public void Dispose()
+    {
+        _context.Dispose();
     }
 
     public async Task Save()

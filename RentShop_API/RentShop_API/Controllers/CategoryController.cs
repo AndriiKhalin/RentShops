@@ -16,12 +16,12 @@ namespace RentShop_API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly IWrapperRepository _repository;
+        private readonly IUnitOfWork _repository;
         private readonly RentDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public CategoryController(IWrapperRepository repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
+        public CategoryController(IUnitOfWork repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
         {
             _repository = repository;
             _context = context;

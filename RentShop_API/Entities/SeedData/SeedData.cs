@@ -23,7 +23,8 @@ public class SeedData
                 Password = "10122002",
                 Phone = "+380737303288",
                 BirthDate = new DateTime(2002, 12, 10),
-                Role = Role.Client.ToString()
+                Role = Role.Client.ToString(),
+                ImgUrl = "http://..."
             };
             User vanya = new User()
             {
@@ -34,7 +35,8 @@ public class SeedData
                 Password = "1920202",
                 Phone = "+380737303277",
                 BirthDate = new DateTime(2001, 10, 5),
-                Role = Role.Client.ToString()
+                Role = Role.Client.ToString(),
+                ImgUrl = "http://..."
             };
             User vlad = new User()
             {
@@ -45,7 +47,8 @@ public class SeedData
                 Password = "648577",
                 Phone = "+380991833277",
                 BirthDate = new DateTime(2004, 2, 18),
-                Role = Role.Admin.ToString()
+                Role = Role.Admin.ToString(),
+                ImgUrl = "http://..."
             };
             context.Users.AddRange(andrew, vlad, vanya);
 
@@ -116,7 +119,8 @@ public class SeedData
                 Id = Guid.NewGuid(),
                 Address = "Street Victory 5",
                 WorkTimeStart = new TimeSpan(8, 0, 0),
-                WorkTimeEnd = new TimeSpan(18, 0, 0)
+                WorkTimeEnd = new TimeSpan(18, 0, 0),
+                ImgUrl = "http://..."
             };
 
             Shop shop2 = new Shop()
@@ -124,14 +128,16 @@ public class SeedData
                 Id = Guid.NewGuid(),
                 Address = "Street Livikovicha 15",
                 WorkTimeStart = new TimeSpan(8, 0, 0),
-                WorkTimeEnd = new TimeSpan(18, 0, 0)
+                WorkTimeEnd = new TimeSpan(18, 0, 0),
+                ImgUrl = "http://..."
             };
             Shop shop3 = new Shop()
             {
                 Id = Guid.NewGuid(),
                 Address = "Street Chresatic 55",
                 WorkTimeStart = new TimeSpan(8, 0, 0),
-                WorkTimeEnd = new TimeSpan(18, 0, 0)
+                WorkTimeEnd = new TimeSpan(18, 0, 0),
+                ImgUrl = "http://..."
             };
 
             context.Shops.AddRange(shop1, shop2, shop3);
@@ -172,7 +178,8 @@ public class SeedData
                 Price = 55f,
                 User = andrew,
                 Transport = honda,
-                Shop = shop1
+                Shop = shop1,
+                TransportImgUrl = "http://..."
             };
             Order order2 = new Order
             {
@@ -183,7 +190,8 @@ public class SeedData
                 Price = 35f,
                 User = vlad,
                 Transport = tesla,
-                Shop = shop2
+                Shop = shop2,
+                TransportImgUrl = "http://..."
             };
 
             Order order3 = new Order
@@ -195,7 +203,8 @@ public class SeedData
                 Price = 155f,
                 User = vanya,
                 Transport = volva,
-                Shop = shop3
+                Shop = shop3,
+                TransportImgUrl = "http://..."
             };
             Order order4 = new Order
             {
@@ -206,7 +215,8 @@ public class SeedData
                 Price = 55f,
                 User = vanya,
                 Transport = volva,
-                Shop = shop1
+                Shop = shop1,
+                TransportImgUrl = "http://..."
 
             };
 
@@ -219,7 +229,8 @@ public class SeedData
                 Price = 55f,
                 User = vanya,
                 Transport = volva,
-                Shop = shop1
+                Shop = shop1,
+                TransportImgUrl = "http://..."
 
             };
 

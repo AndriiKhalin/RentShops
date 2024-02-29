@@ -13,4 +13,8 @@ public class ShopForCreateDto
 
     [Required(ErrorMessage = "Work time end is required")]
     public TimeSpan WorkTimeEnd { get; set; }
+
+    [Required(ErrorMessage = "Image URL is required")]
+    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
+    public string? ImgUrl { get; set; }
 }
