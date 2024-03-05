@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.DTO.TransportDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,13 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
 {
     private readonly RentDbContext _context;
     private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public TransportRepository(RentDbContext context, IFileProvider fileProvider) : base(context)
+    public TransportRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
         _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Transport>> GetTransports()
@@ -49,17 +53,80 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         Delete(id);
     }
 
-    public void UpdateTransport(Transport transport)
+    public async Task UpdateTransport(Guid transportId, TransportForUpdateDto transport)
     {
-        Update(transport);
+        var transportEntity = await GetByCondition(x => x.Id == transportId).FirstOrDefaultAsync();
+        var src = "";
+        var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\Transport\";
+        string rootImg = "/Upload/Transport/";
+
+        if (transportEntity is not null)
+        {
+
+            if (transport.ImgUrl is not null)
+            {
+
+                var transportname = transport.ImgUrl.FileName;
+                var directoryPath = Path.GetDirectoryName(root);
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                src = Path.Combine(root, transportname);
+
+                using (var fileStream = new FileStream(src, FileMode.Create))
+                {
+                    await transport.ImgUrl.CopyToAsync(fileStream);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(transportEntity.ImgUrl))
+            {
+                string oldsrc = transportEntity.ImgUrl;
+                System.IO.File.Delete(oldsrc);
+            }
+
+            _mapper.Map(transport, transportEntity);
+            transportEntity.ImgUrl = rootImg + transport.ImgUrl.FileName;
+
+            Update(transportEntity);
+        }
     }
 
-    public async Task CreateTransport(Guid categoryId, Transport transport)
+    public async Task<Transport> CreateTransport(Guid categoryId, TransportForCreateDto transport)
     {
         var categoryEntity = await _context.Categories.FirstOrDefaultAsync(x => x.Id == categoryId);
+        var src = "";
+        string rootImg = "/Upload/Transport/";
 
-        transport.Category = categoryEntity;
+        if (transport.ImgUrl is not null)
+        {
+            var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\Transport\";
+            var transportname = transport.ImgUrl.FileName;
+            var directoryPath = Path.GetDirectoryName(root);
 
-        await Create(transport);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            src = Path.Combine(root, transportname);
+
+            using (var fileStream = new FileStream(src, FileMode.Create))
+            {
+                await transport.ImgUrl.CopyToAsync(fileStream);
+            }
+        }
+        var transportMap = _mapper.Map<Transport>(transport);
+        transportMap.Category = categoryEntity;
+        transportMap.ImgUrl = rootImg + transport.ImgUrl.FileName;
+
+
+        await Create(transportMap);
+
+        return transportMap;
+
     }
 }

@@ -22,8 +22,7 @@ public class TransportForCreateDto
     public int MaxSpeed { get; set; }
 
     [Required(ErrorMessage = "Image URL is required")]
-    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
-    public IFormFile? ImgUrl { get; set; }
+    public IFormFile ImgUrl { get; set; }
 
     [Required(ErrorMessage = "Maximum weight is required")]
     [Range(0, int.MaxValue, ErrorMessage = "Maximum weight must be a positive number")]

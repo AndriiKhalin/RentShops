@@ -13,6 +13,7 @@ builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureMySqlContext(builder.Configuration);
 builder.Services.ConfigureRepository();
 builder.Services.AddAutoMapper(typeof(Mapping));
+builder.Services.Configure_FileProvider();
 
 
 builder.Services.AddControllers();
@@ -32,7 +33,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
+app.UseCustomStaticFiles();
 app.UseCors("CorsPolicy");
 
 app.UseAuthorization();

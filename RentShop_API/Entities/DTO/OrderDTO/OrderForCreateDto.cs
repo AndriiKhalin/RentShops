@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DTO.OrderDTO;
 
@@ -15,6 +16,5 @@ public class OrderForCreateDto
     public DateTime DateTo { get; set; }
 
     [Required(ErrorMessage = "Image URL is required")]
-    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
-    public string TransportImgUrl { get; set; }
+    public IFormFile? TransportImgUrl { get; set; }
 }

@@ -110,7 +110,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(TransportDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateTransport([FromQuery] Guid categoryId, [FromBody] TransportForCreateDto transportCreate)
+        public async Task<IActionResult> CreateTransport([FromQuery] Guid categoryId, [FromForm] TransportForCreateDto transportCreate)
         {
             if (transportCreate == null)
             {
@@ -129,9 +129,9 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var transportMap = _mapper.Map<Transport>(transportCreate);
+            //var transportMap = _mapper.Map<Transport>(transportCreate);
 
-            await _repository.Transport.CreateTransport(categoryId, transportMap);
+            var transportMap = await _repository.Transport.CreateTransport(categoryId, transportCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Transport create success");
@@ -145,7 +145,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateTransport(Guid transportId, [FromBody] TransportForUpdateDto transportUpdate)
+        public async Task<IActionResult> UpdateTransport(Guid transportId, [FromForm] TransportForUpdateDto transportUpdate)
         {
             if (transportUpdate == null)
             {
@@ -165,11 +165,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var transportEntity = await _repository.Transport.GetTransport(transportId);
-
-            _mapper.Map(transportUpdate, transportEntity);
-
-            _repository.Transport.UpdateTransport(transportEntity);
+            await _repository.Transport.UpdateTransport(transportId, transportUpdate);
             await _repository.Save();
 
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DTO.ShopDTO;
 
@@ -15,6 +16,5 @@ public class ShopForUpdateDto
     public TimeSpan WorkTimeEnd { get; set; }
 
     [Required(ErrorMessage = "Image URL is required")]
-    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
-    public string? ImgUrl { get; set; }
+    public IFormFile? ImgUrl { get; set; }
 }

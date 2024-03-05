@@ -7,9 +7,9 @@ public class SeedData
     public static void SeedDates(RentDbContext context)
     {
 
-        //context.Database.EnsureDeleted();
+        context.Database.EnsureDeleted();
 
-        //context.Database.EnsureCreated();
+        context.Database.EnsureCreated();
 
         if (!context.Users.Any())
         {

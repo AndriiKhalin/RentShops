@@ -1,12 +1,16 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
 using Entities.Models;
 using Interfaces.IRepository;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
     private ICategoryRepository _category;
     private ILogTransactionRepository _logTransaction;
     private IOrderRepository _order;
@@ -16,9 +20,11 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private ITransactionRepository _transaction;
     private ITransportAvailableRepository _transportAvailable;
     private ITransportRepository _transport;
-    public UnitOfWork(RentDbContext context)
+    public UnitOfWork(RentDbContext context, IFileProvider fileProvider, IMapper mapper)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
     public IUserRepository User
@@ -116,7 +122,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_transport == null)
             {
-                _transport = new TransportRepository(_context);
+                _transport = new TransportRepository(_context, _fileProvider, _mapper);
             }
             return _transport;
         }

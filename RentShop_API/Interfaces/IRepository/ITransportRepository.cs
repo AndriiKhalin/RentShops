@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.TransportDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -17,7 +18,7 @@ public interface ITransportRepository
 
     void DeleteTransport(Guid id);
 
-    void UpdateTransport(Transport transport);
+    Task UpdateTransport(Guid categoryId, TransportForUpdateDto transport);
 
-    Task CreateTransport(Guid categoryId, Transport transport);
+    Task<Transport> CreateTransport(Guid categoryId, TransportForCreateDto transport);
 }

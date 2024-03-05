@@ -25,7 +25,8 @@ public class Mapping : Profile
         CreateMap<Order, OrderForCreateDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
 
-        CreateMap<Transport, TransportDto>().ReverseMap();
+        CreateMap<Transport, TransportDto>()
+            .ForMember(x => x.ImgUrl, o => o.MapFrom<TransportUrlResolver>()).ReverseMap();
         CreateMap<Transport, TransportForCreateDto>().ReverseMap();
         CreateMap<Transport, TransportForUpdateDto>().ReverseMap();
 
