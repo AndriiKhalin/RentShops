@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.TransportAvailableDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -13,9 +14,9 @@ public interface ITransportAvailableRepository
 
     Task<bool> TransportAvailableExists(Guid id);
 
-    Task CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailable transportAvailable);
+    Task<TransportAvailable> CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailableForCreateDto transportAvailable);
 
     void DeleteTransportAvailable(Guid id);
 
-    void UpdateTransportAvailable(TransportAvailable transportAvailable);
+    Task UpdateTransportAvailable(Guid transportAvailableId, TransportAvailableForUpdateDto transportAvailable);
 }

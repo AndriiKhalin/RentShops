@@ -1,31 +1,42 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.DTO.OrderDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class OrderRepository : BaseRepository<Order>, IOrderRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public OrderRepository(RentDbContext context) : base(context)
+    public OrderRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
-    public async Task CreateOrder(Guid userId, Guid shopId, Guid transportId, Order order)
+    public async Task<Order> CreateOrder(Guid userId, Guid shopId, Guid transportId, OrderForCreateDto order)
     {
         var userEntity = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
         var shopEntity = await _context.Shops.FirstOrDefaultAsync(x => x.Id == shopId);
         var transportEntity = await _context.Transports.FirstOrDefaultAsync(x => x.Id == transportId);
 
-        order.Transport = transportEntity;
-        order.Shop = shopEntity;
-        order.User = userEntity;
-        order.TransportImgUrl = transportEntity.ImgUrl;
-        order.CreatedAt = DateTime.Now;
+        var orderMap = _mapper.Map<Order>(order);
 
-        await Create(order);
+        orderMap.Transport = transportEntity;
+        orderMap.Shop = shopEntity;
+        orderMap.User = userEntity;
+        orderMap.TransportImgUrl = transportEntity.ImgUrl;
+        orderMap.CreatedUpdatedAt = DateTime.Now;
+        orderMap.Price = transportEntity.PriceMinute * (float)(orderMap.OrderDateTo - orderMap.OrderDateFrom).TotalMinutes;
+
+        await Create(orderMap);
+        return orderMap;
     }
 
     public void DeleteOrder(Guid id)
@@ -40,7 +51,7 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 
     public async Task<IEnumerable<Order>> GetOrders()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
     public async Task<User> GetUserByOrder(Guid orderId)
@@ -66,9 +77,16 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
         return await Exists(id);
     }
 
-    public void UpdateOrder(Order order)
+    public async Task UpdateOrder(Guid orderId, OrderForUpdateDto order)
     {
-        Update(order);
+        var orderEntity = await GetByCondition(x => x.Id == orderId).FirstOrDefaultAsync();
+
+        _mapper.Map(order, orderEntity);
+
+        orderEntity.CreatedUpdatedAt = DateTime.Now;
+        orderEntity.Price = orderEntity.Transport.PriceMinute * (float)(orderEntity.OrderDateTo - orderEntity.OrderDateFrom).TotalMinutes;
+
+        Update(orderEntity);
     }
 
 

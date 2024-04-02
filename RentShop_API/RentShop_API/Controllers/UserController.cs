@@ -138,7 +138,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(UserDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateUser([FromBody] UserForCreateDto userCreate)
+        public async Task<IActionResult> CreateUser([FromForm] UserForCreateDto userCreate)
         {
             if (userCreate == null)
             {
@@ -152,9 +152,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userMap = _mapper.Map<User>(userCreate);
 
-            await _repository.User.CreateUser(userMap);
+            var userMap = await _repository.User.CreateUser(userCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New User create success");
@@ -167,7 +166,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateUser(Guid userId, [FromBody] UserForUpdateDto userUpdate)
+        public async Task<IActionResult> UpdateUser(Guid userId, [FromForm] UserForUpdateDto userUpdate)
         {
             if (userUpdate == null)
             {
@@ -187,11 +186,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userEntity = await _repository.User.GetUser(userId);
-
-            _mapper.Map(userUpdate, userEntity);
-
-            _repository.User.UpdateUser(userEntity);
+            await _repository.User.UpdateUser(userId, userUpdate);
             await _repository.Save();
 
             _logger.LogInfo($"Update User with ID: {userId}");

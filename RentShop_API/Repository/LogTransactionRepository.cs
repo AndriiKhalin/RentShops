@@ -1,26 +1,36 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.DTO.LogTransactionDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTransactionRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public LogTransactionRepository(RentDbContext context) : base(context)
+    public LogTransactionRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
-    public async Task CreateLogTransaction(Guid transactionId, LogTransaction logTransaction)
+    public async Task<LogTransaction> CreateLogTransaction(Guid transactionId, LogTransactionForCreateDto logTransaction)
     {
         var transactionEntity = await _context.Transactions.FirstOrDefaultAsync(x => x.Id == transactionId);
 
-        logTransaction.Transaction = transactionEntity;
+        var logTransactionMap = _mapper.Map<LogTransaction>(logTransaction);
 
-        await Create(logTransaction);
+        logTransactionMap.Transaction = transactionEntity;
+
+        await Create(logTransactionMap);
+        return logTransactionMap;
     }
 
     public void DeleteLogTransaction(Guid logTransactionId)
@@ -35,7 +45,7 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
 
     public async Task<IEnumerable<LogTransaction>> GetLogTransactions()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
     public async Task<Transaction> GetTransactionByLogTransaction(Guid logTransactionId)
@@ -49,8 +59,12 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
         return await Exists(id);
     }
 
-    public void UpdateLogTransaction(LogTransaction logTransaction)
+    public async Task UpdateLogTransaction(Guid logTransactionId, LogTransactionForUpdateDto logTransaction)
     {
-        Update(logTransaction);
+        var logTransactionEntity = await GetByCondition(x => x.Id == logTransactionId).FirstOrDefaultAsync();
+
+        _mapper.Map(logTransaction, logTransactionEntity);
+
+        Update(logTransactionEntity);
     }
 }

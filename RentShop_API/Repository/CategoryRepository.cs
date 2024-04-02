@@ -1,25 +1,38 @@
-﻿using Entities;
+﻿using System.Security.Cryptography.X509Certificates;
+using AutoMapper;
+using Entities;
+using Entities.DTO.CategoryDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
-public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+public class CategoryRepository : BaseRepository<TransportCategory>, ICategoryRepository
 {
     private RentDbContext _context;
-    public CategoryRepository(RentDbContext context) : base(context)
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
+
+    public CategoryRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
     public async Task<bool> CategoryExists(Guid id)
     {
         return await Exists(id);
     }
 
-    public async Task CreateCategory(Category category)
+    public async Task<TransportCategory> CreateCategory(TransportCategoryForCreateDto category)
     {
-        await Create(category);
+        var categoryMap = _mapper.Map<TransportCategory>(category);
+        categoryMap.CreatedUpdatedAt = DateTime.Now;
+
+        await Create(categoryMap);
+        return categoryMap;
     }
 
     public void DeleteCategory(Guid id)
@@ -27,12 +40,12 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
         Delete(id);
     }
 
-    public async Task<IEnumerable<Category>> GetCategories()
+    public async Task<IEnumerable<TransportCategory>> GetCategories()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
-    public async Task<Category> GetCategory(Guid id)
+    public async Task<TransportCategory> GetCategory(Guid id)
     {
         return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
@@ -43,8 +56,14 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
             .ToListAsync();
     }
 
-    public void UpdateCategory(Category category)
+    public async Task UpdateCategory(Guid categoryId, TransportCategoryForUpdateDto category)
     {
-        Update(category);
+        var categoryEntity = await GetByCondition(x => x.Id == categoryId).FirstOrDefaultAsync();
+
+        _mapper.Map(category, categoryEntity);
+
+        categoryEntity.CreatedUpdatedAt = DateTime.Now;
+
+        Update(categoryEntity);
     }
 }

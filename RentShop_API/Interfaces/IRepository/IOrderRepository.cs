@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.OrderDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -16,9 +17,9 @@ public interface IOrderRepository
 
     Task<bool> OrderExists(Guid id);
 
-    Task CreateOrder(Guid userId, Guid shopId, Guid transportId, Order order);
+    Task<Order> CreateOrder(Guid userId, Guid shopId, Guid transportId, OrderForCreateDto order);
 
     void DeleteOrder(Guid id);
 
-    void UpdateOrder(Order order);
+    Task UpdateOrder(Guid orderId, OrderForUpdateDto order);
 }

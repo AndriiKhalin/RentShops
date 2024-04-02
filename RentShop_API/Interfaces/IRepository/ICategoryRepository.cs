@@ -1,20 +1,21 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.CategoryDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
 public interface ICategoryRepository
 {
-    Task<IEnumerable<Category>> GetCategories();
+    Task<IEnumerable<TransportCategory>> GetCategories();
 
-    Task<Category> GetCategory(Guid id);
+    Task<TransportCategory> GetCategory(Guid id);
 
     Task<IEnumerable<Transport>> GetTransportsByCategory(Guid categoryId);
 
     Task<bool> CategoryExists(Guid id);
 
-    Task CreateCategory(Category category);
+    Task<TransportCategory> CreateCategory(TransportCategoryForCreateDto category);
 
     void DeleteCategory(Guid id);
 
-    void UpdateCategory(Category category);
+    Task UpdateCategory(Guid categoryId, TransportCategoryForUpdateDto category);
 }

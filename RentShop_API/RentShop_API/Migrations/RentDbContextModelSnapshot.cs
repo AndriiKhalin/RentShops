@@ -17,32 +17,19 @@ namespace RentShop_API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Entities.Models.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name_Categories")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("Entities.Models.LogTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedUpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Results")
                         .HasColumnType("bit");
@@ -65,13 +52,13 @@ namespace RentShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedUpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateFrom")
+                    b.Property<DateTime>("OrderDateFrom")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateTo")
+                    b.Property<DateTime>("OrderDateTo")
                         .HasColumnType("datetime2");
 
                     b.Property<float>("Price")
@@ -85,7 +72,8 @@ namespace RentShop_API.Migrations
 
                     b.Property<string>("TransportImgUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -111,7 +99,7 @@ namespace RentShop_API.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedUpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Grand")
@@ -143,9 +131,13 @@ namespace RentShop_API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTime>("CreatedUpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ImgUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<TimeSpan>("WorkTimeEnd")
                         .HasColumnType("time");
@@ -191,6 +183,9 @@ namespace RentShop_API.Migrations
                     b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedUpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ImgUrl")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -215,9 +210,12 @@ namespace RentShop_API.Migrations
                     b.Property<float>("PriceMinute")
                         .HasColumnType("real");
 
+                    b.Property<Guid?>("TransportCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("TransportCategoryId");
 
                     b.ToTable("Transports");
                 });
@@ -230,6 +228,9 @@ namespace RentShop_API.Migrations
 
                     b.Property<int>("CountTransport")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedUpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ShopId")
                         .HasColumnType("uniqueidentifier");
@@ -246,6 +247,25 @@ namespace RentShop_API.Migrations
                     b.ToTable("TransportAvailables");
                 });
 
+            modelBuilder.Entity("Entities.Models.TransportCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedUpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name_Categories")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TransportCategories");
+                });
+
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -253,6 +273,9 @@ namespace RentShop_API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedUpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -265,7 +288,6 @@ namespace RentShop_API.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -354,12 +376,12 @@ namespace RentShop_API.Migrations
 
             modelBuilder.Entity("Entities.Models.Transport", b =>
                 {
-                    b.HasOne("Entities.Models.Category", "Category")
+                    b.HasOne("Entities.Models.TransportCategory", "TransportCategory")
                         .WithMany("Transports")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("TransportCategoryId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.Navigation("Category");
+                    b.Navigation("TransportCategory");
                 });
 
             modelBuilder.Entity("Entities.Models.TransportAvailable", b =>
@@ -377,11 +399,6 @@ namespace RentShop_API.Migrations
                     b.Navigation("Shop");
 
                     b.Navigation("Transport");
-                });
-
-            modelBuilder.Entity("Entities.Models.Category", b =>
-                {
-                    b.Navigation("Transports");
                 });
 
             modelBuilder.Entity("Entities.Models.Order", b =>
@@ -408,6 +425,11 @@ namespace RentShop_API.Migrations
                     b.Navigation("Ratings");
 
                     b.Navigation("TransportAvailables");
+                });
+
+            modelBuilder.Entity("Entities.Models.TransportCategory", b =>
+                {
+                    b.Navigation("Transports");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>

@@ -133,7 +133,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(OrderDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateOrder([FromQuery] Guid userId, [FromQuery] Guid shopId, [FromQuery] Guid transportId, [FromBody] OrderForCreateDto orderCreate)
+        public async Task<IActionResult> CreateOrder([FromQuery] Guid userId, [FromQuery] Guid shopId, [FromQuery] Guid transportId, [FromForm] OrderForCreateDto orderCreate)
         {
             if (orderCreate == null)
             {
@@ -153,9 +153,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var orderMap = _mapper.Map<Order>(orderCreate);
-
-            await _repository.Order.CreateOrder(userId, shopId, transportId, orderMap);
+            var orderMap = await _repository.Order.CreateOrder(userId, shopId, transportId, orderCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Order create success");
@@ -169,7 +167,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateOrder(Guid orderId, [FromBody] OrderForUpdateDto orderUpdate)
+        public async Task<IActionResult> UpdateOrder(Guid orderId, [FromForm] OrderForUpdateDto orderUpdate)
         {
             if (orderUpdate == null)
             {
@@ -189,11 +187,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var orderEntity = await _repository.Order.GetOrder(orderId);
 
-            _mapper.Map(orderUpdate, orderEntity);
-
-            _repository.Order.UpdateOrder(orderEntity);
+            await _repository.Order.UpdateOrder(orderId, orderUpdate);
             await _repository.Save();
 
 

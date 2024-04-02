@@ -11,6 +11,4 @@ public class RatingForCreateDto
     [StringLength(500, ErrorMessage = "Comment cannot be longer than 500 characters")]
     public string? Comment { get; set; }
 
-    [Required(ErrorMessage = "CreatedAt is required")]
-    public DateTime CreatedAt { get; set; }
 }

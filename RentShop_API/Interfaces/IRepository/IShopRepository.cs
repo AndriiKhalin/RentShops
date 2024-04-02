@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.ShopDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -13,9 +14,9 @@ public interface IShopRepository
 
     Task<bool> ShopExists(string adressName);
 
-    Task CreateShop(Shop shop);
+    Task<Shop> CreateShop(ShopForCreateDto shop);
 
     void DeleteShop(Guid id);
 
-    void UpdateShop(Shop shop);
+    Task UpdateShop(Guid shopId, ShopForUpdateDto shop);
 }

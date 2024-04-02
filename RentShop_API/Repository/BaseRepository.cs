@@ -42,6 +42,8 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
 
     public void Update(T entity)
     {
+        _context.Set<T>().Attach(entity);
+        _context.Set<T>().Entry(entity).State = EntityState.Modified;
         _context.Set<T>().Update(entity);
     }
 

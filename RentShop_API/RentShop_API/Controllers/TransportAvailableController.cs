@@ -111,7 +111,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(TransportAvailableDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateTransportAvailable([FromQuery] Guid transportId, [FromQuery] Guid shopId, [FromBody] TransportAvailableForCreateDto transportAvailableCreate)
+        public async Task<IActionResult> CreateTransportAvailable([FromQuery] Guid transportId, [FromQuery] Guid shopId, [FromForm] TransportAvailableForCreateDto transportAvailableCreate)
         {
             if (transportAvailableCreate == null)
             {
@@ -129,9 +129,8 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var transportAvailableMap = _mapper.Map<TransportAvailable>(transportAvailableCreate);
 
-            await _repository.TransportAvailable.CreateTransportAvailable(transportId, shopId, transportAvailableMap);
+            var transportAvailableMap = await _repository.TransportAvailable.CreateTransportAvailable(transportId, shopId, transportAvailableCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New TransportAvailable create success");
@@ -145,7 +144,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateTransportAvailable(Guid transportAvailableId, [FromBody] TransportAvailableForUpdateDto transportAvailableUpdate)
+        public async Task<IActionResult> UpdateTransportAvailable(Guid transportAvailableId, [FromForm] TransportAvailableForUpdateDto transportAvailableUpdate)
         {
             if (transportAvailableUpdate == null)
             {
@@ -165,11 +164,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var transportAvailableEntity = await _repository.TransportAvailable.GetTransportAvailable(transportAvailableId);
-
-            _mapper.Map(transportAvailableUpdate, transportAvailableEntity);
-
-            _repository.TransportAvailable.UpdateTransportAvailable(transportAvailableEntity);
+            await _repository.TransportAvailable.UpdateTransportAvailable(transportAvailableId, transportAvailableUpdate);
             await _repository.Save();
 
 

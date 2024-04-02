@@ -6,6 +6,9 @@ public class User
 {
     public Guid Id { get; set; }
 
+    [Required(ErrorMessage = "Created at date is required")]
+    public DateTime CreatedUpdatedAt { get; set; }
+
     [Required(ErrorMessage = "First name is required")]
     [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters")]
     public string FirstName { get; set; }

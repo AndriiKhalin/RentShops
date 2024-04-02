@@ -1,22 +1,29 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.DTO.TransactionDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public TransactionRepository(RentDbContext context) : base(context)
+    public TransactionRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Transaction>> GetTransactions()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.Date).ToListAsync();
     }
 
     public async Task<Transaction> GetTransaction(Guid id)
@@ -36,13 +43,18 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
         return await Exists(id);
     }
 
-    public async Task CreateTransaction(Guid orderId, Transaction transaction)
+    public async Task<Transaction> CreateTransaction(Guid orderId, TransactionForCreateDto transaction)
     {
         var orderEntity = await _context.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
 
-        transaction.Order = orderEntity;
+        var transactionMap = _mapper.Map<Transaction>(transaction);
 
-        await Create(transaction);
+        transactionMap.Order = orderEntity;
+        transactionMap.Date = DateTime.Now;
+        transactionMap.Sum = orderEntity.Price;
+
+        await Create(transactionMap);
+        return transactionMap;
     }
 
     public void DeleteTransaction(Guid transactionId)
@@ -50,8 +62,15 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
         Delete(transactionId);
     }
 
-    public void UpdateTransaction(Transaction transaction)
+    public async Task UpdateTransaction(Guid transactionId, TransactionForUpdateDto transaction)
     {
-        Update(transaction);
+        var transactionEntity = await GetByCondition(x => x.Id == transactionId).FirstOrDefaultAsync();
+
+        _mapper.Map(transaction, transactionEntity);
+
+        transactionEntity.Date = DateTime.Now;
+        transactionEntity.Sum = transactionEntity.Order.Price;
+
+        Update(transactionEntity);
     }
 }

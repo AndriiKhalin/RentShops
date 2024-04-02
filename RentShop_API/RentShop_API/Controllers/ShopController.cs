@@ -87,7 +87,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(ShopDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateShop([FromBody] ShopForCreateDto shopCreate)
+        public async Task<IActionResult> CreateShop([FromForm] ShopForCreateDto shopCreate)
         {
             if (shopCreate == null)
             {
@@ -105,9 +105,8 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var shopMap = _mapper.Map<Shop>(shopCreate);
 
-            await _repository.Shop.CreateShop(shopMap);
+            var shopMap = await _repository.Shop.CreateShop(shopCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Shop create success");
@@ -121,7 +120,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateShop(Guid shopId, [FromBody] ShopForUpdateDto shopUpdate)
+        public async Task<IActionResult> UpdateShop(Guid shopId, [FromForm] ShopForUpdateDto shopUpdate)
         {
             if (shopUpdate == null)
             {
@@ -141,11 +140,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var shopEntity = await _repository.Shop.GetShop(shopId);
-
-            _mapper.Map(shopUpdate, shopEntity);
-
-            _repository.Shop.UpdateShop(shopEntity);
+            await _repository.Shop.UpdateShop(shopId, shopUpdate);
             await _repository.Save();
 
             _logger.LogInfo($"Update Shop with ID: {shopId}");

@@ -3,7 +3,7 @@ using Entities.DTO.TransportDTO;
 using Entities.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace Helpers;
+namespace Helpers.UrlResolver;
 
 public class TransportUrlResolver : IValueResolver<Transport, TransportDto, string>
 {

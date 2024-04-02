@@ -111,7 +111,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(RatingDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateRating([FromQuery] Guid userId, [FromQuery] Guid transportId, [FromBody] RatingForCreateDto ratingCreate)
+        public async Task<IActionResult> CreateRating([FromQuery] Guid userId, [FromQuery] Guid transportId, [FromForm] RatingForCreateDto ratingCreate)
         {
             if (ratingCreate == null)
             {
@@ -130,9 +130,8 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var ratingMap = _mapper.Map<Rating>(ratingCreate);
 
-            await _repository.Rating.CreateRating(userId, transportId, ratingMap);
+            var ratingMap = await _repository.Rating.CreateRating(userId, transportId, ratingCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Rating create success");
@@ -146,7 +145,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateRating(Guid ratingId, [FromBody] RatingForUpdateDto ratingUpdate)
+        public async Task<IActionResult> UpdateRating(Guid ratingId, [FromForm] RatingForUpdateDto ratingUpdate)
         {
             if (ratingUpdate == null)
             {
@@ -166,11 +165,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ratingEntity = await _repository.Rating.GetRating(ratingId);
 
-            _mapper.Map(ratingUpdate, ratingEntity);
-
-            _repository.Rating.UpdateRating(ratingEntity);
+            await _repository.Rating.UpdateRating(ratingId, ratingUpdate);
             await _repository.Save();
 
 

@@ -87,7 +87,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet("categories/{transportId}")]
-        [ProducesResponseType(200, Type = typeof(CategoryDto))]
+        [ProducesResponseType(200, Type = typeof(TransportCategoryDto))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetCategoryByTransport(Guid transportId)
         {
@@ -97,7 +97,7 @@ namespace RentShop_API.Controllers
                 return NotFound();
             }
 
-            var categoryByTransport = _mapper.Map<CategoryDto>(await _repository.Transport.GetCategoryByTransport(transportId));
+            var categoryByTransport = _mapper.Map<TransportCategoryDto>(await _repository.Transport.GetCategoryByTransport(transportId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -129,7 +129,6 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            //var transportMap = _mapper.Map<Transport>(transportCreate);
 
             var transportMap = await _repository.Transport.CreateTransport(categoryId, transportCreate);
             await _repository.Save();

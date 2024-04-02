@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.UserDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -14,9 +15,9 @@ public interface IUserRepository
 
     Task<DateTime?> GetLastUserOrder(Guid id);
 
-    Task CreateUser(User user);
+    Task<User> CreateUser(UserForCreateDto user);
 
-    void UpdateUser(User user);
+    Task UpdateUser(Guid userId, UserForUpdateDto user);
 
     void DeleteUser(Guid id);
     Task<bool> UserExists(Guid id);

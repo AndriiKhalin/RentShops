@@ -4,6 +4,5 @@ namespace Entities.DTO.TransportAvailableDTO;
 
 public class TransportAvailableForUpdateDto
 {
-    [Required(ErrorMessage = "Count of transport is required")]
-    public int CountTransport { get; set; }
+    public int? CountTransport { get; set; }
 }

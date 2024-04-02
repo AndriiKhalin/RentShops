@@ -88,7 +88,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(LogTransactionDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateLogTransaction([FromQuery] Guid transactionId, [FromBody] LogTransactionForCreateDto logTransactionCreate)
+        public async Task<IActionResult> CreateLogTransaction([FromQuery] Guid transactionId, [FromForm] LogTransactionForCreateDto logTransactionCreate)
         {
             if (logTransactionCreate == null)
             {
@@ -106,9 +106,9 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var logTransactionMap = _mapper.Map<LogTransaction>(logTransactionCreate);
 
-            await _repository.LogTransaction.CreateLogTransaction(transactionId, logTransactionMap);
+
+            var logTransactionMap = await _repository.LogTransaction.CreateLogTransaction(transactionId, logTransactionCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New LogTransaction create success");
@@ -122,7 +122,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateLogTransaction(Guid logTransactionId, [FromBody] LogTransactionForUpdateDto logTransactionUpdate)
+        public async Task<IActionResult> UpdateLogTransaction(Guid logTransactionId, [FromForm] LogTransactionForUpdateDto logTransactionUpdate)
         {
             if (logTransactionUpdate == null)
             {
@@ -142,11 +142,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var logTransactionEntity = await _repository.LogTransaction.GetLogTransaction(logTransactionId);
-
-            _mapper.Map(logTransactionUpdate, logTransactionEntity);
-
-            _repository.LogTransaction.UpdateLogTransaction(logTransactionEntity);
+            await _repository.LogTransaction.UpdateLogTransaction(logTransactionId, logTransactionUpdate);
             await _repository.Save();
 
 

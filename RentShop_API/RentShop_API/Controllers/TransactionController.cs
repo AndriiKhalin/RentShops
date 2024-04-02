@@ -89,7 +89,7 @@ namespace RentShop_API.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(TransactionDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateTransaction([FromQuery] Guid orderId, [FromBody] TransactionForCreateDto transactionCreate)
+        public async Task<IActionResult> CreateTransaction([FromQuery] Guid orderId, [FromForm] TransactionForCreateDto transactionCreate)
         {
             if (transactionCreate == null)
             {
@@ -109,9 +109,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var transactionMap = _mapper.Map<Transaction>(transactionCreate);
-
-            await _repository.Transaction.CreateTransaction(orderId, transactionMap);
+            var transactionMap = await _repository.Transaction.CreateTransaction(orderId, transactionCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Transaction create success");
@@ -125,7 +123,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateTransaction(Guid transactionId, [FromBody] TransactionForUpdateDto transactionUpdate)
+        public async Task<IActionResult> UpdateTransaction(Guid transactionId, [FromForm] TransactionForUpdateDto transactionUpdate)
         {
             if (transactionUpdate == null)
             {
@@ -145,11 +143,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var transactionEntity = await _repository.Transaction.GetTransaction(transactionId);
 
-            _mapper.Map(transactionUpdate, transactionEntity);
-
-            _repository.Transaction.UpdateTransaction(transactionEntity);
+            await _repository.Transaction.UpdateTransaction(transactionId, transactionUpdate);
             await _repository.Save();
 
 

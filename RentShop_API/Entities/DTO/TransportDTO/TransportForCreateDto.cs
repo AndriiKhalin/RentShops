@@ -7,11 +7,11 @@ public class TransportForCreateDto
 {
     [Required(ErrorMessage = "Model is required")]
     [StringLength(50, ErrorMessage = "Model can't be longer than 50 characters")]
-    public string? Model { get; set; }
+    public string? Mark { get; set; }
 
     [Required(ErrorMessage = "Mark is required")]
     [StringLength(50, ErrorMessage = "Mark can't be longer than 50 characters")]
-    public string? Mark { get; set; }
+    public string? Model { get; set; }
 
     [Required(ErrorMessage = "Price per minute is required")]
     [Range(0, double.MaxValue, ErrorMessage = "Price per minute must be a positive number")]

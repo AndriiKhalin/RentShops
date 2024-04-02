@@ -33,7 +33,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_user == null)
             {
-                _user = new UserRepository(_context);
+                _user = new UserRepository(_context, _fileProvider, _mapper);
             }
             return _user;
         }
@@ -45,7 +45,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_category == null)
             {
-                _category = new CategoryRepository(_context);
+                _category = new CategoryRepository(_context, _fileProvider, _mapper);
             }
             return _category;
         }
@@ -56,7 +56,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_logTransaction == null)
             {
-                _logTransaction = new LogTransactionRepository(_context);
+                _logTransaction = new LogTransactionRepository(_context, _fileProvider, _mapper);
             }
             return _logTransaction;
         }
@@ -67,7 +67,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_order == null)
             {
-                _order = new OrderRepository(_context);
+                _order = new OrderRepository(_context, _fileProvider, _mapper);
             }
             return _order;
         }
@@ -78,7 +78,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_rating == null)
             {
-                _rating = new RatingRepository(_context);
+                _rating = new RatingRepository(_context, _fileProvider, _mapper);
             }
             return _rating;
         }
@@ -89,7 +89,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_shop == null)
             {
-                _shop = new ShopRepository(_context);
+                _shop = new ShopRepository(_context, _fileProvider, _mapper);
             }
             return _shop;
         }
@@ -100,7 +100,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_transaction == null)
             {
-                _transaction = new TransactionRepository(_context);
+                _transaction = new TransactionRepository(_context, _fileProvider, _mapper);
             }
             return _transaction;
         }
@@ -111,7 +111,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_transportAvailable == null)
             {
-                _transportAvailable = new TransportAvailableRepository(_context);
+                _transportAvailable = new TransportAvailableRepository(_context, _fileProvider, _mapper);
             }
             return _transportAvailable;
         }

@@ -2,21 +2,29 @@
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
+using Entities.DTO.UserDTO;
+using AutoMapper;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public UserRepository(RentDbContext context) : base(context)
+    public UserRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<User>> GetUsers()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
     public async Task<User> GetUser(Guid id)
@@ -41,23 +49,90 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
         if (user != null && user.Orders.Any())
         {
-            var lastOrder = user.Orders.OrderByDescending(x => x.DateTo).FirstOrDefault();
+            var lastOrder = user.Orders.OrderByDescending(x => x.OrderDateTo).FirstOrDefault();
 
-            return lastOrder.DateTo;
+            return lastOrder.OrderDateTo;
         }
 
         return null;
     }
 
-    public async Task CreateUser(User user)
+    public async Task<User> CreateUser(UserForCreateDto user)
     {
-        await Create(user);
+        var src = "";
+        string rootImg = "/Upload/User/";
+        var username = $"{user.FirstName}_{user.LastName}({Guid.NewGuid()}){Path.GetExtension(user.ImgUrl.FileName)}";
+
+        if (user.ImgUrl is not null)
+        {
+            var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\User\";
+
+            var directoryPath = Path.GetDirectoryName(root);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            src = Path.Combine(root, username);
+
+            using (var fileStream = new FileStream(src, FileMode.Create))
+            {
+                await user.ImgUrl.CopyToAsync(fileStream);
+            }
+        }
+
+        var userMap = _mapper.Map<User>(user);
+        userMap.ImgUrl = rootImg + username;
+        userMap.CreatedUpdatedAt = DateTime.Now;
+
+        await Create(userMap);
+
+        return userMap;
     }
 
-    public void UpdateUser(User user)
+    public async Task UpdateUser(Guid userId, UserForUpdateDto user)
     {
-        Update(user);
+        var userEntity = await GetByCondition(x => x.Id == userId).FirstOrDefaultAsync();
+        var src = "";
+        var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\User\";
+        string rootImg = "/Upload/User/";
+        var username = $"{user.FirstName}_{user.LastName}({Guid.NewGuid()}){Path.GetExtension(user.ImgUrl.FileName)}";
 
+        if (userEntity is not null)
+        {
+
+            if (user.ImgUrl is not null)
+            {
+
+                var directoryPath = Path.GetDirectoryName(root);
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                src = Path.Combine(root, username);
+
+                using (var fileStream = new FileStream(src, FileMode.Create))
+                {
+                    await user.ImgUrl.CopyToAsync(fileStream);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(userEntity.ImgUrl))
+            {
+                string oldsrc = userEntity.ImgUrl;
+                System.IO.File.Delete(oldsrc);
+            }
+
+            _mapper.Map(user, userEntity);
+            userEntity.ImgUrl = rootImg + username;
+            userEntity.CreatedUpdatedAt = DateTime.Now;
+
+            Update(userEntity);
+
+        }
     }
 
     public void DeleteUser(Guid id)
@@ -72,7 +147,7 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<bool> UserExists(string userName)
     {
-        //return await _context.Users.AnyAsync(x => x.FirstName == userName);
+
         return await Exists(userName);
     }
 }

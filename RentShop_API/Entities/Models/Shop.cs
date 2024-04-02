@@ -6,6 +6,10 @@ public class Shop
 {
     public Guid Id { get; set; }
 
+    [Required(ErrorMessage = "Created at date is required")]
+    public DateTime CreatedUpdatedAt { get; set; }
+
+
     [Required(ErrorMessage = "Address is required")]
     [StringLength(100, ErrorMessage = "Address cannot be longer than 100 characters")]
     public string Address { get; set; }

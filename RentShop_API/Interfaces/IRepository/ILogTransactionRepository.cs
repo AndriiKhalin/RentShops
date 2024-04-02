@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.LogTransactionDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -12,10 +13,10 @@ public interface ILogTransactionRepository
 
     Task<bool> LogTransactionExists(Guid id);
 
-    Task CreateLogTransaction(Guid transactionId, LogTransaction logTransaction);
+    Task<LogTransaction> CreateLogTransaction(Guid transactionId, LogTransactionForCreateDto logTransaction);
 
     void DeleteLogTransaction(Guid logTransactionId);
 
-    void UpdateLogTransaction(LogTransaction logTransaction);
+    Task UpdateLogTransaction(Guid logTransactionId, LogTransactionForUpdateDto logTransaction);
 
 }

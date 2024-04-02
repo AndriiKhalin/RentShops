@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.TransactionDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -13,9 +14,9 @@ public interface ITransactionRepository
 
     Task<bool> TransactionExists(Guid id);
 
-    Task CreateTransaction(Guid orderId, Transaction transaction);
+    Task<Transaction> CreateTransaction(Guid orderId, TransactionForCreateDto transaction);
 
     void DeleteTransaction(Guid transactionId);
 
-    void UpdateTransaction(Transaction transaction);
+    Task UpdateTransaction(Guid transactionId, TransactionForUpdateDto transaction);
 }

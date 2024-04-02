@@ -5,16 +5,10 @@ namespace Entities.DTO.OrderDTO;
 
 public class OrderForUpdateDto
 {
-    [Required(ErrorMessage = "Price is required")]
     [Range(0, float.MaxValue, ErrorMessage = "Price must be a positive number")]
-    public float Price { get; set; }
+    public float? Price { get; set; }
+    public DateTime? OrderDateFrom { get; set; }
 
-    [Required(ErrorMessage = "Date from is required")]
-    public DateTime DateFrom { get; set; }
-
-    [Required(ErrorMessage = "Date to is required")]
-    public DateTime DateTo { get; set; }
-
-    [Required(ErrorMessage = "Image URL is required")]
+    public DateTime? OrderDateTo { get; set; }
     public IFormFile? TransportImgUrl { get; set; }
 }

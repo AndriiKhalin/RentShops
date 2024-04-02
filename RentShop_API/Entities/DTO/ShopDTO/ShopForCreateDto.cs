@@ -15,6 +15,5 @@ public class ShopForCreateDto
     [Required(ErrorMessage = "Work time end is required")]
     public TimeSpan WorkTimeEnd { get; set; }
 
-    [Required(ErrorMessage = "Image URL is required")]
     public IFormFile? ImgUrl { get; set; }
 }

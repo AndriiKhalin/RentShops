@@ -62,7 +62,7 @@ public class RentDbContext : DbContext
             .OnDelete(DeleteBehavior.SetNull);
 
         modelBuilder.Entity<Transport>()
-            .HasOne(x => x.Category)
+            .HasOne(x => x.TransportCategory)
             .WithMany(y => y.Transports)
             .OnDelete(DeleteBehavior.SetNull);
 
@@ -89,7 +89,7 @@ public class RentDbContext : DbContext
 
     public DbSet<TransportAvailable>? TransportAvailables { get; set; } = null!;
     public DbSet<User>? Users { get; set; } = null!;
-    public DbSet<Category>? Categories { get; set; } = null!;
+    public DbSet<TransportCategory>? TransportCategories { get; set; } = null!;
     public DbSet<Order>? Orders { get; set; } = null!;
     public DbSet<Transport>? Transports { get; set; } = null!;
 

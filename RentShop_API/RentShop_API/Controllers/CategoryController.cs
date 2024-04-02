@@ -30,10 +30,10 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<TransportCategoryDto>))]
         public async Task<IActionResult> GetCategories()
         {
-            var categories = _mapper.Map<IEnumerable<CategoryDto>>(await _repository.Category.GetCategories());
+            var categories = _mapper.Map<IEnumerable<TransportCategoryDto>>(await _repository.Category.GetCategories());
             _logger.LogInfo("We take all categories from database");
             if (!ModelState.IsValid)
             {
@@ -45,7 +45,7 @@ namespace RentShop_API.Controllers
         }
 
         [HttpGet("{categoryId}")]
-        [ProducesResponseType(200, Type = typeof(CategoryDto))]
+        [ProducesResponseType(200, Type = typeof(TransportCategoryDto))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetCategory(Guid categoryId)
         {
@@ -55,7 +55,7 @@ namespace RentShop_API.Controllers
                 return NotFound();
             }
 
-            var category = _mapper.Map<CategoryDto>(await _repository.Category.GetCategory(categoryId));
+            var category = _mapper.Map<TransportCategoryDto>(await _repository.Category.GetCategory(categoryId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -88,9 +88,9 @@ namespace RentShop_API.Controllers
 
 
         [HttpPost]
-        [ProducesResponseType(201, Type = typeof(CategoryDto))]
+        [ProducesResponseType(201, Type = typeof(TransportCategoryDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateCategory([FromBody] CategoryForCreateDto categoryCreate)
+        public async Task<IActionResult> CreateCategory([FromForm] TransportCategoryForCreateDto categoryCreate)
         {
             if (categoryCreate == null)
             {
@@ -102,13 +102,12 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            var categoryMap = _mapper.Map<Category>(categoryCreate);
 
-            await _repository.Category.CreateCategory(categoryMap);
+            var categoryMap = await _repository.Category.CreateCategory(categoryCreate);
             await _repository.Save();
 
             _logger.LogInfo($"New Category create success");
-            var createdCategory = _mapper.Map<CategoryDto>(categoryMap);
+            var createdCategory = _mapper.Map<TransportCategoryDto>(categoryMap);
 
             return CreatedAtAction(nameof(GetCategory), new { categoryId = createdCategory.Id }, createdCategory);
         }
@@ -118,7 +117,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateCategory(Guid categoryId, [FromBody] CategoryForUpdateDto categoryUpdate)
+        public async Task<IActionResult> UpdateCategory(Guid categoryId, [FromForm] TransportCategoryForUpdateDto categoryUpdate)
         {
             if (categoryUpdate == null)
             {
@@ -138,11 +137,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var categoryEntity = await _repository.Category.GetCategory(categoryId);
-
-            _mapper.Map(categoryUpdate, categoryEntity);
-
-            _repository.Category.UpdateCategory(categoryEntity);
+            await _repository.Category.UpdateCategory(categoryId, categoryUpdate);
             await _repository.Save();
 
 

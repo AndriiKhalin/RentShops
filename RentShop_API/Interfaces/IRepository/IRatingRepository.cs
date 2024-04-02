@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DTO.RatingDTO;
+using Entities.Models;
 
 namespace Interfaces.IRepository;
 
@@ -13,8 +14,8 @@ public interface IRatingRepository
     Task<Transport> GetTransportByRating(Guid ratingId);
     Task<bool> RatingExists(Guid id);
 
-    Task CreateRating(Guid userId, Guid transportId, Rating rating);
+    Task<Rating> CreateRating(Guid userId, Guid transportId, RatingForCreateDto rating);
     void DeleteRating(Guid id);
 
-    void UpdateRating(Rating rating);
+    Task UpdateRating(Guid ratingId, RatingForUpdateDto rating);
 }

@@ -7,9 +7,9 @@ public class SeedData
     public static void SeedDates(RentDbContext context)
     {
 
-        context.Database.EnsureDeleted();
+        //context.Database.EnsureDeleted();
 
-        context.Database.EnsureCreated();
+        //context.Database.EnsureCreated();
 
         if (!context.Users.Any())
         {
@@ -54,24 +54,24 @@ public class SeedData
 
 
             //Category
-            Category bike = new Category()
+            TransportCategory bike = new TransportCategory()
             {
                 Id = Guid.NewGuid(),
                 Name_Categories = "Bike",
             };
-            Category scooter = new Category()
+            TransportCategory scooter = new TransportCategory()
             {
                 Id = Guid.NewGuid(),
                 Name_Categories = "Scooter",
             };
 
-            Category motorbike = new Category()
+            TransportCategory motorbike = new TransportCategory()
             {
                 Id = Guid.NewGuid(),
                 Name_Categories = "Motorbike",
             };
 
-            context.Categories.AddRange(bike, scooter, motorbike);
+            context.TransportCategories.AddRange(bike, scooter, motorbike);
 
 
             //Transport
@@ -84,7 +84,7 @@ public class SeedData
                 ImgUrl = "http://...",
                 MaxSpeed = 35,
                 MaxWeight = 125,
-                Category = bike
+                TransportCategory = bike
             };
 
             Transport tesla = new Transport()
@@ -96,7 +96,7 @@ public class SeedData
                 ImgUrl = "http://...",
                 MaxSpeed = 45,
                 MaxWeight = 115,
-                Category = scooter
+                TransportCategory = scooter
             };
             Transport volva = new Transport()
             {
@@ -107,7 +107,7 @@ public class SeedData
                 ImgUrl = "http://...",
                 MaxSpeed = 30,
                 MaxWeight = 105,
-                Category = motorbike
+                TransportCategory = motorbike
             };
 
             context.Transports.AddRange(honda, tesla, volva);
@@ -172,9 +172,9 @@ public class SeedData
             Order order1 = new Order
             {
                 Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
-                DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 55, 03),
-                DateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 44, 03),
+                CreatedUpdatedAt = DateTime.Now,
+                OrderDateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 55, 03),
+                OrderDateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 44, 03),
                 Price = 55f,
                 User = andrew,
                 Transport = honda,
@@ -184,9 +184,9 @@ public class SeedData
             Order order2 = new Order
             {
                 Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
-                DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 33, 13),
-                DateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 13, 55, 03),
+                CreatedUpdatedAt = DateTime.Now,
+                OrderDateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 33, 13),
+                OrderDateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 13, 55, 03),
                 Price = 35f,
                 User = vlad,
                 Transport = tesla,
@@ -197,9 +197,9 @@ public class SeedData
             Order order3 = new Order
             {
                 Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
-                DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 25, 53),
-                DateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 05, 03),
+                CreatedUpdatedAt = DateTime.Now,
+                OrderDateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 25, 53),
+                OrderDateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 05, 03),
                 Price = 155f,
                 User = vanya,
                 Transport = volva,
@@ -209,9 +209,9 @@ public class SeedData
             Order order4 = new Order
             {
                 Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
-                DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 25, 53),
-                DateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 19, 55, 03),
+                CreatedUpdatedAt = DateTime.Now,
+                OrderDateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 25, 53),
+                OrderDateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 19, 55, 03),
                 Price = 55f,
                 User = vanya,
                 Transport = volva,
@@ -223,9 +223,9 @@ public class SeedData
             Order order5 = new Order
             {
                 Id = Guid.NewGuid(),
-                CreatedAt = DateTime.Now,
-                DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 25, 53),
-                DateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 55, 03),
+                CreatedUpdatedAt = DateTime.Now,
+                OrderDateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 25, 53),
+                OrderDateTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 22, 55, 03),
                 Price = 55f,
                 User = vanya,
                 Transport = volva,
@@ -322,7 +322,7 @@ public class SeedData
                 Id = Guid.NewGuid(),
                 Grand = 2,
                 Comment = "Bad",
-                CreatedAt = DateTime.UtcNow,
+                CreatedUpdatedAt = DateTime.UtcNow,
                 User = andrew,
                 Transport = volva
             };
@@ -331,7 +331,7 @@ public class SeedData
                 Id = Guid.NewGuid(),
                 Grand = 5,
                 Comment = "Good",
-                CreatedAt = DateTime.UtcNow,
+                CreatedUpdatedAt = DateTime.UtcNow,
                 User = vlad,
                 Transport = tesla
             };
@@ -340,7 +340,7 @@ public class SeedData
                 Id = Guid.NewGuid(),
                 Grand = 4,
                 Comment = "Nice",
-                CreatedAt = DateTime.UtcNow,
+                CreatedUpdatedAt = DateTime.UtcNow,
                 User = vlad,
                 Transport = volva
             };

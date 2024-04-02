@@ -10,11 +10,11 @@ public class OrderForCreateDto
     public float Price { get; set; }
 
     [Required(ErrorMessage = "Date from is required")]
-    public DateTime DateFrom { get; set; }
+    public DateTime OrderDateFrom { get; set; }
 
     [Required(ErrorMessage = "Date to is required")]
-    public DateTime DateTo { get; set; }
+    public DateTime OrderDateTo { get; set; }
 
-    [Required(ErrorMessage = "Image URL is required")]
     public IFormFile? TransportImgUrl { get; set; }
+
 }

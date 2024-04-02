@@ -6,32 +6,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RentShop_API.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDB : Migration
+    public partial class CreateDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name_Categories = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Shops",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     WorkTimeStart = table.Column<TimeSpan>(type: "time", nullable: false),
                     WorkTimeEnd = table.Column<TimeSpan>(type: "time", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImgUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,10 +28,24 @@ namespace RentShop_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TransportCategories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name_Categories = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransportCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -50,7 +53,7 @@ namespace RentShop_API.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,21 +65,23 @@ namespace RentShop_API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Mark = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PriceMinute = table.Column<float>(type: "real", nullable: false),
                     MaxSpeed = table.Column<int>(type: "int", nullable: false),
                     ImgUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     MaxWeight = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    TransportCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transports_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        name: "FK_Transports_TransportCategories_TransportCategoryId",
+                        column: x => x.TransportCategoryId,
+                        principalTable: "TransportCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
@@ -87,10 +92,10 @@ namespace RentShop_API.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TransportImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderDateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderDateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransportImgUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -123,9 +128,9 @@ namespace RentShop_API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Grand = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -151,6 +156,7 @@ namespace RentShop_API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CountTransport = table.Column<int>(type: "int", nullable: false),
                     TransportId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -197,6 +203,7 @@ namespace RentShop_API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Results = table.Column<bool>(type: "bit", nullable: false),
                     TransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -261,9 +268,9 @@ namespace RentShop_API.Migrations
                 column: "TransportId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transports_CategoryId",
+                name: "IX_Transports_TransportCategoryId",
                 table: "Transports",
-                column: "CategoryId");
+                column: "TransportCategoryId");
         }
 
         /// <inheritdoc />
@@ -294,7 +301,7 @@ namespace RentShop_API.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "TransportCategories");
         }
     }
 }

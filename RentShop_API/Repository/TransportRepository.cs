@@ -23,7 +23,7 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
 
     public async Task<IEnumerable<Transport>> GetTransports()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
     public async Task<Transport> GetTransport(Guid id)
@@ -37,9 +37,9 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         return await GetByCondition(x => x.Id == transportId).Include(x => x.Orders).SelectMany(x => x.Orders).ToListAsync();
     }
 
-    public async Task<Category> GetCategoryByTransport(Guid transportId)
+    public async Task<TransportCategory> GetCategoryByTransport(Guid transportId)
     {
-        return await GetByCondition(x => x.Id == transportId).Include(x => x.Category).Select(x => x.Category)
+        return await GetByCondition(x => x.Id == transportId).Include(x => x.TransportCategory).Select(x => x.TransportCategory)
             .FirstOrDefaultAsync();
     }
 
@@ -59,6 +59,7 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         var src = "";
         var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\Transport\";
         string rootImg = "/Upload/Transport/";
+        var transportname = $"{transport.Mark}_{transport.Model}({Guid.NewGuid()}){Path.GetExtension(transport.ImgUrl.FileName)}";
 
         if (transportEntity is not null)
         {
@@ -66,7 +67,7 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
             if (transport.ImgUrl is not null)
             {
 
-                var transportname = transport.ImgUrl.FileName;
+
                 var directoryPath = Path.GetDirectoryName(root);
 
                 if (!Directory.Exists(directoryPath))
@@ -89,7 +90,8 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
             }
 
             _mapper.Map(transport, transportEntity);
-            transportEntity.ImgUrl = rootImg + transport.ImgUrl.FileName;
+            transportEntity.ImgUrl = rootImg + transportname;
+            transportEntity.CreatedUpdatedAt = DateTime.Now;
 
             Update(transportEntity);
         }
@@ -97,14 +99,16 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
 
     public async Task<Transport> CreateTransport(Guid categoryId, TransportForCreateDto transport)
     {
-        var categoryEntity = await _context.Categories.FirstOrDefaultAsync(x => x.Id == categoryId);
+        var categoryEntity = await _context.TransportCategories.FirstOrDefaultAsync(x => x.Id == categoryId);
         var src = "";
         string rootImg = "/Upload/Transport/";
+        var transportname = $"{transport.Mark}_{transport.Model}({Guid.NewGuid()}){Path.GetExtension(transport.ImgUrl.FileName)}";
 
         if (transport.ImgUrl is not null)
         {
             var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\Transport\";
-            var transportname = transport.ImgUrl.FileName;
+            //var transportname = transport.ImgUrl.FileName;
+
             var directoryPath = Path.GetDirectoryName(root);
 
             if (!Directory.Exists(directoryPath))
@@ -120,9 +124,9 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
             }
         }
         var transportMap = _mapper.Map<Transport>(transport);
-        transportMap.Category = categoryEntity;
-        transportMap.ImgUrl = rootImg + transport.ImgUrl.FileName;
-
+        transportMap.TransportCategory = categoryEntity;
+        transportMap.ImgUrl = rootImg + transportname;
+        transportMap.CreatedUpdatedAt = DateTime.Now;
 
         await Create(transportMap);
 

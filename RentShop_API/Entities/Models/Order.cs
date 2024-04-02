@@ -12,13 +12,13 @@ public class Order
 
     [Required(ErrorMessage = "Created at date is required")]
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedUpdatedAt { get; set; }
 
     [Required(ErrorMessage = "Date from is required")]
-    public DateTime DateFrom { get; set; }
+    public DateTime OrderDateFrom { get; set; }
 
     [Required(ErrorMessage = "Date to is required")]
-    public DateTime DateTo { get; set; }
+    public DateTime OrderDateTo { get; set; }
 
     [Required(ErrorMessage = "Image URL is required")]
     [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]

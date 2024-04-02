@@ -1,22 +1,29 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.DTO.TransportAvailableDTO;
 using Entities.Models;
 using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Repository;
 
 public class TransportAvailableRepository : BaseRepository<TransportAvailable>, ITransportAvailableRepository
 {
     private readonly RentDbContext _context;
+    private readonly IFileProvider _fileProvider;
+    private readonly IMapper _mapper;
 
-    public TransportAvailableRepository(RentDbContext context) : base(context)
+    public TransportAvailableRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper) : base(context)
     {
         _context = context;
+        _fileProvider = fileProvider;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<TransportAvailable>> GetTransportAvailables()
     {
-        return await GetAll();
+        return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
     public async Task<TransportAvailable> GetTransportAvailable(Guid id)
@@ -41,15 +48,18 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
         return await Exists(id);
     }
 
-    public async Task CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailable transportAvailable)
+    public async Task<TransportAvailable> CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailableForCreateDto transportAvailable)
     {
         var transportEntity = await _context.Transports.FirstOrDefaultAsync(x => x.Id == transportId);
         var shopEntity = await _context.Shops.FirstOrDefaultAsync(x => x.Id == shopId);
 
-        transportAvailable.Transport = transportEntity;
-        transportAvailable.Shop = shopEntity;
+        var transportAvailableMap = _mapper.Map<TransportAvailable>(transportAvailable);
 
-        await Create(transportAvailable);
+        transportAvailableMap.Transport = transportEntity;
+        transportAvailableMap.Shop = shopEntity;
+
+        await Create(transportAvailableMap);
+        return transportAvailableMap;
     }
 
     public void DeleteTransportAvailable(Guid id)
@@ -57,8 +67,12 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
         Delete(id);
     }
 
-    public void UpdateTransportAvailable(TransportAvailable transportAvailable)
+    public async Task UpdateTransportAvailable(Guid transportAvailableId, TransportAvailableForUpdateDto transportAvailable)
     {
-        Update(transportAvailable);
+        var transportAvailableEntity = await GetByCondition(x => x.Id == transportAvailableId).FirstOrDefaultAsync();
+
+        _mapper.Map(transportAvailable, transportAvailableEntity);
+
+        Update(transportAvailableEntity);
     }
 }
