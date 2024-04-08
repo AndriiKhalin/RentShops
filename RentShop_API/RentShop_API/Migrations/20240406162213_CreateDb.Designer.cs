@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20240312115945_CreateDb")]
+    [Migration("20240406162213_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
