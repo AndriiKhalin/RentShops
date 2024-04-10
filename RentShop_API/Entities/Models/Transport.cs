@@ -2,7 +2,7 @@
 
 namespace Entities.Models;
 
-public class Transport
+public class Transport : IEntity
 {
     public Guid Id { get; set; }
 
@@ -26,7 +26,7 @@ public class Transport
     public int MaxSpeed { get; set; }
 
     [Required(ErrorMessage = "Image URL is required")]
-    [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
+    [StringLength(300, ErrorMessage = "Image URL cannot be longer than 100 characters")]
     public string? ImgUrl { get; set; }
 
     [Required(ErrorMessage = "Maximum weight is required")]
@@ -41,3 +41,4 @@ public class Transport
     public List<Rating> Ratings { get; set; } = new();
     public List<TransportAvailable> TransportAvailables { get; set; } = new();
 }
+

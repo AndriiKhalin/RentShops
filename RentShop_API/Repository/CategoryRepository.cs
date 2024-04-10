@@ -60,7 +60,12 @@ public class CategoryRepository : BaseRepository<TransportCategory>, ICategoryRe
     {
         var categoryEntity = await GetByCondition(x => x.Id == categoryId).FirstOrDefaultAsync();
 
+        var nameCategories = categoryEntity.Name_Categories;
+
+
         _mapper.Map(category, categoryEntity);
+
+        categoryEntity.Name_Categories = nameCategories;
 
         categoryEntity.CreatedUpdatedAt = DateTime.Now;
 

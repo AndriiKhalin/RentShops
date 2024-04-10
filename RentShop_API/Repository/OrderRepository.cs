@@ -81,10 +81,18 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         var orderEntity = await GetByCondition(x => x.Id == orderId).FirstOrDefaultAsync();
 
+        var price = orderEntity.Transport.PriceMinute * (float)(orderEntity.OrderDateTo - orderEntity.OrderDateFrom).TotalMinutes;
+        var img = orderEntity.TransportImgUrl;
+        var orderDateFrom = orderEntity.OrderDateFrom;
+        var orderDateTo = orderEntity.OrderDateTo;
+
         _mapper.Map(order, orderEntity);
 
+        orderEntity.OrderDateFrom = orderDateFrom;
+        orderEntity.OrderDateTo = orderDateTo;
+        orderEntity.TransportImgUrl = img;
         orderEntity.CreatedUpdatedAt = DateTime.Now;
-        orderEntity.Price = orderEntity.Transport.PriceMinute * (float)(orderEntity.OrderDateTo - orderEntity.OrderDateFrom).TotalMinutes;
+        orderEntity.Price = price;
 
         Update(orderEntity);
     }

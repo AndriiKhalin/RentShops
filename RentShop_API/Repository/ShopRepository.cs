@@ -115,8 +115,17 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
             System.IO.File.Delete(oldsrc);
         }
 
+        var adress = shopEntity.Address;
+        var timeStart = shopEntity.WorkTimeStart;
+        var timeEnd = shopEntity.WorkTimeEnd;
+        var img = src;
+
         _mapper.Map(shop, shopEntity);
-        shopEntity.ImgUrl = rootImg + shopname;
+
+        shopEntity.Address = adress;
+        shopEntity.WorkTimeStart = timeStart;
+        shopEntity.WorkTimeEnd = timeEnd;
+        shopEntity.ImgUrl = img;
         shopEntity.CreatedUpdatedAt = DateTime.Now;
 
         Update(shopEntity);
@@ -125,5 +134,26 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
     public async Task<bool> ShopExists(string adressName)
     {
         return await Exists(adressName);
+    }
+
+    private string GetUniqueFileName(string fileName)
+    {
+        var extension = Path.GetExtension(fileName);
+        var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+        var newFileName = $"{fileNameWithoutExtension}_{Guid.NewGuid()}{extension}";
+        return newFileName;
+    }
+    private string GetPath()
+    {
+        // Использовать Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
+        // для папки общего назначения
+
+        //return @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images";
+
+        var currentDirectory = Directory.GetCurrentDirectory();
+        var projectRoot = Path.GetFullPath(Path.Combine(currentDirectory, "..", ".."));
+        var pathToImages = Path.Combine(projectRoot, @"RentShop_UI\src\assets\");
+
+        return pathToImages;
     }
 }

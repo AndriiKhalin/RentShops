@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using Entities.Models;
+using System.Linq.Expressions;
 
 namespace Interfaces.IRepository;
 
-public interface IBaseRepository<T>
+public interface IBaseRepository<T> where T : class
 {
     Task<IQueryable<T>> GetAll();
     IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression);

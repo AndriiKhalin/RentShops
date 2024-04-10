@@ -35,11 +35,7 @@ namespace RentShop_API.Controllers
         {
             var transports = _mapper.Map<IEnumerable<TransportDto>>(await _repository.Transport.GetTransports());
             _logger.LogInfo("We take transports from database");
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarn("Model is invalid");
-                return BadRequest(ModelState);
-            }
+
             _logger.LogInfo("We returned all transports from database");
             return Ok(transports);
         }
@@ -187,7 +183,7 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            _repository.Transport.DeleteTransport(transportId);
+            await _repository.Transport.DeleteTransport(transportId);
             await _repository.Save();
 
             _logger.LogInfo($"Transport delete with id: {transportId} in our database");

@@ -28,6 +28,7 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
         var logTransactionMap = _mapper.Map<LogTransaction>(logTransaction);
 
         logTransactionMap.Transaction = transactionEntity;
+        logTransactionMap.CreatedUpdatedAt = DateTime.UtcNow;
 
         await Create(logTransactionMap);
         return logTransactionMap;
@@ -64,6 +65,8 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
         var logTransactionEntity = await GetByCondition(x => x.Id == logTransactionId).FirstOrDefaultAsync();
 
         _mapper.Map(logTransaction, logTransactionEntity);
+
+        logTransactionEntity.CreatedUpdatedAt = DateTime.UtcNow;
 
         Update(logTransactionEntity);
     }

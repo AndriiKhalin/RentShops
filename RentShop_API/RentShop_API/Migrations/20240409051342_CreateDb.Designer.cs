@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20240406162213_CreateDb")]
+    [Migration("20240409051342_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
@@ -191,8 +191,8 @@ namespace RentShop_API.Migrations
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Mark")
                         .IsRequired()

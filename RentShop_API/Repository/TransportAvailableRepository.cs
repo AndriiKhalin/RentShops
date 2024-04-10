@@ -57,6 +57,7 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
 
         transportAvailableMap.Transport = transportEntity;
         transportAvailableMap.Shop = shopEntity;
+        transportAvailableMap.CreatedUpdatedAt = DateTime.UtcNow;
 
         await Create(transportAvailableMap);
         return transportAvailableMap;
@@ -71,7 +72,12 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
     {
         var transportAvailableEntity = await GetByCondition(x => x.Id == transportAvailableId).FirstOrDefaultAsync();
 
+        var countTransport = transportAvailableEntity.CountTransport;
+
         _mapper.Map(transportAvailable, transportAvailableEntity);
+
+        transportAvailableEntity.CountTransport = countTransport;
+        transportAvailableEntity.CreatedUpdatedAt = DateTime.Now;
 
         Update(transportAvailableEntity);
     }

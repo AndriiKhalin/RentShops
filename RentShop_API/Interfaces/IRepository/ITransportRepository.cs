@@ -5,7 +5,7 @@ namespace Interfaces.IRepository;
 
 public interface ITransportRepository
 {
-    Task<IEnumerable<Transport>> GetTransports();
+    Task<List<Transport>> GetTransports();
 
     Task<Transport> GetTransport(Guid id);
 
@@ -16,7 +16,7 @@ public interface ITransportRepository
 
     Task<bool> TransportExists(Guid id);
 
-    void DeleteTransport(Guid id);
+    Task DeleteTransport(Guid id);
 
     Task UpdateTransport(Guid categoryId, TransportForUpdateDto transport);
 

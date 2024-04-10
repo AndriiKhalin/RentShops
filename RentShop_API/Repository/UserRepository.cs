@@ -6,6 +6,7 @@ using System.Security.Cryptography.Xml;
 using Entities.DTO.UserDTO;
 using AutoMapper;
 using Microsoft.Extensions.FileProviders;
+using Entities.DTO.TransportDTO;
 
 namespace Repository;
 
@@ -126,7 +127,22 @@ public class UserRepository : BaseRepository<User>, IUserRepository
                 System.IO.File.Delete(oldsrc);
             }
 
+
+            var firstName = userEntity.FirstName;
+            var secondName = userEntity.LastName;
+            var birthDate = userEntity.BirthDate;
+            var email = userEntity.Email;
+            var phone = userEntity.Phone;
+            var password = userEntity.Password;
+
             _mapper.Map(user, userEntity);
+
+            userEntity.FirstName = firstName;
+            userEntity.LastName = secondName;
+            userEntity.BirthDate = birthDate;
+            userEntity.Email = email;
+            userEntity.Phone = phone;
+            userEntity.Password = password;
             userEntity.ImgUrl = rootImg + username;
             userEntity.CreatedUpdatedAt = DateTime.Now;
 
@@ -149,5 +165,26 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     {
 
         return await Exists(userName);
+    }
+
+    private string GetUniqueFileName(string fileName)
+    {
+        var extension = Path.GetExtension(fileName);
+        var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+        var newFileName = $"{fileNameWithoutExtension}_{Guid.NewGuid()}{extension}";
+        return newFileName;
+    }
+    private string GetPath()
+    {
+        // Использовать Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
+        // для папки общего назначения
+
+        //return @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images";
+
+        var currentDirectory = Directory.GetCurrentDirectory();
+        var projectRoot = Path.GetFullPath(Path.Combine(currentDirectory, "..", ".."));
+        var pathToImages = Path.Combine(projectRoot, @"RentShop_UI\src\assets\");
+
+        return pathToImages;
     }
 }

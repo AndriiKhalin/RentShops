@@ -70,7 +70,13 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
     {
         var ratingEntity = await GetByCondition(x => x.Id == ratingId).FirstOrDefaultAsync();
 
+        var grand = ratingEntity.Grand;
+        var comment = ratingEntity.Comment;
+
         _mapper.Map(rating, ratingEntity);
+
+        ratingEntity.Grand = grand;
+        ratingEntity.Comment = comment;
 
         ratingEntity.CreatedUpdatedAt = DateTime.Now;
 

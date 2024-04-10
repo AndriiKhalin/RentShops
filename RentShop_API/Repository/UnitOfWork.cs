@@ -8,18 +8,20 @@ namespace Repository;
 
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
-    private RentDbContext _context;
+    private readonly RentDbContext _context;
     private readonly IFileProvider _fileProvider;
     private readonly IMapper _mapper;
-    private ICategoryRepository _category;
+    private ICategoryRepository? _category;
     private ILogTransactionRepository _logTransaction;
     private IOrderRepository _order;
     private IRatingRepository _rating;
     private IShopRepository _shop;
-    private IUserRepository _user;
+    private IUserRepository? _user;
     private ITransactionRepository _transaction;
     private ITransportAvailableRepository _transportAvailable;
     private ITransportRepository _transport;
+    private bool _disposedValue;
+
     public UnitOfWork(RentDbContext context, IFileProvider fileProvider, IMapper mapper)
     {
         _context = context;
@@ -31,11 +33,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     {
         get
         {
-            if (_user == null)
-            {
-                _user = new UserRepository(_context, _fileProvider, _mapper);
-            }
-            return _user;
+            return _user ??= new UserRepository(_context, _fileProvider, _mapper);
         }
     }
 
@@ -43,10 +41,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     {
         get
         {
-            if (_category == null)
-            {
-                _category = new CategoryRepository(_context, _fileProvider, _mapper);
-            }
+            _category ??= new CategoryRepository(_context, _fileProvider, _mapper);
             return _category;
         }
     }
@@ -130,7 +125,23 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public void Dispose()
     {
-        _context.Dispose();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposedValue)
+        {
+            return;
+        }
+
+        if (disposing)
+        {
+            _context.Dispose();
+        }
+
+        _disposedValue = true;
     }
 
     public async Task Save()

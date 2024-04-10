@@ -70,7 +70,7 @@ namespace RentShop_API.Migrations
                     Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PriceMinute = table.Column<float>(type: "real", nullable: false),
                     MaxSpeed = table.Column<int>(type: "int", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     MaxWeight = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TransportCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
