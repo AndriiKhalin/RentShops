@@ -38,7 +38,7 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
         return await GetByCondition(x => x.Id == transportId).Include(x => x.Orders).SelectMany(x => x.Orders).ToListAsync();
     }
 
-    public async Task<TransportCategory> GetCategoryByTransport(Guid transportId)
+    public async Task<TransportCategory?> GetCategoryByTransport(Guid transportId)
     {
         return await GetByCondition(x => x.Id == transportId).Include(x => x.TransportCategory).Select(x => x.TransportCategory)
             .FirstOrDefaultAsync();

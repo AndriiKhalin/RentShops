@@ -7,10 +7,10 @@ public interface ITransportRepository
 {
     Task<List<Transport>> GetTransports();
 
-    Task<Transport> GetTransport(Guid id);
+    Task<Transport?> GetTransport(Guid id);
 
 
-    Task<TransportCategory> GetCategoryByTransport(Guid transportId);
+    Task<TransportCategory?> GetCategoryByTransport(Guid transportId);
 
     Task<IEnumerable<Order>> GetOrdersByTransport(Guid transportId);
 
