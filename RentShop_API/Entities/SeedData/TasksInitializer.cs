@@ -1,8 +1,7 @@
-﻿
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Entities.SeedData;
+namespace Models.SeedData;
 
 public static class TasksInitializer
 {

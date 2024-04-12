@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Entities;
-using Entities.DTO.RatingDTO;
-using Entities.Models;
-using Interfaces.IRepository;
+using Services.Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Models;
+using Models.DTO.RatingDTO;
+using Models.Entities;
 
 namespace Repository;
 

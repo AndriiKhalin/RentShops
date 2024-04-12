@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Entities.DTO.TransactionDTO;
+﻿namespace Models.DTO.TransactionDTO;
 
 public class TransactionDto
 {

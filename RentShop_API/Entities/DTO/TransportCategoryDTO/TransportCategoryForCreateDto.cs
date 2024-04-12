@@ -1,7 +1,6 @@
-﻿using Entities.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DTO.CategoryDTO;
+namespace Models.DTO.TransportCategoryDTO;
 
 public class TransportCategoryForCreateDto
 {

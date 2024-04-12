@@ -1,12 +1,11 @@
-﻿using Entities;
-using Entities.Models;
-using Interfaces.IRepository;
+﻿using Services.Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.Xml;
-using Entities.DTO.UserDTO;
 using AutoMapper;
 using Microsoft.Extensions.FileProviders;
-using Entities.DTO.TransportDTO;
+using Models;
+using Models.DTO.UserDTO;
+using Models.Entities;
 
 namespace Repository;
 

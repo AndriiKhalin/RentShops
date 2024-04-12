@@ -1,7 +1,7 @@
-﻿using Entities.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Models.Entities;
 
-namespace Entities;
+namespace Models;
 
 public class RentDbContext : DbContext
 {

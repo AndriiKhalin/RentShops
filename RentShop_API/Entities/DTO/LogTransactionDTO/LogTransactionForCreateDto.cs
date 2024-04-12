@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DTO.LogTransactionDTO;
+namespace Models.DTO.LogTransactionDTO;
 
 public class LogTransactionForCreateDto
 {

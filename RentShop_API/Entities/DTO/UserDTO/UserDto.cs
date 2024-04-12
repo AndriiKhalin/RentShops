@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Entities.DTO.UserDTO;
+﻿namespace Models.DTO.UserDTO;
 
 public class UserDto
 {

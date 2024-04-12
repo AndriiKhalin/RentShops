@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Entities;
+namespace Models;
 
 public class SampleContextFactory : IDesignTimeDbContextFactory<RentDbContext>
 {

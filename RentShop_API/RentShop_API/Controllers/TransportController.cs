@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Entities.Models;
-using Entities;
-using Entities.DTO.CategoryDTO;
-using Interfaces.IRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Entities.DTO.OrderDTO;
-using Entities.DTO.TransportDTO;
-using Interfaces.ILoggerService;
+using Models;
+using Models.DTO.OrderDTO;
+using Models.DTO.TransportCategoryDTO;
+using Models.DTO.TransportDTO;
+using Services.Interfaces.ILoggerService;
+using Services.Interfaces.IRepository;
 
 namespace RentShop_API.Controllers
 {

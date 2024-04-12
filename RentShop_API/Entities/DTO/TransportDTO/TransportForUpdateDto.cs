@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace Entities.DTO.TransportDTO;
+namespace Models.DTO.TransportDTO;
 
 public class TransportForUpdateDto
 {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
-namespace Entities.DTO.OrderDTO;
+namespace Models.DTO.OrderDTO;
 
 public class OrderForUpdateDto
 {
