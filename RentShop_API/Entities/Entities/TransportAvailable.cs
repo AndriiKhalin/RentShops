@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.Models;
+namespace Models.Entities;
 
 public class TransportAvailable
 {

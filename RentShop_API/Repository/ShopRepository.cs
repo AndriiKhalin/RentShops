@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Entities;
-using Entities.DTO.ShopDTO;
-using Entities.Models;
-using Interfaces.IRepository;
+using Services.Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.Security.Cryptography.Xml;
+using Models;
+using Models.DTO.ShopDTO;
+using Models.Entities;
 
 namespace Repository;
 

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Entities.DTO.OrderDTO;
+﻿namespace Models.DTO.OrderDTO;
 
 public class OrderDto
 {

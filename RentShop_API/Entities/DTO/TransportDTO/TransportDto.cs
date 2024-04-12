@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Entities.DTO.TransportDTO;
+﻿namespace Models.DTO.TransportDTO;
 
 public class TransportDto
 {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Entities.DTO.RatingDTO;
+﻿namespace Models.DTO.RatingDTO;
 
 public class RatingDto
 {

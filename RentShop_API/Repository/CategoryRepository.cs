@@ -1,11 +1,10 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
-using Entities;
-using Entities.DTO.CategoryDTO;
-using Entities.Models;
-using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Models;
+using Models.DTO.TransportCategoryDTO;
+using Models.Entities;
 
 namespace Repository;
 

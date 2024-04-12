@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Entities;
-using Entities.Models;
-using Interfaces.IRepository;
+using Services.Interfaces.IRepository;
 using Microsoft.Extensions.FileProviders;
+using Models;
 
 namespace Repository;
 

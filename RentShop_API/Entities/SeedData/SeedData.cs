@@ -1,13 +1,13 @@
-﻿using Entities.Models;
+﻿using Models.Entities;
 
-namespace Entities.SeedData;
+namespace Models.SeedData;
 
 public class SeedData
 {
     public static void SeedDates(RentDbContext context)
     {
 
-        //context.Database.EnsureDeleted();
+        //context.Database.EnsureDeleted();ы
 
         //context.Database.EnsureCreated();
 

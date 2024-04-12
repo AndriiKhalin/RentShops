@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DTO.TransportAvailableDTO;
+namespace Models.DTO.TransportAvailableDTO;
 
 public class TransportAvailableForCreateDto
 {
