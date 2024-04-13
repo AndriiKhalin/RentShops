@@ -1,7 +1,8 @@
-﻿using Services.Interfaces.IRepository;
+﻿
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.Xml;
 using AutoMapper;
+using Interfaces.IRepository;
 using Microsoft.Extensions.FileProviders;
 using Models;
 using Models.DTO.UserDTO;

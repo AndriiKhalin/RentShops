@@ -1,5 +1,6 @@
-﻿using Entities.DTO.OrderDTO;
-using Entities.Models;
+﻿
+using Models.DTO.OrderDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
 using Models.DTO.UserDTO;
 using Models.Entities;
+using Microsoft.Extensions.Configuration;
 
-namespace Helpers.UrlResolver;
+namespace Services.Heplers.UrlResolver;
 
 public class UserUrlResolver : IValueResolver<User, UserDto, string>
 {

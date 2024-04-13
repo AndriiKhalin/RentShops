@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.DTO.OrderDTO;
 using Models.DTO.TransactionDTO;
-using Services.Interfaces.ILoggerService;
-using Services.Interfaces.IRepository;
+using Interfaces.ILoggerService;
+using Interfaces.IRepository;
 
 namespace RentShop_API.Controllers
 {

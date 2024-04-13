@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Helpers.UrlResolver;
 using Models.DTO.LogTransactionDTO;
 using Models.DTO.OrderDTO;
 using Models.DTO.RatingDTO;
@@ -10,6 +9,7 @@ using Models.DTO.TransportCategoryDTO;
 using Models.DTO.TransportDTO;
 using Models.DTO.UserDTO;
 using Models.Entities;
+using Services.Heplers.UrlResolver;
 
 namespace Services.Mapping;
 

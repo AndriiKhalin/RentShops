@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using Services.Interfaces.IRepository;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.Security.Cryptography.Xml;
+using Interfaces.IRepository;
 using Models;
 using Models.DTO.ShopDTO;
 using Models.Entities;

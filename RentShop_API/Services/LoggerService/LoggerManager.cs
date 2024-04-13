@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using Services.Interfaces.ILoggerService;
+using Interfaces.ILoggerService;
+using NLog;
 
 namespace Services.LoggerService;
 

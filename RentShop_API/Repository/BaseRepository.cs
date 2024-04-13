@@ -1,11 +1,11 @@
-﻿using Services.Interfaces.IRepository;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Models;
+using Interfaces.IRepository;
 
 namespace Repository;
 

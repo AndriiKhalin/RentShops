@@ -1,5 +1,6 @@
-﻿using Entities.DTO.RatingDTO;
-using Entities.Models;
+﻿
+using Models.DTO.RatingDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

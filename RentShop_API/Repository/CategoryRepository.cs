@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
+using Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Models;

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
 using Models.DTO.ShopDTO;
 using Models.Entities;
+using Microsoft.Extensions.Configuration;
 
-namespace Helpers.UrlResolver;
+namespace Services.Heplers.UrlResolver;
 
 public class ShopUrlResorver : IValueResolver<Shop, ShopDto, string>
 {

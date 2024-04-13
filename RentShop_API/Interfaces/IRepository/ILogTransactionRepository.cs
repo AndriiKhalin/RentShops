@@ -1,5 +1,6 @@
-﻿using Entities.DTO.LogTransactionDTO;
-using Entities.Models;
+﻿
+using Models.DTO.LogTransactionDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

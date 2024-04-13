@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Services.Interfaces.ILoggerService;
+﻿using Interfaces.ILoggerService;
+using Microsoft.Extensions.DependencyInjection;
 using Services.LoggerService;
 
 namespace Services.Extensions.ServiceExtensions;

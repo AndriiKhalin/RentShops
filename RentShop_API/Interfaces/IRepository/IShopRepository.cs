@@ -1,5 +1,5 @@
-﻿using Entities.DTO.ShopDTO;
-using Entities.Models;
+﻿using Models.DTO.ShopDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

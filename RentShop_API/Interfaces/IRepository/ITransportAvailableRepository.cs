@@ -1,5 +1,5 @@
-﻿using Entities.DTO.TransportAvailableDTO;
-using Entities.Models;
+﻿using Models.DTO.TransportAvailableDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

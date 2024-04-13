@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Interfaces.IRepository;
+using Microsoft.Extensions.DependencyInjection;
 using Repository;
-using Services.Interfaces.IRepository;
 
 namespace Services.Extensions.ServiceExtensions;
 

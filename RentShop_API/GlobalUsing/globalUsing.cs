@@ -1,8 +1,12 @@
 ﻿global using RentShop_API;
-global using Entities;
+global using Models;
 global using AutoMapper;
-global using Extensions;
-global using Extensions.ServiceExtensions;
+global using Services.Extensions;
+global using Services.Extensions.ServiceExtensions;
+global using Services.Extensions.ServiceExtensions;
+global using Services.Heplers.UrlResolver;
+global using Services.Mapping;
+global using Services.LoggerService;
 global using Interfaces.IRepository;
 global using Interfaces;
 global using Repository;

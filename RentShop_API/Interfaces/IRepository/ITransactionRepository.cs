@@ -1,5 +1,5 @@
-﻿using Entities.DTO.TransactionDTO;
-using Entities.Models;
+﻿using Models.DTO.TransactionDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 
