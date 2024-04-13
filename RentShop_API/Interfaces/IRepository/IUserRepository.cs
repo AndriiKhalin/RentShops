@@ -1,5 +1,5 @@
-﻿using Entities.DTO.UserDTO;
-using Entities.Models;
+﻿using Models.DTO.UserDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

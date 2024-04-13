@@ -1,5 +1,6 @@
-﻿using Entities.DTO.CategoryDTO;
-using Entities.Models;
+﻿
+using Models.DTO.TransportCategoryDTO;
+using Models.Entities;
 
 namespace Interfaces.IRepository;
 

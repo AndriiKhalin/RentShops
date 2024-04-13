@@ -22,7 +22,7 @@ namespace RentShop_API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Models.LogTransaction", b =>
+            modelBuilder.Entity("Models.Entities.LogTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("LogTransactions");
                 });
 
-            modelBuilder.Entity("Entities.Models.Order", b =>
+            modelBuilder.Entity("Models.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Entities.Models.Rating", b =>
+            modelBuilder.Entity("Models.Entities.Rating", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,7 +120,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("Entities.Models.Shop", b =>
+            modelBuilder.Entity("Models.Entities.Shop", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transaction", b =>
+            modelBuilder.Entity("Models.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,7 +174,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transport", b =>
+            modelBuilder.Entity("Models.Entities.Transport", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -220,7 +220,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("Transports");
                 });
 
-            modelBuilder.Entity("Entities.Models.TransportAvailable", b =>
+            modelBuilder.Entity("Models.Entities.TransportAvailable", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,7 +247,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("TransportAvailables");
                 });
 
-            modelBuilder.Entity("Entities.Models.TransportCategory", b =>
+            modelBuilder.Entity("Models.Entities.TransportCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,7 +266,7 @@ namespace RentShop_API.Migrations
                     b.ToTable("TransportCategories");
                 });
 
-            modelBuilder.Entity("Entities.Models.User", b =>
+            modelBuilder.Entity("Models.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -313,29 +313,29 @@ namespace RentShop_API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Entities.Models.LogTransaction", b =>
+            modelBuilder.Entity("Models.Entities.LogTransaction", b =>
                 {
-                    b.HasOne("Entities.Models.Transaction", "Transaction")
+                    b.HasOne("Models.Entities.Transaction", "Transaction")
                         .WithOne("LogTransaction")
-                        .HasForeignKey("Entities.Models.LogTransaction", "TransactionId")
+                        .HasForeignKey("Models.Entities.LogTransaction", "TransactionId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Transaction");
                 });
 
-            modelBuilder.Entity("Entities.Models.Order", b =>
+            modelBuilder.Entity("Models.Entities.Order", b =>
                 {
-                    b.HasOne("Entities.Models.Shop", "Shop")
+                    b.HasOne("Models.Entities.Shop", "Shop")
                         .WithMany("Orders")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Entities.Models.Transport", "Transport")
+                    b.HasOne("Models.Entities.Transport", "Transport")
                         .WithMany("Orders")
                         .HasForeignKey("TransportId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Entities.Models.User", "User")
+                    b.HasOne("Models.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -347,14 +347,14 @@ namespace RentShop_API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Models.Rating", b =>
+            modelBuilder.Entity("Models.Entities.Rating", b =>
                 {
-                    b.HasOne("Entities.Models.Transport", "Transport")
+                    b.HasOne("Models.Entities.Transport", "Transport")
                         .WithMany("Ratings")
                         .HasForeignKey("TransportId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Entities.Models.User", "User")
+                    b.HasOne("Models.Entities.User", "User")
                         .WithMany("Ratings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -364,19 +364,19 @@ namespace RentShop_API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transaction", b =>
+            modelBuilder.Entity("Models.Entities.Transaction", b =>
                 {
-                    b.HasOne("Entities.Models.Order", "Order")
+                    b.HasOne("Models.Entities.Order", "Order")
                         .WithOne("Transaction")
-                        .HasForeignKey("Entities.Models.Transaction", "OrderId")
+                        .HasForeignKey("Models.Entities.Transaction", "OrderId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transport", b =>
+            modelBuilder.Entity("Models.Entities.Transport", b =>
                 {
-                    b.HasOne("Entities.Models.TransportCategory", "TransportCategory")
+                    b.HasOne("Models.Entities.TransportCategory", "TransportCategory")
                         .WithMany("Transports")
                         .HasForeignKey("TransportCategoryId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -384,14 +384,14 @@ namespace RentShop_API.Migrations
                     b.Navigation("TransportCategory");
                 });
 
-            modelBuilder.Entity("Entities.Models.TransportAvailable", b =>
+            modelBuilder.Entity("Models.Entities.TransportAvailable", b =>
                 {
-                    b.HasOne("Entities.Models.Shop", "Shop")
+                    b.HasOne("Models.Entities.Shop", "Shop")
                         .WithMany("TransportAvailables")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Entities.Models.Transport", "Transport")
+                    b.HasOne("Models.Entities.Transport", "Transport")
                         .WithMany("TransportAvailables")
                         .HasForeignKey("TransportId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -401,24 +401,24 @@ namespace RentShop_API.Migrations
                     b.Navigation("Transport");
                 });
 
-            modelBuilder.Entity("Entities.Models.Order", b =>
+            modelBuilder.Entity("Models.Entities.Order", b =>
                 {
                     b.Navigation("Transaction");
                 });
 
-            modelBuilder.Entity("Entities.Models.Shop", b =>
+            modelBuilder.Entity("Models.Entities.Shop", b =>
                 {
                     b.Navigation("Orders");
 
                     b.Navigation("TransportAvailables");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transaction", b =>
+            modelBuilder.Entity("Models.Entities.Transaction", b =>
                 {
                     b.Navigation("LogTransaction");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transport", b =>
+            modelBuilder.Entity("Models.Entities.Transport", b =>
                 {
                     b.Navigation("Orders");
 
@@ -427,12 +427,12 @@ namespace RentShop_API.Migrations
                     b.Navigation("TransportAvailables");
                 });
 
-            modelBuilder.Entity("Entities.Models.TransportCategory", b =>
+            modelBuilder.Entity("Models.Entities.TransportCategory", b =>
                 {
                     b.Navigation("Transports");
                 });
 
-            modelBuilder.Entity("Entities.Models.User", b =>
+            modelBuilder.Entity("Models.Entities.User", b =>
                 {
                     b.Navigation("Orders");
 

@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.DTO.LogTransactionDTO;
 using Models.DTO.TransactionDTO;
-using Services.Interfaces.ILoggerService;
-using Services.Interfaces.IRepository;
+using Interfaces.ILoggerService;
+using Interfaces.IRepository;
 
 namespace RentShop_API.Controllers
 {

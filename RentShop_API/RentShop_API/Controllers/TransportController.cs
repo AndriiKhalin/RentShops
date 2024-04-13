@@ -6,8 +6,8 @@ using Models;
 using Models.DTO.OrderDTO;
 using Models.DTO.TransportCategoryDTO;
 using Models.DTO.TransportDTO;
-using Services.Interfaces.ILoggerService;
-using Services.Interfaces.IRepository;
+using Interfaces.ILoggerService;
+using Interfaces.IRepository;
 
 namespace RentShop_API.Controllers
 {

@@ -25,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Models.csproj" />
+    <Folder Include="ILoggerService\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ILoggerService\" />
+    <ProjectReference Include="..\Entities\Models.csproj" />
   </ItemGroup>
 
 </Project>

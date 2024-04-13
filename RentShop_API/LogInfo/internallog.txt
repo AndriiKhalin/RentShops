@@ -16047,3 +16047,464 @@
 2024-04-10 17:33:54.2234 Trace Closing Layout Renderer: ${literal}
 2024-04-10 17:33:54.2234 Debug Finished closing logging configuration.
 2024-04-10 17:33:54.2234 Info LogFactory has been closed.
+2024-04-13 13:34:16.2871 Debug Message Template Auto Format enabled
+2024-04-13 13:34:16.3341 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3341 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 13:34:16.3341 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3341 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 13:34:16.3341 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3341 Trace Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 13:34:16.3444 Trace  Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 13:34:16.3444 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'includeAllProperties'='true'
+   at NLog.Config.LoggingConfigurationParser.SetPropertyValueFromString[T](T targetObject, String propertyName, String propertyValue, ValidatedConfigurationElement element)
+2024-04-13 13:34:16.3713 Debug Adding target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 13:34:16.3713 Info Registered target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 13:34:16.3713 Trace ParseRulesElement
+2024-04-13 13:34:16.3795 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-13 13:34:16.3795 Debug Start watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 13:34:16.3795 Debug --- NLog configuration dump ---
+2024-04-13 13:34:16.3795 Debug Targets:
+2024-04-13 13:34:16.3795 Debug FileTarget(Name=htmlFile)
+2024-04-13 13:34:16.3795 Debug Rules:
+2024-04-13 13:34:16.3795 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]
+2024-04-13 13:34:16.3795 Debug --- End of NLog configuration dump ---
+2024-04-13 13:34:16.3795 Trace FindReachableObject<System.Object>:
+2024-04-13 13:34:16.3795 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]'
+2024-04-13 13:34:16.3795 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic.IList`1[NLog.Targets.Target]
+2024-04-13 13:34:16.3795 Trace  Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 13:34:16.3795 Trace   Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 13:34:16.3795 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 13:34:16.3795 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.3795 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3795 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 13:34:16.3795 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3795 Trace   Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 13:34:16.3795 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 13:34:16.3795 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.3795 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3795 Trace   Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 13:34:16.3795 Trace   Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 13:34:16.3898 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.3898 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 13:34:16.3898 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3898 Trace    Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 13:34:16.3898 Trace     Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 13:34:16.3898 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3898 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic.IList`1[NLog.Config.LoggingRule]
+2024-04-13 13:34:16.3898 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic.IList`1[NLog.Filters.Filter]
+2024-04-13 13:34:16.3898 Info Validating config: TargetNames=htmlFile, ConfigItems=13, FilePath=D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API\nlog.config
+2024-04-13 13:34:16.3898 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2024-04-13 13:34:16.3898 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${exception}
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${message}
+2024-04-13 13:34:16.3898 Trace Initializing ${message} | ${exception:format=tostring}<br />
+2024-04-13 13:34:16.3898 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3898 Trace Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 13:34:16.3898 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.3898 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 13:34:16.3898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3898 Trace  Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 13:34:16.3898 Trace   Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 13:34:16.3898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 13:34:16.3898 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 13:34:16.3898 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3898 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 13:34:16.3898 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.3898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${shortdate}
+2024-04-13 13:34:16.3898 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 13:34:16.3898 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 13:34:16.3898 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 13:34:16.3898 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 13:34:16.4049 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 13:34:16.4049 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.4049 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 13:34:16.4049 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 13:34:16.4049 Trace Initializing FileTarget(Name=htmlFile)
+2024-04-13 13:34:16.4049 Trace FindReachableObject<NLog.Layouts.Layout>:
+2024-04-13 13:34:16.4049 Trace Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 13:34:16.4049 Trace  Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 13:34:16.4049 Trace  Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 13:34:16.4049 Trace  Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 13:34:16.4049 Trace FileTarget(Name=htmlFile) has 3 layouts
+2024-04-13 13:34:16.4049 Trace FileTarget(Name=htmlFile): Using appenderFactory: NLog.Internal.FileAppenders.CountingSingleProcessFileAppender+Factory
+2024-04-13 13:34:16.4049 Info Configuration initialized.
+2024-04-13 13:34:20.8203 Info AppDomain Shutting down. LogFactory closing...
+2024-04-13 13:34:20.8203 Debug Stop watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 13:34:20.8203 Trace Flushing all 1 targets...
+2024-04-13 13:34:20.8203 Trace ForEachItemInParallel() 1 items
+2024-04-13 13:34:20.8203 Trace FileTarget(Name=htmlFile): FlushAsync
+2024-04-13 13:34:20.8203 Trace Continuation invoked: 
+2024-04-13 13:34:20.8203 Trace Parallel task completed. 0 items remaining
+2024-04-13 13:34:20.8282 Debug Flush completed
+2024-04-13 13:34:20.8282 Trace FileTarget(Name=htmlFile): FlushAsync Done
+2024-04-13 13:34:20.8282 Debug Closing logging configuration...
+2024-04-13 13:34:20.8282 Trace Closing FileTarget(Name=htmlFile)
+2024-04-13 13:34:20.8282 Debug FileTarget(Name=htmlFile): Closing...
+2024-04-13 13:34:20.8282 Debug FileTarget(Name=htmlFile): Closed.
+2024-04-13 13:34:20.8282 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${literal}
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${shortdate}
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${literal}
+2024-04-13 13:34:20.8282 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${literal}
+2024-04-13 13:34:20.8282 Trace Closing ${message} | ${exception:format=tostring}<br />
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${message}
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${literal}
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${exception}
+2024-04-13 13:34:20.8282 Trace Closing Layout Renderer: ${literal}
+2024-04-13 13:34:20.8282 Debug Finished closing logging configuration.
+2024-04-13 13:34:20.8282 Info LogFactory has been closed.
+2024-04-13 14:00:15.1839 Debug Message Template Auto Format enabled
+2024-04-13 14:00:15.2258 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2258 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:15.2258 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2258 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:15.2337 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2337 Trace Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:15.2337 Trace  Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:15.2337 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'includeAllProperties'='true'
+   at NLog.Config.LoggingConfigurationParser.SetPropertyValueFromString[T](T targetObject, String propertyName, String propertyValue, ValidatedConfigurationElement element)
+2024-04-13 14:00:15.2487 Debug Adding target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:15.2487 Info Registered target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:15.2487 Trace ParseRulesElement
+2024-04-13 14:00:15.2487 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-13 14:00:15.2487 Debug Start watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:00:15.2487 Debug --- NLog configuration dump ---
+2024-04-13 14:00:15.2487 Debug Targets:
+2024-04-13 14:00:15.2487 Debug FileTarget(Name=htmlFile)
+2024-04-13 14:00:15.2487 Debug Rules:
+2024-04-13 14:00:15.2487 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]
+2024-04-13 14:00:15.2487 Debug --- End of NLog configuration dump ---
+2024-04-13 14:00:15.2487 Trace FindReachableObject<System.Object>:
+2024-04-13 14:00:15.2487 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]'
+2024-04-13 14:00:15.2487 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic.IList`1[NLog.Targets.Target]
+2024-04-13 14:00:15.2487 Trace  Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:15.2487 Trace   Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:15.2487 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:15.2487 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2487 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2487 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:15.2487 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2487 Trace   Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:15.2487 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:15.2487 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2487 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace   Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:15.2643 Trace   Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:15.2643 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2643 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:15.2643 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace    Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:15.2643 Trace     Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:15.2643 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic.IList`1[NLog.Config.LoggingRule]
+2024-04-13 14:00:15.2643 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic.IList`1[NLog.Filters.Filter]
+2024-04-13 14:00:15.2643 Info Validating config: TargetNames=htmlFile, ConfigItems=13, FilePath=D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API\nlog.config
+2024-04-13 14:00:15.2643 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2024-04-13 14:00:15.2643 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${exception}
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${message}
+2024-04-13 14:00:15.2643 Trace Initializing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:00:15.2643 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2643 Trace Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:15.2643 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2643 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:15.2643 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace  Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:15.2643 Trace   Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:15.2643 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:15.2643 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:00:15.2643 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2643 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:15.2643 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2643 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${shortdate}
+2024-04-13 14:00:15.2643 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:15.2643 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:00:15.2643 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:15.2643 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:15.2643 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:15.2643 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:15.2643 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:15.2643 Trace Initializing FileTarget(Name=htmlFile)
+2024-04-13 14:00:15.2801 Trace FindReachableObject<NLog.Layouts.Layout>:
+2024-04-13 14:00:15.2801 Trace Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:15.2801 Trace  Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:15.2801 Trace  Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:15.2801 Trace  Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:15.2801 Trace FileTarget(Name=htmlFile) has 3 layouts
+2024-04-13 14:00:15.2801 Trace FileTarget(Name=htmlFile): Using appenderFactory: NLog.Internal.FileAppenders.CountingSingleProcessFileAppender+Factory
+2024-04-13 14:00:15.2801 Info Configuration initialized.
+2024-04-13 14:00:16.3605 Info AppDomain Shutting down. LogFactory closing...
+2024-04-13 14:00:16.3605 Debug Stop watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:00:16.3605 Trace Flushing all 1 targets...
+2024-04-13 14:00:16.3605 Trace ForEachItemInParallel() 1 items
+2024-04-13 14:00:16.3739 Trace FileTarget(Name=htmlFile): FlushAsync
+2024-04-13 14:00:16.3739 Trace Continuation invoked: 
+2024-04-13 14:00:16.3739 Trace Parallel task completed. 0 items remaining
+2024-04-13 14:00:16.3739 Debug Flush completed
+2024-04-13 14:00:16.3739 Trace FileTarget(Name=htmlFile): FlushAsync Done
+2024-04-13 14:00:16.3739 Debug Closing logging configuration...
+2024-04-13 14:00:16.3739 Trace Closing FileTarget(Name=htmlFile)
+2024-04-13 14:00:16.3739 Debug FileTarget(Name=htmlFile): Closing...
+2024-04-13 14:00:16.3739 Debug FileTarget(Name=htmlFile): Closed.
+2024-04-13 14:00:16.3739 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${shortdate}
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:16.3739 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:16.3739 Trace Closing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${message}
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${exception}
+2024-04-13 14:00:16.3739 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:16.3739 Debug Finished closing logging configuration.
+2024-04-13 14:00:16.3739 Info LogFactory has been closed.
+2024-04-13 14:00:32.1782 Debug Message Template Auto Format enabled
+2024-04-13 14:00:32.2170 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2188 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:32.2188 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2188 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:32.2188 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2188 Trace Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:32.2188 Trace  Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:32.2188 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'includeAllProperties'='true'
+   at NLog.Config.LoggingConfigurationParser.SetPropertyValueFromString[T](T targetObject, String propertyName, String propertyValue, ValidatedConfigurationElement element)
+2024-04-13 14:00:32.2430 Debug Adding target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:32.2430 Info Registered target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:32.2430 Trace ParseRulesElement
+2024-04-13 14:00:32.2498 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-13 14:00:32.2498 Debug Start watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:00:32.2498 Debug --- NLog configuration dump ---
+2024-04-13 14:00:32.2498 Debug Targets:
+2024-04-13 14:00:32.2498 Debug FileTarget(Name=htmlFile)
+2024-04-13 14:00:32.2498 Debug Rules:
+2024-04-13 14:00:32.2498 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]
+2024-04-13 14:00:32.2498 Debug --- End of NLog configuration dump ---
+2024-04-13 14:00:32.2498 Trace FindReachableObject<System.Object>:
+2024-04-13 14:00:32.2498 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]'
+2024-04-13 14:00:32.2498 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic.IList`1[NLog.Targets.Target]
+2024-04-13 14:00:32.2498 Trace  Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:32.2498 Trace   Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:32.2498 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:32.2498 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2498 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2498 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:32.2498 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2498 Trace   Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:32.2498 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:32.2498 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2498 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2498 Trace   Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:32.2498 Trace   Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:32.2498 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2498 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:32.2498 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2498 Trace    Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:32.2498 Trace     Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:32.2498 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2498 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic.IList`1[NLog.Config.LoggingRule]
+2024-04-13 14:00:32.2498 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic.IList`1[NLog.Filters.Filter]
+2024-04-13 14:00:32.2498 Info Validating config: TargetNames=htmlFile, ConfigItems=13, FilePath=D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API\nlog.config
+2024-04-13 14:00:32.2498 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2024-04-13 14:00:32.2649 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${exception}
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${message}
+2024-04-13 14:00:32.2649 Trace Initializing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:00:32.2649 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2649 Trace Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:32.2649 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2649 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:32.2649 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2649 Trace  Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:32.2649 Trace   Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:32.2649 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:32.2649 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:00:32.2649 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2649 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:32.2649 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2649 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${shortdate}
+2024-04-13 14:00:32.2649 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:32.2649 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:00:32.2649 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:32.2649 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:32.2649 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:32.2649 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2649 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:32.2649 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:32.2649 Trace Initializing FileTarget(Name=htmlFile)
+2024-04-13 14:00:32.2649 Trace FindReachableObject<NLog.Layouts.Layout>:
+2024-04-13 14:00:32.2649 Trace Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:32.2649 Trace  Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:32.2649 Trace  Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:32.2649 Trace  Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:32.2649 Trace FileTarget(Name=htmlFile) has 3 layouts
+2024-04-13 14:00:32.2649 Trace FileTarget(Name=htmlFile): Using appenderFactory: NLog.Internal.FileAppenders.CountingSingleProcessFileAppender+Factory
+2024-04-13 14:00:32.2649 Info Configuration initialized.
+2024-04-13 14:00:33.6818 Info AppDomain Shutting down. LogFactory closing...
+2024-04-13 14:00:33.6818 Debug Stop watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:00:33.6818 Trace Flushing all 1 targets...
+2024-04-13 14:00:33.6818 Trace ForEachItemInParallel() 1 items
+2024-04-13 14:00:33.6866 Trace FileTarget(Name=htmlFile): FlushAsync
+2024-04-13 14:00:33.6866 Trace Continuation invoked: 
+2024-04-13 14:00:33.6866 Trace Parallel task completed. 0 items remaining
+2024-04-13 14:00:33.6866 Debug Flush completed
+2024-04-13 14:00:33.6866 Trace FileTarget(Name=htmlFile): FlushAsync Done
+2024-04-13 14:00:33.6866 Debug Closing logging configuration...
+2024-04-13 14:00:33.6866 Trace Closing FileTarget(Name=htmlFile)
+2024-04-13 14:00:33.6866 Debug FileTarget(Name=htmlFile): Closing...
+2024-04-13 14:00:33.6866 Debug FileTarget(Name=htmlFile): Closed.
+2024-04-13 14:00:33.6866 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${shortdate}
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:33.6866 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:33.6866 Trace Closing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${message}
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${exception}
+2024-04-13 14:00:33.6866 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:00:33.6866 Debug Finished closing logging configuration.
+2024-04-13 14:00:33.6866 Info LogFactory has been closed.
+2024-04-13 14:00:45.5111 Debug Message Template Auto Format enabled
+2024-04-13 14:00:45.6876 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.6876 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:45.6876 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.6876 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:45.7060 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.7060 Trace Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:45.7060 Trace  Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:45.7060 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'includeAllProperties'='true'
+   at NLog.Config.LoggingConfigurationParser.SetPropertyValueFromString[T](T targetObject, String propertyName, String propertyValue, ValidatedConfigurationElement element)
+2024-04-13 14:00:45.9123 Debug Adding target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:45.9123 Info Registered target NLog.Targets.FileTarget(Name=htmlFile)
+2024-04-13 14:00:45.9123 Trace ParseRulesElement
+2024-04-13 14:00:45.9485 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-13 14:00:45.9539 Debug Start watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:00:45.9539 Debug --- NLog configuration dump ---
+2024-04-13 14:00:45.9539 Debug Targets:
+2024-04-13 14:00:45.9539 Debug FileTarget(Name=htmlFile)
+2024-04-13 14:00:45.9539 Debug Rules:
+2024-04-13 14:00:45.9539 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]
+2024-04-13 14:00:45.9539 Debug --- End of NLog configuration dump ---
+2024-04-13 14:00:45.9539 Trace FindReachableObject<System.Object>:
+2024-04-13 14:00:45.9539 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ htmlFile ]'
+2024-04-13 14:00:45.9539 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic.IList`1[NLog.Targets.Target]
+2024-04-13 14:00:45.9539 Trace  Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:45.9539 Trace   Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:45.9539 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:45.9539 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9539 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9539 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:45.9539 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9539 Trace   Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:45.9539 Trace   Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:45.9539 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9539 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9539 Trace   Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:45.9539 Trace   Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:45.9539 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9539 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:45.9539 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9539 Trace    Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:45.9539 Trace     Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:45.9539 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9539 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic.IList`1[NLog.Config.LoggingRule]
+2024-04-13 14:00:45.9539 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic.IList`1[NLog.Filters.Filter]
+2024-04-13 14:00:45.9688 Info Validating config: TargetNames=htmlFile, ConfigItems=13, FilePath=D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API\nlog.config
+2024-04-13 14:00:45.9688 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2024-04-13 14:00:45.9688 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${exception}
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${message}
+2024-04-13 14:00:45.9688 Trace Initializing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:00:45.9688 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.9688 Trace Scanning SimpleLayout '${message} | ${exception:format=tostring}<br />'
+2024-04-13 14:00:45.9688 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9688 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2024-04-13 14:00:45.9688 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9688 Trace  Scanning ExceptionLayoutRenderer 'Layout Renderer: ${exception}'
+2024-04-13 14:00:45.9688 Trace   Scanning Property Formats 'System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]' System.Collections.Generic.List`1[NLog.Config.ExceptionRenderingFormat]
+2024-04-13 14:00:45.9688 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:45.9688 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:00:45.9688 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.9688 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html'
+2024-04-13 14:00:45.9688 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9688 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9688 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:45.9835 Trace Initializing Layout Renderer: ${shortdate}
+2024-04-13 14:00:45.9835 Trace Initializing Layout Renderer: ${literal}
+2024-04-13 14:00:45.9835 Trace Initializing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:00:45.9835 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2024-04-13 14:00:45.9835 Trace Scanning SimpleLayout 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html'
+2024-04-13 14:00:45.9835 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic.IEnumerable`1[NLog.LayoutRenderers.LayoutRenderer]
+2024-04-13 14:00:45.9835 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9835 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2024-04-13 14:00:45.9835 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2024-04-13 14:00:45.9835 Trace Initializing FileTarget(Name=htmlFile)
+2024-04-13 14:00:45.9835 Trace FindReachableObject<NLog.Layouts.Layout>:
+2024-04-13 14:00:45.9835 Trace Scanning FileTarget 'FileTarget(Name=htmlFile)'
+2024-04-13 14:00:45.9835 Trace  Scanning Property FileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html' NLog.Layouts.Layout
+2024-04-13 14:00:45.9835 Trace  Scanning Property ArchiveFileName 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html' NLog.Layouts.Layout
+2024-04-13 14:00:45.9835 Trace  Scanning Property Layout '${message} | ${exception:format=tostring}<br />' NLog.Layouts.Layout
+2024-04-13 14:00:45.9835 Trace FileTarget(Name=htmlFile) has 3 layouts
+2024-04-13 14:00:45.9835 Trace FileTarget(Name=htmlFile): Using appenderFactory: NLog.Internal.FileAppenders.CountingSingleProcessFileAppender+Factory
+2024-04-13 14:00:45.9835 Info Configuration initialized.
+2024-04-13 14:00:59.2497 Debug Targets configured when LogLevel >= Debug for Logger: Services.LoggerService.LoggerManager
+2024-04-13 14:00:59.2497 Debug Logger Services.LoggerService.LoggerManager [Debug] => htmlFile
+2024-04-13 14:00:59.2497 Debug Logger Services.LoggerService.LoggerManager [Info] => htmlFile
+2024-04-13 14:00:59.2497 Debug Logger Services.LoggerService.LoggerManager [Warn] => htmlFile
+2024-04-13 14:00:59.2497 Debug Logger Services.LoggerService.LoggerManager [Error] => htmlFile
+2024-04-13 14:00:59.2497 Debug Logger Services.LoggerService.LoggerManager [Fatal] => htmlFile
+2024-04-13 14:00:59.2819 Debug FileTarget(Name=htmlFile): Preparing for new file: 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html'
+2024-04-13 14:00:59.2819 Debug FileTarget(Name=htmlFile): Creating file appender: 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html'
+2024-04-13 14:00:59.2981 Trace FileTarget(Name=htmlFile): Opening d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html with allowFileSharedWriting=False
+2024-04-13 14:10:55.9300 Info AppDomain Shutting down. LogFactory closing...
+2024-04-13 14:10:55.9300 Debug Stop watching file-filter 'nlog.config' in directory: D:\IT\My_Projects\RentShop\RentShop_API\RentShop_API
+2024-04-13 14:10:55.9300 Trace Flushing all 1 targets...
+2024-04-13 14:10:55.9364 Trace ForEachItemInParallel() 1 items
+2024-04-13 14:10:55.9364 Trace FileTarget(Name=htmlFile): FlushAsync
+2024-04-13 14:10:55.9364 Trace Continuation invoked: 
+2024-04-13 14:10:55.9364 Trace Parallel task completed. 0 items remaining
+2024-04-13 14:10:55.9364 Debug Flush completed
+2024-04-13 14:10:55.9364 Trace FileTarget(Name=htmlFile): FlushAsync Done
+2024-04-13 14:10:55.9364 Debug Targets not configured for Logger: Services.LoggerService.LoggerManager
+2024-04-13 14:10:55.9364 Debug Closing logging configuration...
+2024-04-13 14:10:55.9364 Trace Closing FileTarget(Name=htmlFile)
+2024-04-13 14:10:55.9364 Debug FileTarget(Name=htmlFile): Closing...
+2024-04-13 14:10:55.9364 Trace FileTarget(Name=htmlFile): FinalizeFile 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html, isArchiving: False'
+2024-04-13 14:10:55.9364 Debug FileTarget(Name=htmlFile): FileAppender Invalidate Closing File: 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html'
+2024-04-13 14:10:55.9364 Trace FileTarget: Closing 'd:/IT/My_Projects/RentShop/RentShop_API/LogInfo/2024-04-13_logfile.html'
+2024-04-13 14:10:55.9364 Debug FileTarget(Name=htmlFile): Closed.
+2024-04-13 14:10:55.9364 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/${shortdate}_logfile.html
+2024-04-13 14:10:55.9364 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${shortdate}
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:10:55.9522 Trace Closing d:/IT/My_Projects/RentShop/RentShop_API/LogInfo/archive/{#}.html
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:10:55.9522 Trace Closing ${message} | ${exception:format=tostring}<br />
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${message}
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${exception}
+2024-04-13 14:10:55.9522 Trace Closing Layout Renderer: ${literal}
+2024-04-13 14:10:55.9522 Debug Finished closing logging configuration.
+2024-04-13 14:10:55.9522 Info LogFactory has been closed.
