@@ -12,7 +12,7 @@ using Models;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20240413110016_CreateDb")]
+    [Migration("20240420161506_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
