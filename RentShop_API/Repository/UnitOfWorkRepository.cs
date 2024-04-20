@@ -5,8 +5,9 @@ using Models;
 
 namespace Repository;
 
-public class UnitOfWork : IUnitOfWork, IDisposable
+public class UnitOfWorkRepository : IUnitOfWorkRepository, IDisposable
 {
+
     private readonly RentDbContext _context;
     private readonly IFileProvider _fileProvider;
     private readonly IMapper _mapper;
@@ -21,7 +22,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private ITransportRepository _transport;
     private bool _disposedValue;
 
-    public UnitOfWork(RentDbContext context, IFileProvider fileProvider, IMapper mapper)
+    public UnitOfWorkRepository(RentDbContext context, IFileProvider fileProvider, IMapper mapper)
     {
         _context = context;
         _fileProvider = fileProvider;
@@ -116,7 +117,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             if (_transport == null)
             {
-                _transport = new TransportRepository(_context, _fileProvider, _mapper);
+                _transport = new TransportRepository(_context);
             }
             return _transport;
         }

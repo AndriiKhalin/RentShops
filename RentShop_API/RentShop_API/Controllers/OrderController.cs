@@ -16,12 +16,12 @@ namespace RentShop_API.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IUnitOfWork _repository;
+        private readonly IUnitOfWorkRepository _repository;
         private readonly RentDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public OrderController(IUnitOfWork repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
+        public OrderController(IUnitOfWorkRepository repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
         {
             _repository = repository;
             _context = context;

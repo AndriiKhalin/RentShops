@@ -21,9 +21,6 @@ public static class FileProvider_Extension
     }
     private static string GetPath()
     {
-        // Использовать Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
-        // для папки общего назначения
-
         //return @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images";
 
         var currentDirectory = Directory.GetCurrentDirectory();

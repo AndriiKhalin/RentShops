@@ -12,7 +12,7 @@ using Models;
 namespace RentShop_API.Migrations
 {
     [DbContext(typeof(RentDbContext))]
-    [Migration("20240413110016_CreateDb")]
+    [Migration("20240420153720_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
@@ -181,9 +181,6 @@ namespace RentShop_API.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedUpdatedAt")

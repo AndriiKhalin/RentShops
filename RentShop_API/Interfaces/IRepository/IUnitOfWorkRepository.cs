@@ -1,6 +1,6 @@
 ﻿namespace Interfaces.IRepository;
 
-public interface IUnitOfWork
+public interface IUnitOfWorkRepository
 {
     IUserRepository User { get; }
 

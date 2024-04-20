@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Interfaces.IEntityService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,14 +16,14 @@ namespace RentShop_API.Controllers
     [ApiController]
     public class TransportController : ControllerBase
     {
-        private readonly IUnitOfWork _repository;
+        private readonly IUnitOfWorkService _service;
         private readonly RentDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public TransportController(IUnitOfWork repository, RentDbContext context, IMapper mapper, ILoggerManager logger)
+        public TransportController(IUnitOfWorkService service, RentDbContext context, IMapper mapper, ILoggerManager logger)
         {
-            _repository = repository;
+            _service = service;
             _context = context;
             _mapper = mapper;
             _logger = logger;
@@ -32,7 +33,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<TransportDto>))]
         public async Task<IActionResult> GetTransports()
         {
-            var transports = _mapper.Map<IEnumerable<TransportDto>>(await _repository.Transport.GetTransports());
+            var transports = _mapper.Map<IEnumerable<TransportDto>>(await _service.Transport.GetTransports());
             _logger.LogInfo("We take transports from database");
 
             _logger.LogInfo("We returned all transports from database");
@@ -44,13 +45,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetTransport(Guid transportId)
         {
-            if (!await _repository.Transport.TransportExists(transportId))
+            if (!await _service.Transport.TransportExists(transportId))
             {
                 _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var transport = _mapper.Map<TransportDto>(await _repository.Transport.GetTransport(transportId));
+            var transport = _mapper.Map<TransportDto>(await _service.Transport.GetTransport(transportId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -65,13 +66,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetOrdersByTransport(Guid transportId)
         {
-            if (!await _repository.Transport.TransportExists(transportId))
+            if (!await _service.Transport.TransportExists(transportId))
             {
                 _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var ordersByTransport = _mapper.Map<IEnumerable<OrderDto>>(await _repository.Transport.GetOrdersByTransport(transportId));
+            var ordersByTransport = _mapper.Map<IEnumerable<OrderDto>>(await _service.Transport.GetOrdersByTransport(transportId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -86,13 +87,14 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetCategoryByTransport(Guid transportId)
         {
-            if (!await _repository.Transport.TransportExists(transportId))
+
+            if (!await _service.Transport.TransportExists(transportId))
             {
                 _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var categoryByTransport = _mapper.Map<TransportCategoryDto>(await _repository.Transport.GetCategoryByTransport(transportId));
+            var categoryByTransport = _mapper.Map<TransportCategoryDto>(await _service.Transport.GetCategoryByTransport(transportId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -113,11 +115,11 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _repository.Category.CategoryExists(categoryId))
-            {
-                _logger.LogError($"Category with id: {categoryId}, hasn't been found in db.");
-                return NotFound();
-            }
+            //if (!await _service.Category.CategoryExists(categoryId))
+            //{
+            //    _logger.LogError($"Category with id: {categoryId}, hasn't been found in db.");
+            //    return NotFound();
+            //}
 
             if (!ModelState.IsValid)
             {
@@ -125,8 +127,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var transportMap = await _repository.Transport.CreateTransport(categoryId, transportCreate);
-            await _repository.Save();
+            var transportMap = await _service.Transport.CreateTransport(categoryId, transportCreate);
+            _context.SaveChanges();
 
             _logger.LogInfo($"New Transport create success");
             var createdTransport = _mapper.Map<TransportDto>(transportMap);
@@ -147,7 +149,7 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _repository.Transport.TransportExists(transportId))
+            if (!await _service.Transport.TransportExists(transportId))
             {
                 _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
                 return NotFound();
@@ -159,8 +161,8 @@ namespace RentShop_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            await _repository.Transport.UpdateTransport(transportId, transportUpdate);
-            await _repository.Save();
+            await _service.Transport.UpdateTransport(transportId, transportUpdate);
+            await _service.Save();
 
 
             _logger.LogInfo($"Update Transport with ID: {transportId}");
@@ -170,7 +172,7 @@ namespace RentShop_API.Controllers
         [HttpDelete("{transportId}")]
         public async Task<IActionResult> DeleteTransport(Guid transportId)
         {
-            if (!await _repository.Transport.TransportExists(transportId))
+            if (!await _service.Transport.TransportExists(transportId))
             {
                 _logger.LogError($"Transport with id: {transportId}, hasn't been found in db.");
                 return NotFound();
@@ -182,8 +184,8 @@ namespace RentShop_API.Controllers
                 _logger.LogWarn("Model is invalid");
                 return BadRequest(ModelState);
             }
-            await _repository.Transport.DeleteTransport(transportId);
-            await _repository.Save();
+            _service.Transport.DeleteTransport(transportId);
+            await _service.Save();
 
             _logger.LogInfo($"Transport delete with id: {transportId} in our database");
 

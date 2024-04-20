@@ -2,7 +2,7 @@
 using Interfaces.ILoggerService;
 using NLog;
 
-namespace Services.LoggerService;
+namespace Services.Service.LoggerService;
 
 public class LoggerManager : ILoggerManager
 {

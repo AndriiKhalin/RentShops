@@ -72,7 +72,6 @@ namespace RentShop_API.Migrations
                     MaxSpeed = table.Column<int>(type: "int", nullable: false),
                     ImgUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     MaxWeight = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TransportCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>

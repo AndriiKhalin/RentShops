@@ -1,9 +1,9 @@
 ﻿using Models.DTO.TransportDTO;
 using Models.Entities;
 
-namespace Interfaces.IRepository;
+namespace Interfaces.IEntityService;
 
-public interface ITransportRepository
+public interface ITransportService
 {
     Task<List<Transport>> GetTransports();
 
@@ -18,7 +18,7 @@ public interface ITransportRepository
 
     void DeleteTransport(Guid id);
 
-    Task UpdateTransport(Transport transport);
+    Task UpdateTransport(Guid transportId, TransportForUpdateDto transport);
 
-    Task CreateTransport(Transport transport);
+    Task<Transport> CreateTransport(Guid categoryId, TransportForCreateDto transport);
 }

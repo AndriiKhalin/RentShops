@@ -180,9 +180,6 @@ namespace RentShop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("CreatedUpdatedAt")
                         .HasColumnType("datetime2");
 

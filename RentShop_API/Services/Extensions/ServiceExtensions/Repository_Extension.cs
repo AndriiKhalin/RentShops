@@ -8,6 +8,6 @@ public static class Repository_Extension
 {
     public static void ConfigureRepository(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
     }
 }

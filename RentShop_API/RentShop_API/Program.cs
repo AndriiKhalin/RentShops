@@ -12,6 +12,8 @@ builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureMySqlContext(builder.Configuration);
 builder.Services.ConfigureRepository();
+builder.Services.ConfigureServices();
+builder.Services.ConfigureManageImage();
 builder.Services.AddAutoMapper(typeof(Mapping));
 builder.Services.Configure_FileProvider();
 

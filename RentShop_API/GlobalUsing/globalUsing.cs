@@ -6,7 +6,7 @@ global using Services.Extensions.ServiceExtensions;
 global using Services.Extensions.ServiceExtensions;
 global using Services.Heplers.UrlResolver;
 global using Services.Mapping;
-global using Services.LoggerService;
+global using Services.Service.LoggerService;
 global using Interfaces.IRepository;
 global using Interfaces;
 global using Repository;
