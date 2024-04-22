@@ -74,9 +74,9 @@ public class TransportService : ITransportService
         var imagePath = await _manageImage.UploadFileAsync(transport.ImgUrl);
 
         var transportMap = _mapper.Map<Transport>(transport);
-        transportMap.TransportCategory = categoryEntity;
+        transportMap.TransportCategoryId = categoryEntity.Id;
         transportMap.ImgUrl = imagePath;
-        transportMap.CreatedUpdatedAt = DateTime.Now;
+        transportMap.CreatedUpdatedAt = DateTime.UtcNow;
 
         await _unitOfWorkRep.Transport.CreateTransport(transportMap);
 

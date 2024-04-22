@@ -128,7 +128,7 @@ namespace RentShop_API.Controllers
             }
 
             var transportMap = await _service.Transport.CreateTransport(categoryId, transportCreate);
-            _context.SaveChanges();
+            await _service.Save();
 
             _logger.LogInfo($"New Transport create success");
             var createdTransport = _mapper.Map<TransportDto>(transportMap);

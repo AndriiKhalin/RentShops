@@ -45,9 +45,9 @@ public class CategoryRepository : BaseRepository<TransportCategory>, ICategoryRe
         return await GetAll().Result.OrderBy(x => x.CreatedUpdatedAt).ToListAsync();
     }
 
-    public async Task<TransportCategory> GetCategory(Guid id)
+    public Task<TransportCategory> GetCategory(Guid id)
     {
-        return await GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
+        return GetByCondition(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Transport>> GetTransportsByCategory(Guid categoryId)
