@@ -17,18 +17,15 @@ public class Mapping : Profile
 {
     public Mapping()
     {
-        CreateMap<User, UserDto>()
-            .ForMember(x => x.ImgUrl, o => o.MapFrom<UserUrlResolver>())
-            .ReverseMap();
+        CreateMap<User, UserDto>().ReverseMap();
         CreateMap<User, UserForCreateDto>().ReverseMap();
         CreateMap<User, UserForUpdateDto>().ReverseMap();
 
-        CreateMap<Order, OrderDto>().ForMember(x => x.TransportImgUrl, o => o.MapFrom<OrderUrlResorver>()).ReverseMap();
+        CreateMap<Order, OrderDto>().ReverseMap();
         CreateMap<Order, OrderForCreateDto>().ReverseMap();
         CreateMap<Order, OrderForUpdateDto>().ReverseMap();
 
-        CreateMap<Transport, TransportDto>()
-            .ForMember(x => x.ImgUrl, o => o.MapFrom<TransportUrlResolver>()).ReverseMap();
+        CreateMap<Transport, TransportDto>().ReverseMap();
         CreateMap<Transport, TransportForCreateDto>().ReverseMap();
         CreateMap<Transport, TransportForUpdateDto>().ReverseMap();
 
@@ -52,7 +49,7 @@ public class Mapping : Profile
         CreateMap<TransportAvailable, TransportAvailableForCreateDto>().ReverseMap();
         CreateMap<TransportAvailable, TransportAvailableForUpdateDto>().ReverseMap();
 
-        CreateMap<Shop, ShopDto>().ForMember(x => x.ImgUrl, o => o.MapFrom<ShopUrlResorver>()).ReverseMap();
+        CreateMap<Shop, ShopDto>().ReverseMap();
         CreateMap<Shop, ShopForCreateDto>().ReverseMap();
         CreateMap<Shop, ShopForUpdateDto>().ReverseMap();
 

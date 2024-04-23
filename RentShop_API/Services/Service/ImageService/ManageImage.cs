@@ -22,14 +22,15 @@ public class ManageImage<T> : IManageImage<T> where T : class
 
     public async Task<string> UploadFileAsync(IFormFile file)
     {
+
         if (file == null || file.Length == 0)
         {
             return null;
         }
 
-        var rootImg = $"/Stuff/Images/Upload/{typeof(T)}/";
+        var rootImg = $"\\Stuff\\Images\\Upload\\{typeof(T).Name}\\";
         var fileName = GetUniqueFileName(file.FileName);
-        var directoryPath = Path.Combine(ImgPath, rootImg);
+        var directoryPath = ImgPath + rootImg;
 
         if (!Directory.Exists(directoryPath))
         {
@@ -43,12 +44,10 @@ public class ManageImage<T> : IManageImage<T> where T : class
             await file.CopyToAsync(fileStream);
         }
 
-        return filePath;
+        return rootImg + fileName;
     }
     public string GetPath()
     {
-        //return @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images";
-
         var currentDirectory = Directory.GetCurrentDirectory();
         var projectRoot = Path.GetFullPath(Path.Combine(currentDirectory, "..", ".."));
         var pathToImages = Path.Combine(projectRoot, @"RentShop_UI\src\assets\");
