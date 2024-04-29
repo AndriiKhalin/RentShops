@@ -43,13 +43,12 @@ public class TransportRepository : BaseRepository<Transport>, ITransportReposito
 
     public async Task<bool> TransportExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public void DeleteTransport(Guid id)
     {
         Delete(id);
-
     }
 
     public async Task UpdateTransport(Transport transport)

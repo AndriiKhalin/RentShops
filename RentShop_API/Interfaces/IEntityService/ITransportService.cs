@@ -16,9 +16,10 @@ public interface ITransportService
 
     Task<bool> TransportExists(Guid id);
 
-    void DeleteTransport(Guid id);
+    Task DeleteTransport(Guid id);
 
     Task UpdateTransport(Guid transportId, TransportForUpdateDto transport);
 
     Task<Transport> CreateTransport(Guid categoryId, TransportForCreateDto transport);
+
 }

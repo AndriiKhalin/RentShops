@@ -1,5 +1,6 @@
 ﻿using Interfaces.IImageService;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Models.Entities;
 
 namespace Services.Service.ImageService;
@@ -16,6 +17,22 @@ public class ManageImage<T> : IManageImage<T> where T : class
     {
         if (File.Exists(filePath))
         {
+            string nameFile = Path.GetFileName(filePath);
+
+            string navigationPath = NavigateToFolder(filePath, "Images");
+            string deletedFolderPath = Path.Combine(navigationPath, "Deleted");
+            string entityFolderPath = Path.Combine(deletedFolderPath, typeof(T).Name);
+
+
+            if (!Directory.Exists(entityFolderPath))
+            {
+                Directory.CreateDirectory(entityFolderPath);
+            }
+
+            string newFilePath = Path.Combine(entityFolderPath, Path.GetFileName(filePath));
+
+            File.Move(filePath, newFilePath);
+
             File.Delete(filePath);
         }
     }
@@ -44,7 +61,7 @@ public class ManageImage<T> : IManageImage<T> where T : class
             await file.CopyToAsync(fileStream);
         }
 
-        return rootImg + fileName;
+        return ImgPath + rootImg + fileName;
     }
     public string GetPath()
     {
@@ -58,7 +75,17 @@ public class ManageImage<T> : IManageImage<T> where T : class
     {
         var extension = Path.GetExtension(fileName);
         var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-        var newFileName = $"{fileNameWithoutExtension}_{Guid.NewGuid()}{extension}";
+        var newFileName = $"{fileNameWithoutExtension}({Guid.NewGuid()}){extension}";
         return newFileName;
+    }
+
+    public string NavigateToFolder(string currentPath, string targetDirectoryName)
+    {
+        while (Path.GetFileNameWithoutExtension(currentPath) != targetDirectoryName)
+        {
+            currentPath = Path.GetFullPath(Path.Combine(currentPath, ".."));
+        }
+
+        return currentPath;
     }
 }

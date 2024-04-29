@@ -44,7 +44,7 @@ public class RatingRepository : BaseRepository<Rating>, IRatingRepository
 
     public async Task<bool> RatingExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<Rating> CreateRating(Guid userId, Guid transportId, RatingForCreateDto rating)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Interfaces.IEntityService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,15 @@ namespace RentShop_API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUnitOfWorkRepository _repository;
+        private readonly IUserService _userService;
         private readonly RentDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
 
-        public UserController(IUnitOfWorkRepository repository, RentDbContext context, IMapper mapper,
+        public UserController(IUserService userService, RentDbContext context, IMapper mapper,
             ILoggerManager logger)
         {
-            _repository = repository;
+            _userService = userService;
             _context = context;
             _mapper = mapper;
             _logger = logger;
@@ -32,7 +33,7 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<UserDto>))]
         public async Task<IActionResult> GetUsers()
         {
-            var users = _mapper.Map<IEnumerable<UserDto>>(await _repository.User.GetUsers());
+            var users = _mapper.Map<IEnumerable<UserDto>>(await _userService.GetUsers());
             _logger.LogInfo("We take users from database");
 
             if (!ModelState.IsValid)
@@ -50,13 +51,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetUserById(Guid userId)
         {
-            if (!await _repository.User.UserExists(userId))
+            if (!await _userService.UserExists(userId))
             {
                 _logger.LogError($"User with id: {userId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var user = _mapper.Map<UserDto>(await _repository.User.GetUser(userId));
+            var user = _mapper.Map<UserDto>(await _userService.GetUser(userId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -72,13 +73,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetUserByName(string userName)
         {
-            if (!await _repository.User.UserExists(userName))
+            if (!await _userService.UserExists(userName))
             {
                 _logger.LogError($"User with  name: {userName}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var user = _mapper.Map<UserDto>(await _repository.User.GetUser(userName));
+            var user = _mapper.Map<UserDto>(await _userService.GetUser(userName));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -94,13 +95,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetLastUserOrder(Guid userId)
         {
-            if (!await _repository.User.UserExists(userId))
+            if (!await _userService.UserExists(userId))
             {
                 _logger.LogError($"User with id: {userId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var lastDateOrder = await _repository.User.GetLastUserOrder(userId);
+            var lastDateOrder = await _userService.GetLastUserOrder(userId);
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -116,13 +117,13 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetRatingsByUser(Guid userId)
         {
-            if (!await _repository.User.UserExists(userId))
+            if (!await _userService.UserExists(userId))
             {
                 _logger.LogError($"User with id: {userId}, hasn't been found in db.");
                 return NotFound();
             }
 
-            var ratingsByUser = _mapper.Map<IEnumerable<RatingDto>>(await _repository.User.GetRatingsByUser(userId));
+            var ratingsByUser = _mapper.Map<IEnumerable<RatingDto>>(await _userService.GetRatingsByUser(userId));
             if (!ModelState.IsValid)
             {
                 _logger.LogWarn("Model is invalid");
@@ -138,23 +139,9 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateUser([FromForm] UserForCreateDto userCreate)
         {
-            if (userCreate == null)
-            {
-                _logger.LogError("User object is null");
-                return BadRequest(ModelState);
-            }
 
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarn("Model is invalid");
-                return BadRequest(ModelState);
-            }
+            var userMap = await _userService.CreateUser(userCreate);
 
-
-            var userMap = await _repository.User.CreateUser(userCreate);
-            await _repository.Save();
-
-            _logger.LogInfo($"New User create success");
             var createdUser = _mapper.Map<UserDto>(userMap);
 
             return CreatedAtAction(nameof(GetUserById), new { userId = createdUser.Id }, createdUser);
@@ -166,51 +153,16 @@ namespace RentShop_API.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> UpdateUser(Guid userId, [FromForm] UserForUpdateDto userUpdate)
         {
-            if (userUpdate == null)
-            {
-                _logger.LogError($"User object sent from client is null.");
-                return BadRequest(ModelState);
-            }
 
-            if (!await _repository.User.UserExists(userId))
-            {
-                _logger.LogError($"User with id: {userId}, hasn't been found in db.");
-                return NotFound();
-            }
+            await _userService.UpdateUser(userId, userUpdate);
 
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarn("Model is invalid");
-                return BadRequest(ModelState);
-            }
-
-            await _repository.User.UpdateUser(userId, userUpdate);
-            await _repository.Save();
-
-            _logger.LogInfo($"Update User with ID: {userId}");
             return NoContent();
         }
 
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUser(Guid userId)
         {
-            if (!await _repository.User.UserExists(userId))
-            {
-                _logger.LogError($"User with id: {userId}, hasn't been found in db.");
-                return NotFound();
-            }
-
-
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarn("Model is invalid");
-                return BadRequest(ModelState);
-            }
-
-            _repository.User.DeleteUser(userId);
-            await _repository.Save();
-
-            _logger.LogInfo($"User delete with id: {userId} in our database");
+            await _userService.DeleteUser(userId);
 
             return NoContent();
 

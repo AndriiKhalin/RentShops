@@ -16,7 +16,10 @@ builder.Services.ConfigureServices();
 builder.Services.ConfigureManageImage();
 builder.Services.AddAutoMapper(typeof(Mapping));
 builder.Services.Configure_FileProvider();
-
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -43,5 +46,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Seed();
+app.OpenLogFile();
 
 app.Run();

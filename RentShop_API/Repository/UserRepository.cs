@@ -58,97 +58,14 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return null;
     }
 
-    public async Task<User> CreateUser(UserForCreateDto user)
+    public async Task CreateUser(User user)
     {
-        var src = "";
-        string rootImg = "/Upload/User/";
-        var username = $"{user.FirstName}_{user.LastName}({Guid.NewGuid()}){Path.GetExtension(user.ImgUrl.FileName)}";
-
-        if (user.ImgUrl is not null)
-        {
-            var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\User\";
-
-            var directoryPath = Path.GetDirectoryName(root);
-
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            src = Path.Combine(root, username);
-
-            using (var fileStream = new FileStream(src, FileMode.Create))
-            {
-                await user.ImgUrl.CopyToAsync(fileStream);
-            }
-        }
-
-        var userMap = _mapper.Map<User>(user);
-        userMap.ImgUrl = rootImg + username;
-        userMap.CreatedUpdatedAt = DateTime.Now;
-
-        await Create(userMap);
-
-        return userMap;
+        await Create(user);
     }
 
-    public async Task UpdateUser(Guid userId, UserForUpdateDto user)
+    public async Task UpdateUser(User userForUpdate)
     {
-        var userEntity = await GetByCondition(x => x.Id == userId).FirstOrDefaultAsync();
-        var src = "";
-        var root = @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images\Upload\User\";
-        string rootImg = "/Upload/User/";
-        var username = $"{user.FirstName}_{user.LastName}({Guid.NewGuid()}){Path.GetExtension(user.ImgUrl.FileName)}";
-
-        if (userEntity is not null)
-        {
-
-            if (user.ImgUrl is not null)
-            {
-
-                var directoryPath = Path.GetDirectoryName(root);
-
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
-
-                src = Path.Combine(root, username);
-
-                using (var fileStream = new FileStream(src, FileMode.Create))
-                {
-                    await user.ImgUrl.CopyToAsync(fileStream);
-                }
-            }
-
-            if (!string.IsNullOrEmpty(userEntity.ImgUrl))
-            {
-                string oldsrc = userEntity.ImgUrl;
-                System.IO.File.Delete(oldsrc);
-            }
-
-
-            var firstName = userEntity.FirstName;
-            var secondName = userEntity.LastName;
-            var birthDate = userEntity.BirthDate;
-            var email = userEntity.Email;
-            var phone = userEntity.Phone;
-            var password = userEntity.Password;
-
-            _mapper.Map(user, userEntity);
-
-            userEntity.FirstName = firstName;
-            userEntity.LastName = secondName;
-            userEntity.BirthDate = birthDate;
-            userEntity.Email = email;
-            userEntity.Phone = phone;
-            userEntity.Password = password;
-            userEntity.ImgUrl = rootImg + username;
-            userEntity.CreatedUpdatedAt = DateTime.Now;
-
-            Update(userEntity);
-
-        }
+        Update(userForUpdate);
     }
 
     public void DeleteUser(Guid id)
@@ -158,33 +75,13 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public async Task<bool> UserExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<bool> UserExists(string userName)
     {
 
-        return await Exists(userName);
+        return await Exists(x => x.FirstName == userName);
     }
 
-    private string GetUniqueFileName(string fileName)
-    {
-        var extension = Path.GetExtension(fileName);
-        var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-        var newFileName = $"{fileNameWithoutExtension}_{Guid.NewGuid()}{extension}";
-        return newFileName;
-    }
-    private string GetPath()
-    {
-        // Использовать Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
-        // для папки общего назначения
-
-        //return @"D:\IT\My_Projects\RentShop\RentShop_UI\Stuff\Images";
-
-        var currentDirectory = Directory.GetCurrentDirectory();
-        var projectRoot = Path.GetFullPath(Path.Combine(currentDirectory, "..", ".."));
-        var pathToImages = Path.Combine(projectRoot, @"RentShop_UI\src\assets\");
-
-        return pathToImages;
-    }
 }

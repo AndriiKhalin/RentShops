@@ -75,7 +75,7 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
 
     public async Task<bool> OrderExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task UpdateOrder(Guid orderId, OrderForUpdateDto order)

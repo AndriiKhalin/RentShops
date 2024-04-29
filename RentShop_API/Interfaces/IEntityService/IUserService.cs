@@ -1,9 +1,9 @@
 ﻿using Models.DTO.UserDTO;
 using Models.Entities;
 
-namespace Interfaces.IRepository;
+namespace Interfaces.IEntityService;
 
-public interface IUserRepository
+public interface IUserService
 {
     Task<IEnumerable<User>> GetUsers();
 
@@ -15,11 +15,11 @@ public interface IUserRepository
 
     Task<DateTime?> GetLastUserOrder(Guid id);
 
-    Task CreateUser(User user);
+    Task<User> CreateUser(UserForCreateDto user);
 
-    Task UpdateUser(User userForUpdate);
+    Task UpdateUser(Guid userId, UserForUpdateDto user);
 
-    void DeleteUser(Guid id);
+    Task DeleteUser(Guid id);
 
     Task<bool> UserExists(Guid id);
 

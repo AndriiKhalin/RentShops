@@ -41,7 +41,7 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
 
     public async Task<bool> TransactionExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<Transaction> CreateTransaction(Guid orderId, TransactionForCreateDto transaction)

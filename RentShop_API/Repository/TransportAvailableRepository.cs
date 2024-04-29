@@ -46,7 +46,7 @@ public class TransportAvailableRepository : BaseRepository<TransportAvailable>, 
 
     public async Task<bool> TransportAvailableExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<TransportAvailable> CreateTransportAvailable(Guid transportId, Guid shopId, TransportAvailableForCreateDto transportAvailable)

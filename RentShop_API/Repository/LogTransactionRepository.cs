@@ -58,7 +58,7 @@ public class LogTransactionRepository : BaseRepository<LogTransaction>, ILogTran
 
     public async Task<bool> LogTransactionExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task UpdateLogTransaction(Guid logTransactionId, LogTransactionForUpdateDto logTransaction)

@@ -10,6 +10,7 @@ public static class Service_Extensions
 {
     public static void ConfigureServices(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWorkService, UnitOfWorkService>();
+        services.AddScoped<ITransportService, TransportService>();
+        services.AddScoped<IUserService, UserService>();
     }
 }

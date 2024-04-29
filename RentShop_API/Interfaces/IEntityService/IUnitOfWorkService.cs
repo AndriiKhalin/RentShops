@@ -1,9 +1,9 @@
-﻿using Interfaces.IRepository;
+﻿//using Interfaces.IRepository;
 
-namespace Interfaces.IEntityService;
+//namespace Interfaces.IEntityService;
 
-public interface IUnitOfWorkService
-{
-    ITransportService Transport { get; }
-    Task Save();
-}
+//public interface IUnitOfWorkService
+//{
+//    ITransportService Transport { get; }
+//    Task Save();
+//}

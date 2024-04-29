@@ -23,7 +23,7 @@ public class CategoryRepository : BaseRepository<TransportCategory>, ICategoryRe
     }
     public async Task<bool> CategoryExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<TransportCategory> CreateCategory(TransportCategoryForCreateDto category)

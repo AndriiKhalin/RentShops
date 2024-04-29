@@ -40,7 +40,7 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
 
     public async Task<bool> ShopExists(Guid id)
     {
-        return await Exists(id);
+        return await Exists(x => x.Id == id);
     }
 
     public async Task<Shop> CreateShop(ShopForCreateDto shop)
@@ -134,7 +134,7 @@ public class ShopRepository : BaseRepository<Shop>, IShopRepository
 
     public async Task<bool> ShopExists(string adressName)
     {
-        return await Exists(adressName);
+        return await Exists(x => x.Address == adressName);
     }
 
     private string GetUniqueFileName(string fileName)

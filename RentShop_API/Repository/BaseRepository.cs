@@ -18,7 +18,6 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         _context = context;
     }
 
-
     public async Task Create(T entity)
     {
         await _context.Set<T>().AddAsync(entity);
@@ -47,19 +46,19 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
         _context.Set<T>().Update(entity);
     }
 
-    public Task<bool> Exists(Guid id)
-    {
-        //return await _context.Set<T>().AnyAsync(x => x.Id == id);
-        return Task.FromResult(true);
-    }
+    //public Task<bool> Exists(Guid id)
+    //{
+    //    //return await _context.Set<T>().AnyAsync(x => x.Id == id);
+    //    return Task.FromResult(true);
+    //}
 
-    public async Task<bool> Exists(string name)
-    {
-        var entities = await _context.Set<T>().ToListAsync();
-        return entities.Any(x => x.GetType().GetProperties().Any(p => p.PropertyType == typeof(string) && (string)p.GetValue(x) == name));
-    }
+    //public async Task<bool> Exists(string name)
+    //{
+    //    var entities = await _context.Set<T>().ToListAsync();
+    //    return entities.Any(x => x.GetType().GetProperties().Any(p => p.PropertyType == typeof(string) && (string)p.GetValue(x) == name));
+    //}
 
-    public Task<bool> ExistsNew(Expression<Func<T, bool>> expression)
+    public Task<bool> Exists(Expression<Func<T, bool>> expression)
     {
         return _context.Set<T>().AnyAsync(expression);
     }
